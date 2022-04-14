@@ -139,8 +139,8 @@
                     // requiere ese formateo porque si tiene caracteres especiales no se imprime en el código HTML
                 }
             %>
-            <a href="Frm_UnaPlanta.jsp?idCrearModificar=-1">Agregar Nueva Herramienta o Producto</a> |
-            <a href="Frm_ListaPlanta.jsp">Actualizar</a>
+            <a href="Frm_UnaProd_Herra.jsp?idCrearModificar=-1">Agregar Nueva Herramienta o Producto</a> |
+            <a href="Frm_Lista_ProdHerra.jsp">Actualizar</a>
             <br><br>
             <a href="index.html">Regresar al Index</a>
         </div>
