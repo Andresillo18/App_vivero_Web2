@@ -2,6 +2,8 @@
     Created on : 12 abr. 2022, 15:11:50
     Author     : Andrés Villalobos
 */
+span.error{color:red; font-size:0.8em;}
+
 body{
     margin: 0;
     font-family: sans-serif;
@@ -15,4 +17,8 @@ body{
 
 .parrafo{
     margin-bottom: 2.5em
+}
+
+.titulos{
+    font-family: 'Roboto Mono', monospace;
 }
