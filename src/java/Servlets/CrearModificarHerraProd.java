@@ -1,10 +1,10 @@
 package Servlets;
 
-import Entidades.Planta;
-import LogicaNegocio.LNPlanta;
+import Entidades.Herramienta_Producto;
+import LogicaNegocio.LNHerram_Prod;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,37 +12,51 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 13-4-22
+ * 14-4-22
  *
  * @author Andrés Villalobos
  */
-@WebServlet("/EliminarPlanta")
-public class EliminarPlanta extends HttpServlet {
+@WebServlet(name = "CrearModificarHerraProd", urlPatterns = {"/CrearModificarHerraProd"})
+public class CrearModificarHerraProd extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter(); // para poder escribir en el HTML
+
+        //Siempre se debe crear el objeto out para dar un respuesta
+        PrintWriter out = response.getWriter();
 
         try {
-            LNPlanta logica = new LNPlanta();
+            LNHerram_Prod Logica = new LNHerram_Prod();
+            Herramienta_Producto HP = new Herramienta_Producto();
+            int resultado;
 
-            String id = request.getParameter("idEliminar");
-            // obtiene el parámetro del QUERY STRING y siempre será un string
+            HP.setCantidad_disponible(Integer.parseInt(request.getParameter("txtCodigo")));
 
-            int codigo = Integer.parseInt(id);
-            Planta plant = new Planta();
-            plant.setCod_planta(codigo);
+            HP.setNombre(new String(request.getParameter("txtNombre").getBytes("ISO-8859-1"), "UTF-8"));
 
-            int resultado = logica.Eliminar(plant);
+            HP.setDescripcion(new String(request.getParameter("txtDescripcion").getBytes("ISO-8859-1"), "UTF-8"));
 
-            String mensaje = logica.getMensaje();
+            HP.setPrecio(Float.parseFloat((new String(request.getParameter("txtPrecio").getBytes("ISO-8859-1"), "UTF-8"))));
 
-            mensaje = URLEncoder.encode(mensaje, "UTF-8");
+            HP.setCantidad_disponible(Integer.parseInt(new String(request.getParameter("txtCantidadDisponible").getBytes("ISO-8859-1"), "UTF-8")));
 
-            //Reenviamos a la página que estaba y se envía con un RESPONSE los parámetros por la URL
-            response.sendRedirect("Frm_ListaPlantas.jsp?mensajeEliminar=" + mensaje + "&resultado=" + resultado);
+            HP.setMaterial(new String(request.getParameter("txtMaterial").getBytes("ISO-8859-1"), "UTF-8"));
+
+            if (request.getParameter("txtFechaVencimiento") != null) {
+                HP.setFechaVencimiento(Date.valueOf(new String(request.getParameter("txtFechaVencimiento").getBytes("ISO-8859-1"), "UTF-8"))); //****
+            } else {
+                HP.setFechaVencimiento(null); //****
+            }
+
+            if (HP.getCod_herramienta_prod() > 0) {
+                resultado = Logica.Modificar(HP);
+            } else {
+                resultado = Logica.Insertar(HP);
+            }
+
+            response.sendRedirect("Frm_Lista_ProdHerra.jsp");
+
         } catch (Exception ex) {
             out.print(ex.getMessage());
         }

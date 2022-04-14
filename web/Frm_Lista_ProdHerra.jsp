@@ -121,8 +121,8 @@
                         <!-- *Columna adicional*-->
                         <td>
                             <!--Es una petición get (se ve en la URL), enviamos un parámetro por Query String -->
-                            <a href="Frm_UnaPlanta.jsp?idCrearModificar=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
-                            <a href="EliminarPlanta?idEliminar=<%=cod%>"><i class="fas fa-trash-alt"></i></a>            
+                            <a href="Frm_UnaProd_Herra.jsp?idCrearModificar=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
+                            <a href="EliminarHerraProd?idEliminar=<%=cod%>"><i class="fas fa-trash-alt"></i></a>            
                         </td>
                     </tr>
 

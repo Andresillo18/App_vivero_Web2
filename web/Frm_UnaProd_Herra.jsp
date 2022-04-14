@@ -72,7 +72,7 @@
                     }
                 %>
 
-                <form action="CrearModificarPlanta" method="post" id="form_AgregarModificar">                    
+                <form action="CrearModificarHerraProd" method="post" id="form_AgregarModificar">                    
 
                     <!-- contenedor para el ID -->
                     <div class="form-group">
@@ -114,13 +114,13 @@
 
                     <!-- para el cantidad para regar -->
                     <div class="form-group">
-                        <label for="txtMaterial" class="control-label">Cantidad de Regado</label>
+                        <label for="txtMaterial" class="control-label">Material</label>
                         <input type="text" id="txtMaterial" name="txtMaterial" value="<%=HP.getMaterial()%>" class="form-control"/>
                     </div>
 
                     <!-- para el tiempo luz-->
                     <div class="form-group">
-                        <label for="txtFechaVencimiento" class="control-label">Tiempo de luz solar</label>
+                        <label for="txtFechaVencimiento" class="control-label">Fecha de vencimiento</label>
                         <input type="date" id="txtFechaVencimiento" name="txtFechaVencimiento" value="<%=HP.getFechaVencimiento()%>" class="form-control"/>
                     </div>         
 

@@ -1,7 +1,7 @@
 package Servlets;
 
-import Entidades.Planta;
-import LogicaNegocio.LNPlanta;
+import Entidades.Herramienta_Producto;
+import LogicaNegocio.LNHerram_Prod;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
@@ -12,37 +12,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 13-4-22
+ * 14-4-22
  *
  * @author Andrés Villalobos
  */
-@WebServlet("/EliminarPlanta")
-public class EliminarPlanta extends HttpServlet {
+@WebServlet(name = "EliminarHerraProd", urlPatterns = {"/EliminarHerraProd"})
+public class EliminarHerraProd extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter(); // para poder escribir en el HTML
+        PrintWriter out = response.getWriter();
 
         try {
-            LNPlanta logica = new LNPlanta();
+            LNHerram_Prod logica = new LNHerram_Prod();
 
-            String id = request.getParameter("idEliminar");
-            // obtiene el parámetro del QUERY STRING y siempre será un string
+            //Se verifica si se envío el parámetro que es el id del producto a eliminar
+            if (request.getParameter("idEliminar") != null
+                    && !request.getParameter("idEliminar").equals("")) {
+                String id = request.getParameter("idEliminar");
+                // obtiene el parámetro del QUERY STRING y siempre será un string
 
-            int codigo = Integer.parseInt(id);
-            Planta plant = new Planta();
-            plant.setCod_planta(codigo);
+                int codigo = Integer.parseInt(id);
+                Herramienta_Producto HP = new Herramienta_Producto();
+                HP.setCod_herramienta_prod(codigo);
 
-            int resultado = logica.Eliminar(plant);
+                int resultado = logica.Eliminar(HP);
 
-            String mensaje = logica.getMensaje();
+                String mensaje = logica.getMensaje();
 
-            mensaje = URLEncoder.encode(mensaje, "UTF-8");
+                mensaje = URLEncoder.encode(mensaje, "UTF-8");
 
-            //Reenviamos a la página que estaba y se envía con un RESPONSE los parámetros por la URL
-            response.sendRedirect("Frm_ListaPlantas.jsp?mensajeEliminar=" + mensaje + "&resultado=" + resultado);
+                //Reenviamos a la página que estaba y se envía con un RESPONSE los parámetros por la URL
+                response.sendRedirect("Frm_Lista_ProdHerra.jsp?mensajeEliminar=" + mensaje + "&resultado=" + resultado);
+            }
+
         } catch (Exception ex) {
             out.print(ex.getMessage());
         }

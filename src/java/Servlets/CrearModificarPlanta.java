@@ -22,6 +22,7 @@ public class CrearModificarPlanta extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        //Siempre se debe crear el objeto out para dar un respuesta
         PrintWriter out = response.getWriter();
 
         try {
