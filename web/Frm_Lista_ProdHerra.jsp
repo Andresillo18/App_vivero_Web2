@@ -1,12 +1,11 @@
 <%-- 
-    Document   : Frm_ListaPlanta
-    Created on : 12 abr. 2022, 16:17:35
+    Document   : Frm_Lista_ProdHerra
+    Created on : 14 abr. 2022, 10:36:55
     Author     : Andrés Villalobos
 --%>
-
-<%@page import="Entidades.Planta"%>
-<%@page import="LogicaNegocio.LNPlanta"%>
+<%@page import="Entidades.Herramienta_Producto"%>
 <%@page import="java.util.List"%>
+<%@page import="LogicaNegocio.LNHerram_Prod"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,11 +20,8 @@
 
         <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="lib/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" type="text/css"/>
-
-
-        <title>Lista de Plantas</title>
+        <title>Lista de Herramientas y Productos</title>
     </head>
-
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -59,14 +55,14 @@
 
         <div class="container"> 
             <div class="card-header">
-                <h1 class="titulos">Lista de plantas</h1>
+                <h1 class="titulos">Lista de Herramientas y Productos</h1>
             </div>
             <br/>
 
             <!-- El form hará un postback cuando se le da al botón de buscar, entonces se estará llamando a este mismo pero con lo que tenga el campo de texto para buscar
             -->
 
-            <form action="Frm_ListaPlantas.jsp" method="post">                
+            <form action="Frm_Lista_ProdHerra.jsp" method="post">                
                 <div class="form-group">
                     <div class="input-group">                      
                         <input type="text" id="txtnombre" name="txtnombre" value="" placeholder="Busqueda por nombre..."
@@ -103,17 +99,17 @@
                             nombre = request.getParameter("txtnombre");
                             condicion = "NOMBRE LIKE '%" + nombre + "%'";
                         }
-                        LNPlanta logica = new LNPlanta();
-                        List<Planta> datos;
+                        LNHerram_Prod logica = new LNHerram_Prod();
+                        List<Herramienta_Producto> datos;
                         //Se usa una lista para tener los registros completos y no un resultset
                         datos = logica.ListaRegistros(condicion);
 
-                        for (Planta registro : datos) {
+                        for (Herramienta_Producto registro : datos) {
                             //El for no cierra aún
                     %>
 
                     <tr>
-                        <%int cod = registro.getCod_planta();%>
+                        <%int cod = registro.getCod_herramienta_prod();%>
 
                         <!--Este código insertado de java permite solo mostrar datos del mismo java, son Expresiones-->
                         <td><%= cod%></td> 
@@ -143,7 +139,7 @@
                     // requiere ese formateo porque si tiene caracteres especiales no se imprime en el código HTML
                 }
             %>
-            <a href="Frm_UnaPlanta.jsp?idCrearModificar=-1">Agregar Nueva Planta</a> |
+            <a href="Frm_UnaPlanta.jsp?idCrearModificar=-1">Agregar Nueva Herramienta o Producto</a> |
             <a href="Frm_ListaPlanta.jsp">Actualizar</a>
             <br><br>
             <a href="index.html">Regresar al Index</a>
