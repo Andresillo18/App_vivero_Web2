@@ -154,7 +154,8 @@ public class ADFactura {
             _conexion = getConnection();
             Statement Stm = _conexion.createStatement(); // Siempre se debe estable esta conexión con la BD
 
-            String sentencia = "SELECT COD_FACTURA, COD_EMPLEADO, COD_CLIENTE FROM Factura";
+            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO,Empleado.NOMBRE,Cliente.NOMBRE, Factura.COD_CLIENTE FROM Cliente INNER JOIN Factura " +
+"ON Cliente.COD_CLIENTE =Factura.COD_CLIENTE INNER JOIN Empleado ON Factura.COD_EMPLEADO = Empleado.COD_EMPLEADO";
 
             if (!condicion.equals("")) { // Si se envío una condición
                 sentencia = String.format("%s WHERE %s", sentencia, condicion); // Interpolación de Strings 
@@ -164,7 +165,7 @@ public class ADFactura {
 
             // Se usa un bucle siempre para saber lo que tiene un ResultSet
             while (rs.next()) { // Esto solo leerá el único registro que tiene
-                list1.add(new Factura(rs.getInt(1), rs.getInt(2), rs.getInt(3))); // Solo le envía un objeto
+                list1.add(new Factura(rs.getInt(1), rs.getInt(2),rs.getString(3),rs.getString(4), rs.getInt(5))); // Solo le envía un objeto
             }
         } catch (Exception e) {
             throw e;

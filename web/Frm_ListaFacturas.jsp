@@ -4,6 +4,10 @@
     Author     : Andrés Villalobos
 --%>
 
+<%@page import="Entidades.Cliente"%>
+<%@page import="Entidades.Empleado"%>
+<%@page import="LogicaNegocio.LNEmpleado"%>
+<%@page import="LogicaNegocio.LNCliente"%>
 <%@page import="Entidades.Factura"%>
 <%@page import="java.util.List"%>
 <%@page import="LogicaNegocio.LNFactura"%>
@@ -68,16 +72,16 @@
 
                 <tbody>
                     <%
-                        LNFactura logica = new LNFactura();
+                        LNFactura logFact = new LNFactura();
                         List<Factura> datos;
-                        datos = logica.ListaRegistros(""); // Se le envía vacío ya que no se ocupa en este caso
+                        datos = logFact.ListaRegistros(""); // Se le envía vacío ya que no se ocupa en este caso
                         for (Factura registro : datos) {
                     %>
                     <tr>
                         <%int num = registro.getCod_factura();%>
                         <td><%= num%></td>
-                        <td><%= registro.getCod_empleado()%></td>
-                        <td><%= registro.getCod_cliente()%></td>
+                        <td><%= registro.getNombre_empleado()%></td>
+                        <td><%= registro.getNombre_cliente()%></td>
                         <td>
                             <a href="Frm_unaFactura.jsp?txtnumFactura=<%= num%>">
                                 <i class="fas fa-cart-plus"></i></a>

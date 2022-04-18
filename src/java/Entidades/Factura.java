@@ -10,12 +10,14 @@ public class Factura {
 // <editor-fold desc="ATRIBUTOS" defaultstate="collapsed">    
     private int cod_factura;
     private int cod_empleado;
+    private String nombre_empleado;
     private int cod_cliente;
+    private String nombre_cliente;
     private boolean existe;
 
 // </editor-fold>
-    
-// <editor-fold desc="PROPIEDADES" defaultstate="collapsed">  
+
+// <editor-fold desc="PROPIEDADES" defaultstate="collapsed">
     public int getCod_factura() {
         return cod_factura;
     }
@@ -30,6 +32,22 @@ public class Factura {
 
     public void setCod_empleado(int cod_empleado) {
         this.cod_empleado = cod_empleado;
+    }
+
+    public String getNombre_empleado() {
+        return nombre_empleado;
+    }
+
+    public void setNombre_empleado(String nombre_empleado) {
+        this.nombre_empleado = nombre_empleado;
+    }
+
+    public String getNombre_cliente() {
+        return nombre_cliente;
+    }
+
+    public void setNombre_cliente(String nombre_cliente) {
+        this.nombre_cliente = nombre_cliente;
     }
 
     public int getCod_cliente() {
@@ -53,10 +71,12 @@ public class Factura {
     public Factura() {
     }
 
-    public Factura(int cod_factura, int cod_empleado, int cod_cliente) {
+   public Factura(int cod_factura, int cod_empleado, String nombre_empleado,  String nombre_cliente, int cod_cliente) {
         this.cod_factura = cod_factura;
         this.cod_empleado = cod_empleado;
+        this.nombre_empleado = nombre_empleado;
         this.cod_cliente = cod_cliente;
+        this.nombre_cliente = nombre_cliente;
         this.existe = true;
     }
 
