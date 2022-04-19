@@ -72,7 +72,7 @@
                         }
                     %>
 
-                    <form action="" method="post" id="form_AgregarModificar">                    
+                    <form action="CrearModificarCliente" method="post" id="form_AgregarModificar">                    
 
                         <!-- contenedor para el ID -->
                         <div class="form-group">
@@ -91,7 +91,7 @@
                         <!-- form-group para la identificación-->
                         <div class="form-group">
                             <label for="txtID" class="control-label">ID</label>
-                            <input type="text" id="txtID" name="txtID" value="<%=cliente1.getId()%>" class="form-control"/>
+                            <input type="number" id="txtID" name="txtID" value="<%=cliente1.getId()%>" class="form-control"/>
                         </div>
 
                         <!-- form-group para los controles de Nombre -->
@@ -112,20 +112,11 @@
                             <input type="number" id="txtTelefono" name="txtTelefono" value="<%=cliente1.getTelefono()%>" class="form-control"/>
                         </div>
 
-                        <!-- para el estado -->
-<!--                        <div class="form-group">
-                            <label for="txtActivo" class="control-label">Estado</label>
-                            <input type="number" id="txtCantidadDisponible" name="txtCantidadDisponible" value="<%%>" class="form-control"/>
-                            <input type="radio" id="txtActivo" name="txtActivo" value="<%=%>">
-                            <label for="html">HTML</label><br>
-                            <input type="radio" id="css" name="fav_language" value="CSS">
-                        </div>       -->
-
                         <!-- form-group para los BOTONES de guardar y regresar  -->
                         <div class="form-group">
                             <div class="input-group">
                                 <input type="submit" id="btnGuardar" value="Guardar" class="btn btn-primary"/> &nbsp;&nbsp;
-                                <input type="button" id="btnRegresar" value="Regresar" onclick="location.href = 'Frm_Lista_ProdHerra.jsp'" class="btn btn-secondary"/>
+                                <input type="button" id="btnRegresar" value="Regresar" onclick="location.href = 'Frm_ListaClientes.jsp'" class="btn btn-secondary"/>
                                 <!-- No estamos haciendo un RESPONSE porque no esta enviando ningún parámetro -->
                             </div>
                         </div>
