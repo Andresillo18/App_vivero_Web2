@@ -72,56 +72,56 @@
                         int codigo = Integer.parseInt(id);
 
                         if (codigo > 0) {
-                            HP = logica.ObtenerRegistro("codProducto=" + id);
+                            entidad = logica.ObtenerRegistro("codProducto=" + id);
                         } else {
-                            HP = new Producto();
+                            entidad = new Producto();
                         }
                     %>
 
                     <form action="CrearModificarProd" method="post" id="form_AgregarModificar">                    
 
-                        <!-- contenedor para el ID -->
+                        <!-- contenedor para el cod -->
                         <div class="form-group">
                             <%if (codigo > 0) {%>
-                            <!-- Si el cliente existe, mostrará la etiqueta y el ID
+                            <!-- Si el producto existe, mostrará la etiqueta y el ID
                             -->
 
                             <label for="txtCodigo" class="control-label">Código</label>
-                            <input type="number" id="txtCodigo" name="txtCodigo" value="<%=HP.getCodProducto()%>" readonly class="form-control"/>
+                            <input type="number" id="txtCodigo" name="txtCodigo" value="<%=entidad.getCodProducto()%>" readonly class="form-control"/>
                             <%} else {%>
                             <!-- Sino, el registro no existe-->
                             <input type="hidden" id="txtCodigo" name="txtCodigo" value="-1"/>
                             <%}%>
                         </div>
 
+                        <!-- form-group para los controles de Tipo -->
+                        <div class="form-group">
+                            <label for="txtTipo" class="control-label">Nombre</label>
+                            <input type="txt" id="txtTipo" name="txtTipo" value="<%=entidad.getTipoProducto()%>" class="form-control"/>
+                        </div>
+                        
                         <!-- form-group para los controles de Nombre -->
                         <div class="form-group">
                             <label for="txtNombre" class="control-label">Nombre</label>
-                            <input type="txt" id="txtNombre" name="txtNombre" value="<%=HP.getNombre()%>" class="form-control"/>
+                            <input type="txt" id="txtNombre" name="txtNombre" value="<%=entidad.getNombre()%>" class="form-control"/>
                         </div>
 
                         <!-- para la descripción -->
                         <div class="form-group">
                             <label for="txtDescripcion" class="control-label">Descripción</label>
-                            <input type="txt" id="txtDescripcion" name="txtDescripcion" value="<%=HP.getDescripcion()%>" class="form-control"/>
+                            <input type="txt" id="txtDescripcion" name="txtDescripcion" value="<%=entidad.getDescripcion()%>" class="form-control"/>
                         </div>
 
                         <!-- para el precio -->
                         <div class="form-group">
                             <label for="txtPrecio" class="control-label">Precio</label>
-                            <input type="number" id="txtPrecio" name="txtPrecio" value="<%=HP.getPrecio()%>" class="form-control"/>
+                            <input type="number" step="0.01" min="0.0" id="txtPrecio" name="txtPrecio" value="<%=entidad.getPrecio()%>" class="form-control"/>
                         </div>
 
                         <!-- para la cantidad disponible-->
                         <div class="form-group">
                             <label for="txtCantidadDisponible" class="control-label">Cantidad disponible</label>
-                            <input type="number" id="txtCantidadDisponible" name="txtCantidadDisponible" value="<%=HP.getCantDisponible()%>" class="form-control"/>
-                        </div>
-
-                        <!-- para el cantidad para regar -->
-                        <div class="form-group">
-                            <label for="txtMaterial" class="control-label">Material</label>
-                            <input type="text" id="txtMaterial" name="txtMaterial" value="<%=HP.getTipoProducto()%>" class="form-control"/>
+                            <input type="number" min="0" id="txtCantidadDisponible" name="txtCantidadDisponible" value="<%=entidad.getCantDisponible()%>" class="form-control"/>
                         </div>
 
 
