@@ -39,7 +39,7 @@
                                 <a class="nav-link" href="Frm_ListaFacturas.jsp"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Frm_ListaProductos.jsp">Inicio</a>
+                                <a class="nav-link" href="Frm_ListaProductos.jsp">Producto</a>
                             </li>
                         </ul>
                     </div>
@@ -49,7 +49,7 @@
 
         <div class="container"> 
             <div class="card-header">
-                <h1 class="titulos">Lista de Herramientas y Productos</h1>
+                <h1 class="titulos">Lista de Artículos y Productos</h1>
             </div>
             <br/>
 
@@ -113,7 +113,7 @@
                         <!-- *Columna adicional*-->
                         <td>
                             <!--Es una petición get (se ve en la URL), enviamos un parámetro por Query String -->
-                            <a href="CrearModificarProd.jsp?idCrearModificar=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
+                            <a href="Frm_UnProducto.jsp?idCrearModificar=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
                             <a href="EliminarProducto?idEliminar=<%=cod%>"><i class="fas fa-trash-alt"></i></a>            
                         </td>
                     </tr>
@@ -132,7 +132,7 @@
                 }
             %>
             <a href="Frm_UnaProd_Herra.jsp?idCrearModificar=-1">Agregar Nueva Herramienta o Producto</a> |
-            <a href="Frm_UnProducto.jsp">Actualizar</a>
+            <a href="Frm_ListaProductos.jsp">Actualizar</a>
             <br><br>
             <a href="index.html">Regresar al Index</a>
         </div>
