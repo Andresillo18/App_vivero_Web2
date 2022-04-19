@@ -4,7 +4,6 @@ import static AccesoDatos.ClaseConexion.getConnection;
 import Entidades.Empleado;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -15,7 +14,7 @@ import java.util.List;
 /**
  * 31-3-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class ADEmpleado {
 
@@ -62,7 +61,10 @@ public class ADEmpleado {
 
         } catch (Exception e) {
         } finally {
-            _conexion.close(); // Siempre debe cerrar conexiones
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
         return cod_empleado;
     }
@@ -94,7 +96,10 @@ public class ADEmpleado {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close(); // Se cerrará siempre que se manipule la BD
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return result;
@@ -120,7 +125,10 @@ public class ADEmpleado {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return result;
@@ -149,7 +157,10 @@ public class ADEmpleado {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return rs;
@@ -181,7 +192,10 @@ public class ADEmpleado {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return list1;
@@ -221,7 +235,10 @@ public class ADEmpleado {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return empleado1;
@@ -255,7 +272,10 @@ public class ADEmpleado {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return bono;

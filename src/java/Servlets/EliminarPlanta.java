@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 13-4-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 @WebServlet("/EliminarPlanta")
 public class EliminarPlanta extends HttpServlet {

@@ -2,7 +2,7 @@ package Entidades;
 
 /**
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class Planta extends Inventario {
 

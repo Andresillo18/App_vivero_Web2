@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 31-3-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class LNClasPlanta {
 

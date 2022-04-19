@@ -7,7 +7,7 @@ import java.sql.Date;
 /**
  * 29-3-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class Detalle_Factura {
 

@@ -2,7 +2,6 @@ package AccesoDatos;
 
 import Entidades.Categoria;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,12 +13,11 @@ import static AccesoDatos.ClaseConexion.getConnection;
 /**
  * 29-3-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class ADCategoria {
 
     //**Ahora la conexión no se realizará cuando se llama a la clase, sino cuando se usa cuando método y ese mismo lo cierra
-    
     //ATRIBUTOS
     private String _mensaje;
 
@@ -86,7 +84,10 @@ public class ADCategoria {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close(); // Se cerrará siempre que se manipule la BD
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return result;
@@ -112,7 +113,10 @@ public class ADCategoria {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return result;
@@ -141,7 +145,10 @@ public class ADCategoria {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return rs;
@@ -173,7 +180,10 @@ public class ADCategoria {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return list1;
@@ -206,7 +216,10 @@ public class ADCategoria {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return categoria1;

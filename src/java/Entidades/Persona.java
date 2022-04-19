@@ -3,7 +3,7 @@ package Entidades;
 /**
  * 28-3-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public abstract class Persona {
     

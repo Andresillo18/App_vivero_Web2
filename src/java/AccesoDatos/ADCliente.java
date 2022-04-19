@@ -3,7 +3,6 @@ package AccesoDatos;
 import static AccesoDatos.ClaseConexion.getConnection;
 import Entidades.Cliente;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -13,7 +12,7 @@ import java.util.List;
 /**
  * 30-3-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class ADCliente {
 

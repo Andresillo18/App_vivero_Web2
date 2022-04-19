@@ -3,7 +3,7 @@ package Entidades;
 /**
  * 30-3-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class ClasPlanta {
 

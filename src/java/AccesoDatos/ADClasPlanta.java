@@ -3,7 +3,6 @@ package AccesoDatos;
 import static AccesoDatos.ClaseConexion.getConnection;
 import Entidades.ClasPlanta;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -13,7 +12,7 @@ import java.util.List;
 /**
  * 30-3-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class ADClasPlanta {
 
@@ -55,7 +54,10 @@ public class ADClasPlanta {
 
         } catch (Exception e) {
         } finally {
-            _conexion.close(); // Siempre debe cerrar conexiones
+              if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
         return cod_clasificacion;
     }
@@ -82,7 +84,10 @@ public class ADClasPlanta {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close(); // Se cerrará siempre que se manipule la BD
+              if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return result;
@@ -108,7 +113,10 @@ public class ADClasPlanta {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+              if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return result;
@@ -137,7 +145,10 @@ public class ADClasPlanta {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+              if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return rs;
@@ -169,7 +180,10 @@ public class ADClasPlanta {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+              if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return list1;
@@ -202,7 +216,10 @@ public class ADClasPlanta {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+              if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return clasPlanta1;

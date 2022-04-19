@@ -3,7 +3,6 @@ package AccesoDatos;
 import static AccesoDatos.ClaseConexion.getConnection;
 import Entidades.Factura;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -13,7 +12,7 @@ import java.util.List;
 /**
  * 31-3-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class ADFactura {
 
@@ -55,7 +54,10 @@ public class ADFactura {
 
         } catch (Exception e) {
         } finally {
-            _conexion.close(); // Siempre debe cerrar conexiones
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
         return cod_factura;
     }
@@ -82,7 +84,10 @@ public class ADFactura {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close(); // Se cerrará siempre que se manipule la BD
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return result;
@@ -108,7 +113,11 @@ public class ADFactura {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+
+            }
         }
 
         return result;
@@ -137,7 +146,10 @@ public class ADFactura {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return rs;
@@ -154,8 +166,8 @@ public class ADFactura {
             _conexion = getConnection();
             Statement Stm = _conexion.createStatement(); // Siempre se debe estable esta conexión con la BD
 
-            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO,Empleado.NOMBRE,Cliente.NOMBRE, Factura.COD_CLIENTE FROM Cliente INNER JOIN Factura " +
-"ON Cliente.COD_CLIENTE =Factura.COD_CLIENTE INNER JOIN Empleado ON Factura.COD_EMPLEADO = Empleado.COD_EMPLEADO";
+            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO,Empleado.NOMBRE,Cliente.NOMBRE, Factura.COD_CLIENTE FROM Cliente INNER JOIN Factura "
+                    + "ON Cliente.COD_CLIENTE =Factura.COD_CLIENTE INNER JOIN Empleado ON Factura.COD_EMPLEADO = Empleado.COD_EMPLEADO";
 
             if (!condicion.equals("")) { // Si se envío una condición
                 sentencia = String.format("%s WHERE %s", sentencia, condicion); // Interpolación de Strings 
@@ -165,12 +177,15 @@ public class ADFactura {
 
             // Se usa un bucle siempre para saber lo que tiene un ResultSet
             while (rs.next()) { // Esto solo leerá el único registro que tiene
-                list1.add(new Factura(rs.getInt(1), rs.getInt(2),rs.getString(3),rs.getString(4), rs.getInt(5))); // Solo le envía un objeto
+                list1.add(new Factura(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5))); // Solo le envía un objeto
             }
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
 
         return list1;
@@ -205,11 +220,14 @@ public class ADFactura {
         } catch (Exception e) {
             throw e;
         } finally {
-            _conexion.close();
+            if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
+
+            return fact;
         }
-
-        return fact;
     }
-
 // </editor-fold>
+    
 }

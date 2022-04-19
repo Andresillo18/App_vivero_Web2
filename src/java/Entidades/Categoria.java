@@ -3,7 +3,7 @@ package Entidades;
 /**
  * 29-3-22
  *
- * @author Andrés
+ * @author Andrés Y Redwin
  */
 public class Categoria {   
 

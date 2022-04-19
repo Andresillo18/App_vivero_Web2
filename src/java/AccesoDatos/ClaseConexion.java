@@ -11,7 +11,7 @@ import java.sql.Statement;
 /**
  * 12-4-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 //Esta clase se encargará de cerrar las conexiones a la BD
 public class ClaseConexion {

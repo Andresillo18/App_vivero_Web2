@@ -6,7 +6,7 @@ import java.sql.Date;
 /**
  * 28-3-22
  *
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class Herramienta_Producto extends Inventario {
 

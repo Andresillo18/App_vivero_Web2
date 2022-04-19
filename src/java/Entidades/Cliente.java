@@ -2,7 +2,7 @@ package Entidades;
 
 /**
  * 29-3-22
- * @author Andrés Villalobos
+ * @author Andrés Villalobos Y Redwin
  */
 public class Cliente extends Persona{    
 
