@@ -32,7 +32,7 @@ public class ADProductos {
     // Método1
     public int Insertar(Producto prod) throws Exception {
         int codProducto = -1; // el -1 significa que no existe, por ahora
-        String sentencia = "INSERT INTO Productos (tipoProducto, nombre, descripcion, precio, cantDisponible) VALUES (?,?,?,?,?,?)";
+        String sentencia = "INSERT INTO Productos (tipoProducto, nombre, descripcion, precio, cantDisponible) VALUES (?,?,?,?,?)";
         Connection _conexion = null;
 
         try {
@@ -79,6 +79,7 @@ public class ADProductos {
             ps.setString(3, prod.getDescripcion());
             ps.setFloat(4, prod.getPrecio());
             ps.setInt(5, prod.getCantDisponible());
+            ps.setInt(6, prod.getCodProducto());
 
             result = ps.executeUpdate();
 

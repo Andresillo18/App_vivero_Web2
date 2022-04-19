@@ -78,6 +78,13 @@ public class Producto {
 // <editor-fold desc="CONSTRUCTORES" defaultstate="collapsed">    
     //Vacío
     public Producto() {
+        codProducto = 0;
+        tipoProducto = "";
+        nombre = "";
+        descripcion = "";
+        precio = 0;
+        cantDisponible = 0;
+        existe = false;
     }
 
     public Producto(int codProducto, String tipoProducto, String nombre, String descripcion, float precio, int cantDisponible) {

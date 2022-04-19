@@ -40,7 +40,7 @@ public class CrearModificarProd extends HttpServlet {
 
             prod.setPrecio(Float.parseFloat((new String(request.getParameter("txtPrecio").getBytes("ISO-8859-1"), "UTF-8"))));
 
-            prod.setCantDisponible(Integer.parseInt(new String(request.getParameter("txtCantidadDisponible").getBytes("ISO-8859-1"), "UTF-8")));
+            prod.setCantDisponible(Integer.parseInt(new String(request.getParameter("txtCantidadDisponible"))));
 
             if (prod.getCodProducto() > 0) {
                 resultado = Logica.Modificar(prod);

@@ -58,39 +58,30 @@
 
                         int codProducto;
 
-                        if (request.getParameter("txtCodProd") != null
-                                && !request.getParameter("txtCodProd").equals("")) {
-                            codProducto = Integer.parseInt(request.getParameter("txtCodProd"));
+                        if (request.getParameter("codProd") != null
+                                && !request.getParameter("codProd").equals("")) {
+                            codProducto = Integer.parseInt(request.getParameter("codProd"));
                             entidad = logica.ObtenerRegistro("codProducto=" + codProducto);
                         } else {
                             entidad = new Producto();
                             entidad.setCodProducto(-1);
                         }
 
-                        // Se puede conseguir el parámetro enviado por java o un servlet
-                        String id = request.getParameter("idCrearModificarProd");
-                        int codigo = Integer.parseInt(id);
-
-                        if (codigo > 0) {
-                            entidad = logica.ObtenerRegistro("codProducto=" + id);
-                        } else {
-                            entidad = new Producto();
-                        }
                     %>
 
                     <form action="CrearModificarProd" method="post" id="form_AgregarModificar">                    
 
                         <!-- contenedor para el cod -->
                         <div class="form-group">
-                            <%if (codigo > 0) {%>
+                            <%if (entidad.getCodProducto() > 0) {%>
                             <!-- Si el producto existe, mostrará la etiqueta y el ID
                             -->
 
                             <label for="txtCodigo" class="control-label">Código</label>
-                            <input type="number" id="txtCodigo" name="txtCodigo" value="<%=entidad.getCodProducto()%>" readonly class="form-control"/>
+                            <input type="txt" id="txtCodigo" name="txtCodigo" value="<%=entidad.getCodProducto()%>" readonly class="form-control"/>
                             <%} else {%>
                             <!-- Sino, el registro no existe-->
-                            <input type="hidden" id="txtCodigo" name="txtCodigo" value="-1"/>
+                            <input type="hidden" type="number" id="txtCodigo" name="txtCodigo" value="-1"/>
                             <%}%>
                         </div>
 

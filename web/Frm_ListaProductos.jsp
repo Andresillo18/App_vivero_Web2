@@ -81,7 +81,8 @@
                         <th>Tipo de Producto</th>
                         <th>Nombre</th>
                         <th>Precio</th>
-                        <th>Opciones</th>
+                        <th>Disponibles</th>
+                        <th>Opción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -115,12 +116,13 @@
                         <td><%= registro.getTipoProducto()%></td>
                         <td><%= registro.getNombre()%></td>
                         <td><%= registro.getPrecio()%></td>
+                        <td><%= registro.getCantDisponible()%></td>
 
                         <!-- *Columna adicional*-->
                         <td>
                             <!--Es una petición get (se ve en la URL), enviamos un parámetro por Query String -->
-                            <a href="Frm_UnProducto.jsp?idCrearModificarProd=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
-                            <a href="EliminarProducto?idEliminar=<%=cod%>"><i class="fas fa-trash-alt"></i></a>            
+                            <a href="Frm_UnProducto.jsp?codProd=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
+                            <a href="EliminarProducto?codProd=<%=cod%>"><i class="fas fa-trash-alt"></i></a>            
                         </td>
                     </tr>
 
