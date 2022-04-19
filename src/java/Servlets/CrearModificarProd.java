@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Andrés Villalobos Y Redwin
  */
-@WebServlet(name = "CrearModificarHerraProd", urlPatterns = {"/CrearModificarHerraProd"})
+@WebServlet(name = "CrearModificarProd", urlPatterns = {"/CrearModificarProd"})
 public class CrearModificarProd extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -32,7 +32,7 @@ public class CrearModificarProd extends HttpServlet {
 
             prod.setCodProducto(Integer.parseInt(request.getParameter("txtCodigo")));
 
-            prod.setTipoProducto(new String(request.getParameter("txtMaterial").getBytes("ISO-8859-1"), "UTF-8"));
+            prod.setTipoProducto(new String(request.getParameter("txtTipo").getBytes("ISO-8859-1"), "UTF-8"));
 
             prod.setNombre(new String(request.getParameter("txtNombre").getBytes("ISO-8859-1"), "UTF-8"));
 
@@ -48,7 +48,7 @@ public class CrearModificarProd extends HttpServlet {
                 resultado = Logica.Insertar(prod);
             }
 
-            response.sendRedirect("Frm_Lista_ProdHerra.jsp");
+            response.sendRedirect("Frm_ListaProductos.jsp");
 
         } catch (Exception ex) {
             out.print(ex.getMessage());

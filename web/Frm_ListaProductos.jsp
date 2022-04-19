@@ -62,7 +62,7 @@
             <!-- El form hará un postback cuando se le da al botón de buscar, entonces se estará llamando a este mismo pero con lo que tenga el campo de texto para buscar
             -->
 
-            <form action="Frm_Lista_ProdHerra.jsp" method="post">                
+            <form action="Frm_ListaProductos.jsp" method="post">                
                 <div class="form-group">
                     <div class="input-group">                      
                         <input type="text" id="txtnombre" name="txtnombre" value="" placeholder="Busqueda por nombre..."
@@ -119,7 +119,7 @@
                         <!-- *Columna adicional*-->
                         <td>
                             <!--Es una petición get (se ve en la URL), enviamos un parámetro por Query String -->
-                            <a href="Frm_UnProducto.jsp?idCrearModificar=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
+                            <a href="Frm_UnProducto.jsp?idCrearModificarProd=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
                             <a href="EliminarProducto?idEliminar=<%=cod%>"><i class="fas fa-trash-alt"></i></a>            
                         </td>
                     </tr>

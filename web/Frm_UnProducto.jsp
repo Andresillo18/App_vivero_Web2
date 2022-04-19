@@ -4,6 +4,8 @@
     Author     : Andrés Villalobos Y Redwin
 --%>
 
+<%@page import="LogicaNegocio.LNProducto"%>
+<%@page import="Entidades.Producto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -51,20 +53,32 @@
                     </div>          
 
                     <%
+                        Producto entidad;
+                        LNProducto logica = new LNProducto();
+
+                        int codProducto;
+
+                        if (request.getParameter("txtCodProd") != null
+                                && !request.getParameter("txtCodProd").equals("")) {
+                            codProducto = Integer.parseInt(request.getParameter("txtCodProd"));
+                            entidad = logica.ObtenerRegistro("codProducto=" + codProducto);
+                        } else {
+                            entidad = new Producto();
+                            entidad.setCodProducto(-1);
+                        }
+
                         // Se puede conseguir el parámetro enviado por java o un servlet
-                        String id = request.getParameter("idCrearModificar");
+                        String id = request.getParameter("idCrearModificarProd");
                         int codigo = Integer.parseInt(id);
-                        Herramienta_Producto HP;
-                        LNHerram_Prod logica = new LNHerram_Prod();
 
                         if (codigo > 0) {
-                            HP = logica.ObtenerRegistro("COD_HERRAMIENTA_PROD=" + id);
+                            HP = logica.ObtenerRegistro("codProducto=" + id);
                         } else {
-                            HP = new Herramienta_Producto();
+                            HP = new Producto();
                         }
                     %>
 
-                    <form action="CrearModificarHerraProd" method="post" id="form_AgregarModificar">                    
+                    <form action="CrearModificarProd" method="post" id="form_AgregarModificar">                    
 
                         <!-- contenedor para el ID -->
                         <div class="form-group">
@@ -73,7 +87,7 @@
                             -->
 
                             <label for="txtCodigo" class="control-label">Código</label>
-                            <input type="number" id="txtCodigo" name="txtCodigo" value="<%=HP.getCod_herramienta_prod()%>" readonly class="form-control"/>
+                            <input type="number" id="txtCodigo" name="txtCodigo" value="<%=HP.getCodProducto()%>" readonly class="form-control"/>
                             <%} else {%>
                             <!-- Sino, el registro no existe-->
                             <input type="hidden" id="txtCodigo" name="txtCodigo" value="-1"/>
@@ -101,26 +115,22 @@
                         <!-- para la cantidad disponible-->
                         <div class="form-group">
                             <label for="txtCantidadDisponible" class="control-label">Cantidad disponible</label>
-                            <input type="number" id="txtCantidadDisponible" name="txtCantidadDisponible" value="<%=HP.getCantidad_disponible()%>" class="form-control"/>
+                            <input type="number" id="txtCantidadDisponible" name="txtCantidadDisponible" value="<%=HP.getCantDisponible()%>" class="form-control"/>
                         </div>
 
                         <!-- para el cantidad para regar -->
                         <div class="form-group">
                             <label for="txtMaterial" class="control-label">Material</label>
-                            <input type="text" id="txtMaterial" name="txtMaterial" value="<%=HP.getMaterial()%>" class="form-control"/>
+                            <input type="text" id="txtMaterial" name="txtMaterial" value="<%=HP.getTipoProducto()%>" class="form-control"/>
                         </div>
 
-                        <!-- para el tiempo luz-->
-                        <div class="form-group">
-                            <label for="txtFechaVencimiento" class="control-label">Fecha de vencimiento</label>
-                            <input type="date" id="txtFechaVencimiento" name="txtFechaVencimiento" value="<%=HP.getFechaVencimiento()%>" class="form-control"/>
-                        </div>         
+
 
                         <!-- form-group para los BOTONES de guardar y regresar  -->
                         <div class="form-group">
                             <div class="input-group">
                                 <input type="submit" id="btnGuardar" value="Guardar" class="btn btn-primary"/> &nbsp;&nbsp;
-                                <input type="button" id="btnRegresar" value="Regresar" onclick="location.href = 'Frm_Lista_ProdHerra.jsp'" class="btn btn-secondary"/>
+                                <input type="button" id="btnRegresar" value="Regresar" onclick="location.href = 'Frm_ListaProductos.jsp'" class="btn btn-secondary"/>
                                 <!-- No estamos haciendo un RESPONSE porque no esta enviando ningún parámetro -->
                             </div>
                         </div>
