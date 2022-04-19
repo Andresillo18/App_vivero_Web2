@@ -1,10 +1,9 @@
 package Servlets;
 
 import Entidades.Producto;
-import LogicaNegocio.LNHerram_Prod;
+import LogicaNegocio.LNProducto;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,37 +15,40 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Andrés Villalobos Y Redwin
  */
-@WebServlet(name = "EliminarHerraProd", urlPatterns = {"/EliminarHerraProd"})
-public class EliminarHerraProd extends HttpServlet {
+@WebServlet(name = "CrearModificarHerraProd", urlPatterns = {"/CrearModificarHerraProd"})
+public class CrearModificarProd extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html;charset=UTF-8");
+
+        //Siempre se debe crear el objeto out para dar un respuesta
         PrintWriter out = response.getWriter();
 
         try {
-            LNHerram_Prod logica = new LNHerram_Prod();
+            LNProducto Logica = new LNProducto();
+            Producto prod = new Producto();
+            int resultado;
 
-            //Se verifica si se envío el parámetro que es el id del producto a eliminar
-            if (request.getParameter("idEliminar") != null
-                    && !request.getParameter("idEliminar").equals("")) {
-                String id = request.getParameter("idEliminar");
-                // obtiene el parámetro del QUERY STRING y siempre será un string
+            prod.setCodProducto(Integer.parseInt(request.getParameter("txtCodigo")));
 
-                int codigo = Integer.parseInt(id);
-                Producto HP = new Producto();
-                HP.setCod_herramienta_prod(codigo);
+            prod.setTipoProducto(new String(request.getParameter("txtMaterial").getBytes("ISO-8859-1"), "UTF-8"));
 
-                int resultado = logica.Eliminar(HP);
+            prod.setNombre(new String(request.getParameter("txtNombre").getBytes("ISO-8859-1"), "UTF-8"));
 
-                String mensaje = logica.getMensaje();
+            prod.setDescripcion(new String(request.getParameter("txtDescripcion").getBytes("ISO-8859-1"), "UTF-8"));
 
-                mensaje = URLEncoder.encode(mensaje, "UTF-8");
+            prod.setPrecio(Float.parseFloat((new String(request.getParameter("txtPrecio").getBytes("ISO-8859-1"), "UTF-8"))));
 
-                //Reenviamos a la página que estaba y se envía con un RESPONSE los parámetros por la URL
-                response.sendRedirect("Frm_Lista_ProdHerra.jsp?mensajeEliminar=" + mensaje + "&resultado=" + resultado);
+            prod.setCantDisponible(Integer.parseInt(new String(request.getParameter("txtCantidadDisponible").getBytes("ISO-8859-1"), "UTF-8")));
+
+            if (prod.getCodProducto() > 0) {
+                resultado = Logica.Modificar(prod);
+            } else {
+                resultado = Logica.Insertar(prod);
             }
+
+            response.sendRedirect("Frm_Lista_ProdHerra.jsp");
 
         } catch (Exception ex) {
             out.print(ex.getMessage());

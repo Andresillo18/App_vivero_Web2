@@ -1,10 +1,10 @@
 package Servlets;
 
 import Entidades.Producto;
-import LogicaNegocio.LNHerram_Prod;
+import LogicaNegocio.LNProducto;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
+import java.net.URLEncoder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,46 +16,37 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Andrés Villalobos Y Redwin
  */
-@WebServlet(name = "CrearModificarHerraProd", urlPatterns = {"/CrearModificarHerraProd"})
-public class CrearModificarHerraProd extends HttpServlet {
+@WebServlet(name = "EliminarHerraProd", urlPatterns = {"/EliminarHerraProd"})
+public class EliminarProducto extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
-        //Siempre se debe crear el objeto out para dar un respuesta
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         try {
-            LNHerram_Prod Logica = new LNHerram_Prod();
-            Producto HP = new Producto();
-            int resultado;
+            LNProducto logica = new LNProducto();
 
-            HP.setCantidad_disponible(Integer.parseInt(request.getParameter("txtCodigo")));
+            //Se verifica si se envío el parámetro que es el id del producto a eliminar
+            if (request.getParameter("idEliminar") != null
+                    && !request.getParameter("idEliminar").equals("")) {
+                String id = request.getParameter("idEliminar");
+                // obtiene el parámetro del QUERY STRING y siempre será un string
 
-            HP.setNombre(new String(request.getParameter("txtNombre").getBytes("ISO-8859-1"), "UTF-8"));
+                int codigo = Integer.parseInt(id);
+                Producto HP = new Producto();
+                HP.setCodProducto(codigo);
 
-            HP.setDescripcion(new String(request.getParameter("txtDescripcion").getBytes("ISO-8859-1"), "UTF-8"));
+                int resultado = logica.Eliminar(HP);
 
-            HP.setPrecio(Float.parseFloat((new String(request.getParameter("txtPrecio").getBytes("ISO-8859-1"), "UTF-8"))));
+                String mensaje = logica.getMensaje();
 
-            HP.setCantidad_disponible(Integer.parseInt(new String(request.getParameter("txtCantidadDisponible").getBytes("ISO-8859-1"), "UTF-8")));
+                mensaje = URLEncoder.encode(mensaje, "UTF-8");
 
-            HP.setMaterial(new String(request.getParameter("txtMaterial").getBytes("ISO-8859-1"), "UTF-8"));
-
-            if (request.getParameter("txtFechaVencimiento") != null) {
-                HP.setFechaVencimiento(Date.valueOf(new String(request.getParameter("txtFechaVencimiento").getBytes("ISO-8859-1"), "UTF-8"))); //****
-            } else {
-                HP.setFechaVencimiento(null); //****
+                //Reenviamos a la página que estaba y se envía con un RESPONSE los parámetros por la URL
+                response.sendRedirect("Frm_Lista_ProdHerra.jsp?mensajeEliminar=" + mensaje + "&resultado=" + resultado);
             }
-
-            if (HP.getCod_herramienta_prod() > 0) {
-                resultado = Logica.Modificar(HP);
-            } else {
-                resultado = Logica.Insertar(HP);
-            }
-
-            response.sendRedirect("Frm_Lista_ProdHerra.jsp");
 
         } catch (Exception ex) {
             out.print(ex.getMessage());
