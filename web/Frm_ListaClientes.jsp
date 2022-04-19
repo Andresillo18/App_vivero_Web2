@@ -51,7 +51,7 @@
         </header>
         <div class="container"> 
             <div class="card-header">
-                <h1 class="titulos">Lista de Clientes</h1>
+                <h1 class="titulos text-center">Lista de Clientes</h1>
             </div>
             <br/>
 

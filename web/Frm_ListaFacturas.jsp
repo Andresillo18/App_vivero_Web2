@@ -48,7 +48,7 @@
     <body>
         <div class="container">
             <div class="card-header">
-                <h1>Listado de Facturas</h1>
+                <h1 class="titulos text-center">Listado de Facturas</h1>
             </div>
             <br/>
             <!--No habrá cuadro de busqueda ya que solo es para crear e informar la base de una factura***-->

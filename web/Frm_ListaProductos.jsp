@@ -41,6 +41,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="Frm_ListaProductos.jsp">Producto</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Frm_ListaClientes.jsp">Cliente</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Empleado</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -49,7 +55,7 @@
 
         <div class="container"> 
             <div class="card-header">
-                <h1 class="titulos">Lista de Artículos y Productos</h1>
+                <h1 class="titulos text-center">Lista de Productos</h1>
             </div>
             <br/>
 
@@ -131,7 +137,7 @@
                     // requiere ese formateo porque si tiene caracteres especiales no se imprime en el código HTML
                 }
             %>
-            <a href="Frm_UnaProd_Herra.jsp?idCrearModificar=-1">Agregar Nueva Herramienta o Producto</a> |
+            <a href="Frm_UnProducto.jsp?idCrearModificar=-1">Agregar Nuevo Producto</a> |
             <a href="Frm_ListaProductos.jsp">Actualizar</a>
             <br><br>
             <a href="index.html">Regresar al Index</a>
