@@ -87,10 +87,17 @@
 
                         <!-- form-group para los controles de Tipo -->
                         <div class="form-group">
-                            <label for="txtTipo" class="control-label">Nombre</label>
-                            <input type="txt" id="txtTipo" name="txtTipo" value="<%=entidad.getTipoProducto()%>" class="form-control"/>
+                            <label for="txtTipo" class="control-label">Tipo</label>
+                            <br>
+                            <select name="txtTipo" id="cars">
+                                <option value="<%=entidad.getTipoProducto()%>"><%=entidad.getTipoProducto()%></option>
+                                <option value="Otro">Otro</option>
+                                <option value="Artículo">Artículo</option>
+                                <option value="Planta">Planta</option>
+                                <option value="Químico">Químico</option>
+                            </select>
                         </div>
-                        
+
                         <!-- form-group para los controles de Nombre -->
                         <div class="form-group">
                             <label for="txtNombre" class="control-label">Nombre</label>
@@ -106,7 +113,7 @@
                         <!-- para el precio -->
                         <div class="form-group">
                             <label for="txtPrecio" class="control-label">Precio</label>
-                            <input type="number" step="0.01" min="0.0" id="txtPrecio" name="txtPrecio" value="<%=entidad.getPrecio()%>" class="form-control"/>
+                            <input type="number" min="0.0" id="txtPrecio" name="txtPrecio" value="<%=entidad.getPrecio()%>" class="form-control"/>
                         </div>
 
                         <!-- para la cantidad disponible-->
@@ -146,19 +153,18 @@
                                         $("#form_AgregarModificar").validate({
                                             // Con estas reglas se personaliza, se usa el atributo name para verificar
                                             rules: {
-
+                                                
                                                 txtNombre: {required: true, maxlength: 30},
-                                                txtDescripcion: {required: true, maxlength: 60},
+                                                txtDescripcion: {required: true, maxlength: 30},
                                                 txtPrecio: {required: true},
                                                 txtCantidadDisponible: {required: true}
                                             },
                                             // Mensajes que deseamos personalizar: 
                                             messages: {
                                                 txtNombre: "El campo de Nombre es obligatorio (max 30 caracteres)",
-                                                txtDescripcion: "El campo de Descripción es obligatorio (max 60 caracteres)",
+                                                txtDescripcion: "El campo de Descripción es obligatorio (max 30 caracteres)",
                                                 txtPrecio: "El campo de Precio es obligatorio",
-                                                txtCantidadDisponible: "El campo de Cantidad Disponible es obligatorio",
-                                                txttxtCantidadDisponible: "El campo de la Cantidad Disponible es obligatorio"
+                                                txtCantidadDisponible: "El campo de Cantidad Disponible es obligatorio"
                                             },
                                             errorElement: 'span'
 

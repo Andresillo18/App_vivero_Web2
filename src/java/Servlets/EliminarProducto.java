@@ -1,5 +1,6 @@
 package Servlets;
 
+import AccesoDatos.ADProductos;
 import Entidades.Producto;
 import LogicaNegocio.LNProducto;
 import java.io.IOException;
@@ -27,25 +28,27 @@ public class EliminarProducto extends HttpServlet {
 
         try {
             LNProducto logica = new LNProducto();
+            int resultado = 0;
+            int cod;
 
             //Se verifica si se envío el parámetro que es el id del producto a eliminar
-            if (request.getParameter("idEliminar") != null
-                    && !request.getParameter("idEliminar").equals("")) {
-                String id = request.getParameter("idEliminar");
+            if (request.getParameter("codProd") != null
+                    && !request.getParameter("codProd").equals("")) {
+                
+                cod = Integer.parseInt(request.getParameter("codProd"));
                 // obtiene el parámetro del QUERY STRING y siempre será un string
 
-                int codigo = Integer.parseInt(id);
-                Producto HP = new Producto();
-                HP.setCodProducto(codigo);
-
-                int resultado = logica.Eliminar(HP);
+                Producto producto = new Producto();
+                producto.setCodProducto(cod);
+                
+                resultado = logica.Eliminar(producto);
 
                 String mensaje = logica.getMensaje();
 
                 mensaje = URLEncoder.encode(mensaje, "UTF-8");
 
                 //Reenviamos a la página que estaba y se envía con un RESPONSE los parámetros por la URL
-                response.sendRedirect("Frm_Lista_ProdHerra.jsp?mensajeEliminar=" + mensaje + "&resultado=" + resultado);
+                response.sendRedirect("Frm_ListaProductos.jsp?mensajeEliminar=" + mensaje + "&resultado=" + resultado);
             }
 
         } catch (Exception ex) {
