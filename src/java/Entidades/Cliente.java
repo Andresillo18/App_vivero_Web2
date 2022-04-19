@@ -42,7 +42,7 @@ public class Cliente extends Persona{
     }
 
     public Cliente(int cod_cliente, int id, String nombre, String Apellido1, String telefono, boolean estado) {
-        super(id, nombre, Apellido1, telefono, estado);
+        super(id, nombre, Apellido1, telefono);
         this.cod_cliente = cod_cliente;
         this.existe = true;
     }

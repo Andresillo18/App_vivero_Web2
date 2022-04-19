@@ -115,7 +115,7 @@
                         <!-- *Columna adicional*-->
                         <td>
                             <!--Es una petición get (se ve en la URL), enviamos un parámetro por Query String -->
-                            <a href="Frm_UnProducto.jsp?idCrearModificar=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
+                            <a href="Frm_UnCliente.jsp?idCrearModificar=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
                             <a href="EliminarProducto?idEliminar=<%=cod%>"><i class="fas fa-trash-alt"></i></a>            
                         </td>
                     </tr>
@@ -133,8 +133,8 @@
                     // requiere ese formateo porque si tiene caracteres especiales no se imprime en el código HTML
                 }
             %>
-            <a href="Frm_UnaProd_Herra.jsp?idCrearModificar=-1">Agregar un Nuevo Cliente</a> |
-            <a href="Frm_ListaProductos.jsp">Actualizar</a>
+            <a href="Frm_UnCliente.jsp?idCrearModificar=-1">Agregar un Nuevo Cliente</a> |
+            <a href="Frm_ListaClientes.jsp">Actualizar</a>
             <br><br>
             <a href="index.html">Regresar al Index</a>
         </div>

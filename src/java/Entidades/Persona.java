@@ -62,12 +62,12 @@ public abstract class Persona {
     public Persona() {
     }
 
-    public Persona(int id, String nombre, String Apellido1, String telefono, boolean estado) {
+    public Persona(int id, String nombre, String Apellido1, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.Apellido1 = Apellido1;
         this.telefono = telefono;
-        this.estado = estado;
+        this.estado = true;
     }
 // </editor-fold>
 
