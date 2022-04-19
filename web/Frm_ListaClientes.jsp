@@ -4,15 +4,23 @@
     Author     : Redwin & Andrés
 --%>
 
+<%@page import="Entidades.Cliente"%>
+<%@page import="LogicaNegocio.LNCliente"%>
+<%@page import="Entidades.Producto"%>
+<%@page import="java.util.List"%>
+<%@page import="LogicaNegocio.LNProducto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Lista de Clientes</title>
+        <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="lib/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="CSS/Styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-           <header>
+        <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="index.html">Sistema Facturación del Vivero <i class="fas fa-leaf"></i></a>
@@ -30,12 +38,18 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="Frm_ListaProductos.jsp">Producto</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Frm_ListaClientes.jsp">Cliente</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Empleado</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </header>
-              <div class="container"> 
+        <div class="container"> 
             <div class="card-header">
                 <h1 class="titulos">Lista de Clientes</h1>
             </div>
@@ -62,7 +76,7 @@
                         <th>Código</th>
                         <th>Identificación</th>
                         <th>Nombre</th>
-                        <th>Precio</th>
+                        <th>Apellido</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -80,23 +94,23 @@
                             nombre = request.getParameter("txtnombre");
                             condicion = "NOMBRE LIKE '%" + nombre + "%'";
                         }
-                        LNProducto logica = new LNProducto();
-                        List<Producto> datos;
+                        LNCliente logica = new LNCliente();
+                        List<Cliente> datos;
                         //Se usa una lista para tener los registros completos y no un resultset
                         datos = logica.ListaRegistros(condicion);
 
-                        for (Producto registro : datos) {
+                        for (Cliente registro : datos) {
                             //El for no cierra aún
                     %>
 
                     <tr>
-                        <%int cod = registro.getCodProducto();%>
+                        <%int cod = registro.getCod_cliente();%>
 
                         <!--Este código insertado de java permite solo mostrar datos del mismo java, son Expresiones-->
                         <td><%= cod%></td> 
-                        <td><%= registro.getTipoProducto()%></td>
+                        <td><%= registro.getId()%></td>
                         <td><%= registro.getNombre()%></td>
-                        <td><%= registro.getPrecio()%></td>
+                        <td><%= registro.getApellido1()%></td>
 
                         <!-- *Columna adicional*-->
                         <td>
@@ -119,7 +133,7 @@
                     // requiere ese formateo porque si tiene caracteres especiales no se imprime en el código HTML
                 }
             %>
-            <a href="Frm_UnaProd_Herra.jsp?idCrearModificar=-1">Agregar Nueva Herramienta o Producto</a> |
+            <a href="Frm_UnaProd_Herra.jsp?idCrearModificar=-1">Agregar un Nuevo Cliente</a> |
             <a href="Frm_ListaProductos.jsp">Actualizar</a>
             <br><br>
             <a href="index.html">Regresar al Index</a>
