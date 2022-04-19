@@ -1,20 +1,19 @@
 <%-- 
-    Document   : Frm_ListaClientes
-    Created on : 19 abr. 2022, 13:30:59
-    Author     : Redwin & Andrés
+    Document   : Frm_ListaEmpleado
+    Created on : 19 abr. 2022, 16:02:54
+    Author     : Red & Andrés
 --%>
 
-<%@page import="Entidades.Cliente"%>
-<%@page import="LogicaNegocio.LNCliente"%>
-<%@page import="Entidades.Producto"%>
+<%@page import="Entidades.Empleado"%>
 <%@page import="java.util.List"%>
-<%@page import="LogicaNegocio.LNProducto"%>
+<%@page import="LogicaNegocio.LNEmpleado"%>
+<%@page import="LogicaNegocio.LNCliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Clientes</title>
+        <title>Lista de Empleados</title>
         <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="lib/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" type="text/css"/>
         <link href="CSS/Styles.css" rel="stylesheet" type="text/css"/>
@@ -42,7 +41,7 @@
                                 <a class="nav-link" href="Frm_ListaClientes.jsp">Cliente</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Frm_ListaClientes.jsp">Empleado</a>
+                                <a class="nav-link" href="Frm_ListaEmpleados.jsp">Empleado</a>
                             </li>
                         </ul>
                     </div>
@@ -58,13 +57,12 @@
             <!-- El form hará un postback cuando se le da al botón de buscar, entonces se estará llamando a este mismo pero con lo que tenga el campo de texto para buscar
             -->
 
-            <form action="Frm_ListaClientes.jsp" method="post">                
+            <form action="Frm_ListaEmpleados.jsp" method="post">                
                 <div class="form-group">
                     <div class="input-group">                      
                         <input type="text" id="txtnombre" name="txtnombre" value="" placeholder="Busqueda por nombre..."
                                class="form-control"/>&nbsp; &nbsp;
                         <!--Cuando se carga por primera vez no se ha creado el parámetro txtnombre, se crea hasta que se envíe por un form, cuando se hace el postback se crea y se puede saber si tiene algo-->
-
                         <input type="submit" id="btnbuscar" name="btnBuscar" value="Buscar" class="btn btn-primary"/>
                     </div>
                 </div>
@@ -94,17 +92,17 @@
                             nombre = request.getParameter("txtnombre");
                             condicion = "NOMBRE LIKE '%" + nombre + "%'";
                         }
-                        LNCliente logica = new LNCliente();
-                        List<Cliente> datos;
+                        LNEmpleado logica = new LNEmpleado();
+                        List<Empleado> datos;
                         //Se usa una lista para tener los registros completos y no un resultset
                         datos = logica.ListaRegistros(condicion);
 
-                        for (Cliente registro : datos) {
+                        for (Empleado registro : datos) {
                             //El for no cierra aún
                     %>
 
                     <tr>
-                        <%int cod = registro.getCod_cliente();%>
+                        <%int cod = registro.getCod_empleado();%>
 
                         <!--Este código insertado de java permite solo mostrar datos del mismo java, son Expresiones-->
                         <td><%= cod%></td> 
@@ -115,8 +113,8 @@
                         <!-- *Columna adicional*-->
                         <td>
                             <!--Es una petición get (se ve en la URL), enviamos un parámetro por Query String -->
-                            <a href="Frm_UnCliente.jsp?idCrearModificar=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
-                            <a href="EliminarCliente?idEliminar=<%=cod%>"><i class="fas fa-trash-alt"></i></a>            
+                            <a href="Frm_UnEmpleado.jsp?idCrearModificar=<%=cod%>"><i class="fas fa-user-edit"></i></a> |                        
+                            <a href="EliminarEmpleado?idEliminar=<%=cod%>"><i class="fas fa-trash-alt"></i></a>            
                         </td>
                     </tr>
 
@@ -133,8 +131,8 @@
                     // requiere ese formateo porque si tiene caracteres especiales no se imprime en el código HTML
                 }
             %>
-            <a href="Frm_UnCliente.jsp?idCrearModificar=-1">Agregar un Nuevo Cliente</a> |
-            <a href="Frm_ListaClientes.jsp">Actualizar</a>
+            <a href="Frm_UnEmpleado.jsp?idCrearModificar=-1">Agregar un Nuevo Cliente</a> |
+            <a href="Frm_ListaEmpleados.jsp">Actualizar</a>
             <br><br>
             <a href="index.html">Regresar al Index</a>
         </div>
