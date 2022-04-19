@@ -17,7 +17,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de Facturas</title>
-         <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="lib/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" type="text/css"/>
         <link href="CSS/Styles.css" rel="stylesheet" type="text/css"/>
     </head>
@@ -33,18 +33,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="index.html">Inicio</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.html" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Inventario
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="Frm_ListaPlantas.jsp"><i class="fas fa-tree"></i> Plantas</a></li>
-                                <li><a class="dropdown-item" href="Frm_Lista_ProdHerra.jsp"><i class="fas fa-toolbox"></i> Productos o Herramientas</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Frm_ListaFacturas.jsp"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Frm_ListaFacturas"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
-                        </li>                            
+                            <a class="nav-link" href="Frm_ListaProductos.jsp">Productos</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -54,11 +48,11 @@
     <body>
         <div class="container">
             <div class="card-header">
-                <h1>Listado de Facturas Pendientes</h1>
+                <h1>Listado de Facturas</h1>
             </div>
             <br/>
             <!--No habrá cuadro de busqueda ya que solo es para crear e informar la base de una factura***-->
-            
+
             </hr>
             <table class="table">
                 <thead>
@@ -99,7 +93,7 @@
         <script src="lib/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
     </body>
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
 

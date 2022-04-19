@@ -5,9 +5,7 @@
 --%>
 <%@page import="Entidades.Producto"%>
 <%@page import="LogicaNegocio.LNProducto"%>
-<%@page import="Entidades.Herramienta_Producto"%>
 <%@page import="java.util.List"%>
-<%@page import="LogicaNegocio.LNHerram_Prod"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +20,7 @@
 
         <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="lib/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" type="text/css"/>
-        <title>Lista de Herramientas y Productos</title>
+        <title>Lista de Frm_ListaProductos y Productos</title>
     </head>
     <body>
         <header>
@@ -37,18 +35,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="index.html">Inicio</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="index.html" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Inventario
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="Frm_ListaPlantas.jsp"><i class="fas fa-tree"></i> Plantas</a></li>
-                                    <li><a class="dropdown-item" href="Frm_Lista_ProdHerra.jsp"><i class="fas fa-toolbox"></i> Productos o Herramientas</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Frm_ListaFacturas.jsp"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
-                            </li>                            
+                                <a class="nav-link" href="Frm_ListaProductos.jsp">Inicio</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
