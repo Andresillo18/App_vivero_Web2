@@ -50,6 +50,10 @@ public class Empleado extends Persona {
 
 // <editor-fold desc="CONSTRUCTORES" defaultstate="collapsed">    
     public Empleado() {
+        cod_empleado = 0;
+        ventas_realizadas = 0;
+        bono = 0;
+        existe = false;
     }
 
     public Empleado(int cod_empleado, int ventas_realizadas, float bono, boolean existe) {

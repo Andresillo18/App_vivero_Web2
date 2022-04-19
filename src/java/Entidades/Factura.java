@@ -69,6 +69,12 @@ public class Factura {
 
 // <editor-fold desc="CONSTRUTORES" defaultstate="collapsed">    
     public Factura() {
+        cod_factura = 0;
+        cod_empleado = 0;
+        nombre_empleado = "";
+        cod_cliente = 0;
+        nombre_cliente = "";
+        existe = false;
     }
 
    public Factura(int cod_factura, int cod_empleado, String nombre_empleado,  String nombre_cliente, int cod_cliente) {

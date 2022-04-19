@@ -60,6 +60,11 @@ public abstract class Persona {
 
 // <editor-fold desc="CONSTRUCTOR" defaultstate="collapsed">    
     public Persona() {
+        id = 0;
+        nombre = "";
+        Apellido1 = "";
+        telefono = "";
+        estado = false;
     }
 
     public Persona(int id, String nombre, String Apellido1, String telefono) {

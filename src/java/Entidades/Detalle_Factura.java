@@ -14,10 +14,8 @@ public class Detalle_Factura {
 // <editor-fold desc="ATRIBUTOS" defaultstate="collapsed">    
     private int cod_detalle;
     private int cod_factura;
-    private int cod_herramienta_prod;
-    private int cantidad_herramienta_prod;
-    private int cod_planta;
-    private int cantidad_plantas;
+    private int codProducto;
+    private int cantDetalle;
     private float total_pagar;
     private Date fecha;
     private String observaciones;
@@ -42,36 +40,20 @@ public class Detalle_Factura {
         this.cod_factura = cod_factura;
     }
 
-    public int getCod_herramienta_prod() {
-        return cod_herramienta_prod;
+    public int getCodProducto() {
+        return codProducto;
     }
 
-    public void setCod_herramienta_prod(int cod_herramienta_prod) {
-        this.cod_herramienta_prod = cod_herramienta_prod;
+    public void setCodProducto(int codProducto) {
+        this.codProducto = codProducto;
     }
 
-    public int getCantidad_herramienta_prod() {
-        return cantidad_herramienta_prod;
+    public int getCantDetalle() {
+        return cantDetalle;
     }
 
-    public void setCantidad_herramienta_prod(int cantidad_herramienta_prod) {
-        this.cantidad_herramienta_prod = cantidad_herramienta_prod;
-    }
-
-    public int getCod_planta() {
-        return cod_planta;
-    }
-
-    public void setCod_planta(int cod_planta) {
-        this.cod_planta = cod_planta;
-    }
-
-    public int getCantidad_plantas() {
-        return cantidad_plantas;
-    }
-
-    public void setCantidad_plantas(int cantidad_plantas) {
-        this.cantidad_plantas = cantidad_plantas;
+    public void setCantDetalle(int cantDetalle) {
+        this.cantDetalle = cantDetalle;
     }
 
     public float getTotal_pagar() {
@@ -109,15 +91,21 @@ public class Detalle_Factura {
 
 // <editor-fold desc="CONSTRUCTORES" defaultstate="collapsed">    
     public Detalle_Factura() {
+        cod_detalle = 0;
+        cod_factura = 0;
+        codProducto = 0;
+        cantDetalle = 0;
+        total_pagar = 0;
+        fecha = null;  // new java.sql.Date(0);
+        observaciones = "";
+        existe = false;
     }
 
-    public Detalle_Factura(int cod_detalle, int cod_factura, int cod_herramienta_prod, int cantidad_herramienta_prod, int cod_planta, int cantidad_plantas, float total_pagar, Date fecha, String observaciones) {
+    public Detalle_Factura(int cod_detalle, int cod_factura, int codProducto, int cantDetalle, int cod_planta, int cantidad_plantas, float total_pagar, Date fecha, String observaciones) {
         this.cod_detalle = cod_detalle;
         this.cod_factura = cod_factura;
-        this.cod_herramienta_prod = cod_herramienta_prod;
-        this.cantidad_herramienta_prod = cantidad_herramienta_prod;
-        this.cod_planta = cod_planta;
-        this.cantidad_plantas = cantidad_plantas;
+        this.codProducto = codProducto;
+        this.cantDetalle = cantDetalle;
         this.total_pagar = total_pagar;
         this.fecha = fecha;
         this.observaciones = observaciones;

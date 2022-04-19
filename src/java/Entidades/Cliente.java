@@ -34,6 +34,8 @@ public class Cliente extends Persona{
 // <editor-fold desc="CONSTRUCTORES" defaultstate="collapsed">    
     
     public Cliente() {
+        cod_cliente = 0;
+        existe = false;
     }
 
     public Cliente(int cod_cliente, boolean existe) {

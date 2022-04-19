@@ -34,7 +34,7 @@ public class ADDetalle_Factura {
     // Método1
     public int Insertar(Detalle_Factura DF) throws Exception {
         int cod_cliente = -1; // el -1 significa que no existe, por ahora
-        String sentencia = "INSERT INTO Detalle_Factura (COD_FACTURA, COD_HERRAMIENTA_PROD,CANTIDAD_HERRAMIENTAS_PROD, COD_PLANTA, CANTIDAD_PLANTAS, TOTAL_PAGAR, FECHA, OBSERVACIONES) VALUES (?,?,?,?,?,?,?,?)";
+        String sentencia = "INSERT INTO Detalle_Factura (COD_FACTURA, codProducto, cantDetalle, TOTAL_PAGAR, FECHA, OBSERVACIONES) VALUES (?,?,?,?,?,?)";
         Connection _conexion = null;
 
         try {
@@ -43,13 +43,11 @@ public class ADDetalle_Factura {
 
             //Se registra los argumentos de la consulta            
             PS.setInt(1, DF.getCod_factura());
-            PS.setInt(2, DF.getCod_herramienta_prod());
-            PS.setInt(3, DF.getCantidad_herramienta_prod());
-            PS.setInt(4, DF.getCod_planta());
-            PS.setInt(5, DF.getCantidad_plantas());
-            PS.setFloat(6, DF.getTotal_pagar());
-            PS.setDate(7, DF.getFecha());
-            PS.setString(8, DF.getObservaciones());
+            PS.setInt(2, DF.getCodProducto());
+            PS.setInt(3, DF.getCantDetalle());
+            PS.setFloat(4, DF.getTotal_pagar());
+            PS.setDate(5, DF.getFecha());
+            PS.setString(6, DF.getObservaciones());
 
             PS.execute(); // Se ejecuta la sentencia- retorna true o false 
 
@@ -73,7 +71,7 @@ public class ADDetalle_Factura {
     //Método2
     public int Modificar(Detalle_Factura DF) throws Exception {
         int result = 0; // No ha obtenido ningún resultado        
-        String sentencia = "UPDATE Detalle_Factura SET COD_FACTURA = ?, COD_HERRAMIENTA_PROD =?, CANTIDAD_HERRAMIENTAS_PROD =?, COD_PLANTA=?, CANTIDAD_PLANTAS =?, TOTAL_PAGAR =?,FECHA=?,OBSERVACIONES=? WHERE COD_DETALLE = ? ";
+        String sentencia = "UPDATE Detalle_Factura SET COD_FACTURA = ?, codProducto = ?, cantDetalle = ?, TOTAL_PAGAR = ?, FECHA = ?, OBSERVACIONES = ? WHERE COD_DETALLE = ? ";
         Connection _conexion = null;
 
         try {
@@ -81,14 +79,12 @@ public class ADDetalle_Factura {
             PreparedStatement ps = _conexion.prepareStatement(sentencia);
 
             ps.setInt(1, DF.getCod_factura());
-            ps.setInt(2, DF.getCod_herramienta_prod());
-            ps.setInt(3, DF.getCantidad_herramienta_prod());
-            ps.setInt(4, DF.getCod_planta());
-            ps.setInt(5, DF.getCantidad_plantas());
-            ps.setFloat(6, DF.getTotal_pagar());
-            ps.setDate(7, DF.getFecha());
-            ps.setString(8, DF.getObservaciones());
-            ps.setInt(9, DF.getCod_detalle());
+            ps.setInt(2, DF.getCodProducto());
+            ps.setInt(3, DF.getCantDetalle());
+            ps.setFloat(4, DF.getTotal_pagar());
+            ps.setDate(5, DF.getFecha());
+            ps.setString(6, DF.getObservaciones());
+            ps.setInt(7, DF.getCod_detalle());
 
             result = ps.executeUpdate();
 
@@ -225,13 +221,11 @@ public class ADDetalle_Factura {
             if (rs.next()) { // Solo devolverá un registro
                 DF.setCod_detalle(rs.getInt(1));
                 DF.setCod_factura(rs.getInt(2));
-                DF.setCod_herramienta_prod(rs.getInt(3));
-                DF.setCantidad_herramienta_prod(rs.getInt(4));
-                DF.setCod_planta(rs.getInt(5));
-                DF.setCantidad_plantas(rs.getInt(6));
-                DF.setTotal_pagar(rs.getFloat(7));
-                DF.setFecha(rs.getDate(8));
-                DF.setObservaciones(rs.getString(9));
+                DF.setCodProducto(rs.getInt(3));
+                DF.setCantDetalle(rs.getInt(4));
+                DF.setTotal_pagar(rs.getFloat(5));
+                DF.setFecha(rs.getDate(6));
+                DF.setObservaciones(rs.getString(7));
                 DF.setExiste(true);
 
             }
