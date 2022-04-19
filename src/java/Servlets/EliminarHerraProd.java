@@ -1,6 +1,6 @@
 package Servlets;
 
-import Entidades.Herramienta_Producto;
+import Entidades.Producto;
 import LogicaNegocio.LNHerram_Prod;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,7 +35,7 @@ public class EliminarHerraProd extends HttpServlet {
                 // obtiene el parámetro del QUERY STRING y siempre será un string
 
                 int codigo = Integer.parseInt(id);
-                Herramienta_Producto HP = new Herramienta_Producto();
+                Producto HP = new Producto();
                 HP.setCod_herramienta_prod(codigo);
 
                 int resultado = logica.Eliminar(HP);

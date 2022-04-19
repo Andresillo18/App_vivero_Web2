@@ -57,7 +57,10 @@ public class ADCategoria {
 
         } catch (Exception e) {
         } finally {
-            _conexion.close(); // Siempre debe cerrar conexiones
+             if (_conexion != null) {
+
+                ClaseConexion.close(_conexion);
+            }
         }
         return id_categoria;
     }

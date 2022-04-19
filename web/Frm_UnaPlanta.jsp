@@ -1,7 +1,7 @@
 <%-- 
     Document   : añadirModificarPlanta
     Created on : 13 abr. 2022, 15:19:48
-    Author     : Andrés Villalobos
+    Author     : Andrés Villalobos Y Redwin
 --%>
 
 <%@page import="LogicaNegocio.LNPlanta"%>

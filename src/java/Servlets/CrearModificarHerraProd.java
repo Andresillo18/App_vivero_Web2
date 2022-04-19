@@ -1,6 +1,6 @@
 package Servlets;
 
-import Entidades.Herramienta_Producto;
+import Entidades.Producto;
 import LogicaNegocio.LNHerram_Prod;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,7 +28,7 @@ public class CrearModificarHerraProd extends HttpServlet {
 
         try {
             LNHerram_Prod Logica = new LNHerram_Prod();
-            Herramienta_Producto HP = new Herramienta_Producto();
+            Producto HP = new Producto();
             int resultado;
 
             HP.setCantidad_disponible(Integer.parseInt(request.getParameter("txtCodigo")));

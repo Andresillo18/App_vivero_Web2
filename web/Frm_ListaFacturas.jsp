@@ -1,7 +1,7 @@
 <%-- 
     Document   : Frm_ListaFacturas
     Created on : 16 abr. 2022, 11:50:16
-    Author     : Andrés Villalobos
+    Author     : Andrés Villalobos Y Redwin
 --%>
 
 <%@page import="Entidades.Cliente"%>

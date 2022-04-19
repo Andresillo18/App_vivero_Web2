@@ -54,7 +54,7 @@ public class ADClasPlanta {
 
         } catch (Exception e) {
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -84,7 +84,7 @@ public class ADClasPlanta {
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -113,7 +113,7 @@ public class ADClasPlanta {
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -145,7 +145,7 @@ public class ADClasPlanta {
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -180,7 +180,7 @@ public class ADClasPlanta {
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -216,7 +216,7 @@ public class ADClasPlanta {
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }

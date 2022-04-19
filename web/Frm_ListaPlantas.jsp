@@ -1,7 +1,7 @@
 <%-- 
     Document   : Frm_ListaPlanta
     Created on : 12 abr. 2022, 16:17:35
-    Author     : Andrés Villalobos
+    Author     : Andrés Villalobos Y Redwin
 --%>
 
 <%@page import="Entidades.Planta"%>

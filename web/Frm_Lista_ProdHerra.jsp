@@ -1,7 +1,7 @@
 <%-- 
     Document   : Frm_Lista_ProdHerra
     Created on : 14 abr. 2022, 10:36:55
-    Author     : Andrés Villalobos
+    Author     : Andrés Villalobos Y Redwin
 --%>
 <%@page import="Entidades.Herramienta_Producto"%>
 <%@page import="java.util.List"%>

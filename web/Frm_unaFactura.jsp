@@ -1,7 +1,7 @@
 <%-- 
     Document   : Frm_unaFactura
     Created on : 16 abr. 2022, 14:06:12
-    Author     : Andrés Villalobos
+    Author     : Andrés Villalobos Y Redwin
 --%>
 
 <%@page import="LogicaNegocio.LNCliente"%>

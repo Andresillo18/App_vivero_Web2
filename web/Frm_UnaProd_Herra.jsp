@@ -1,7 +1,7 @@
 <%-- 
     Document   : Frm_Prod_Herra
     Created on : 13 abr. 2022, 19:35:54
-    Author     : Andrés Villalobos
+    Author     : Andrés Villalobos Y Redwin
 --%>
 
 <%@page import="LogicaNegocio.LNHerram_Prod"%>
