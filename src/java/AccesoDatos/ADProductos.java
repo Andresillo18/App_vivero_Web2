@@ -28,7 +28,7 @@ public class ADProductos {
         this._mensaje = "";
     }
 
-// <editor-fold desc="This is my custom folding" defaultstate="collapsed">    
+// <editor-fold desc="Métodos" defaultstate="collapsed">    
     // Método1
     public int Insertar(Producto prod) throws Exception {
         int codProducto = -1; // el -1 significa que no existe, por ahora

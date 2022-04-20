@@ -33,20 +33,20 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html">Inicio</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="index.html" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Inventario
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="Frm_ListaPlantas.jsp"><i class="fas fa-tree"></i> Plantas</a></li>
-                                    <li><a class="dropdown-item" href="Frm_Lista_ProdHerra.jsp"><i class="fas fa-toolbox"></i> Productos o Herramientas</a></li>
-                                </ul>
+                                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Frm_ListaFacturas.jsp"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
-                            </li>                            
+                                <a class="nav-link active" href="Frm_ListaFacturas.jsp"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Frm_ListaProductos.jsp"><i class="fas fa-tree"></i> Producto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Frm_ListaClientes.jsp"><i class="fas fa-child"></i> Cliente</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Frm_ListaEmpleados.jsp"><i class="fas fa-user"></i> Empleado</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

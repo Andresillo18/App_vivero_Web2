@@ -11,16 +11,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=My+Soul&display=swap');
-        </style>
-
-        <link href="CSS/Styles.css" rel="stylesheet" type="text/css"/>
-
+        <title>Lista de Productos</title>
         <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="lib/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" type="text/css"/>
-        <title>Lista de Frm_ListaProductos y Productos</title>
+        <link href="CSS/Styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header>
@@ -33,19 +27,19 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html">Inicio</a>
+                                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Inicio</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="Frm_ListaFacturas.jsp"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Frm_ListaProductos.jsp">Producto</a>
+                                <a class="nav-link active" href="Frm_ListaProductos.jsp"><i class="fas fa-tree"></i> Producto</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Frm_ListaClientes.jsp">Cliente</a>
+                                <a class="nav-link" href="Frm_ListaClientes.jsp"><i class="fas fa-child"></i> Cliente</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Empleado</a>
+                                <a class="nav-link" href="Frm_ListaEmpleados.jsp"><i class="fas fa-user"></i> Empleado</a>
                             </li>
                         </ul>
                     </div>

@@ -1,4 +1,4 @@
-<%-- 
+    <%-- 
     Document   : Frm_Prod_Herra
     Created on : 13 abr. 2022, 19:35:54
     Author     : Andrés Villalobos Y Redwin
@@ -28,13 +28,19 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html">Inicio</a>
+                                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Inicio</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="Frm_ListaFacturas.jsp"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Frm_ListaProductos.jsp">Productos</a>
+                                <a class="nav-link active" href="Frm_ListaProductos.jsp"><i class="fas fa-tree"></i> Producto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Frm_ListaClientes.jsp"><i class="fas fa-child"></i> Cliente</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Frm_ListaEmpleados.jsp"><i class="fas fa-user"></i> Empleado</a>
                             </li>
                         </ul>
                     </div>
@@ -89,8 +95,12 @@
                         <div class="form-group">
                             <label for="txtTipo" class="control-label">Tipo</label>
                             <br>
-                            <select name="txtTipo" id="cars">
-                                <option value="<%=entidad.getTipoProducto()%>"><%=entidad.getTipoProducto()%></option>
+                            <select name="txtTipo" id="txtTipo">
+                                <%if (!entidad.getTipoProducto().equals("")) {
+                                        %><option value="<%=entidad.getTipoProducto()%>"><%=entidad.getTipoProducto()%></option>
+                                   <% } %>
+                                
+                                
                                 <option value="Otro">Otro</option>
                                 <option value="Artículo">Artículo</option>
                                 <option value="Planta">Planta</option>

@@ -27,19 +27,19 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html">Inicio</a>
+                                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Inicio</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="Frm_ListaFacturas.jsp"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Frm_ListaProductos.jsp">Producto</a>
+                                <a class="nav-link" href="Frm_ListaProductos.jsp"><i class="fas fa-tree"></i> Producto</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Frm_ListaClientes.jsp">Cliente</a>
+                                <a class="nav-link" href="Frm_ListaClientes.jsp"><i class="fas fa-child"></i> Cliente</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Frm_ListaEmpleados.jsp">Empleado</a>
+                                <a class="nav-link active" href="Frm_ListaEmpleados.jsp"><i class="fas fa-user"></i> Empleado</a>
                             </li>
                         </ul>
                     </div>
@@ -89,7 +89,7 @@
                         <!-- form-group para la identificación-->
                         <div class="form-group">
                             <label for="txtID" class="control-label">ID</label>
-                            <input type="number" id="txtID" name="txtID" value="<%=empleado1.getId()%>" class="form-control"/>
+                            <input type="txt" id="txtID" name="txtID" value="<%=empleado1.getId()%>" class="form-control"/>
                         </div>
 
                         <!-- form-group para los controles de Nombre -->
