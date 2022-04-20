@@ -34,10 +34,10 @@ public class EliminarEmpleado extends HttpServlet {
                 // obtiene el parámetro del QUERY STRING y siempre será un string
 
                 int codigo = Integer.parseInt(id);
-                Empleado cliente1 = new Empleado();
-                cliente1.setCod_empleado(codigo);
+                Empleado empleado1 = new Empleado();
+                empleado1.setCod_empleado(codigo);
 
-                int resultado = logica.Eliminar(cliente1);
+                int resultado = logica.Eliminar(empleado1);
 
                 String mensaje = logica.getMensaje();
 
