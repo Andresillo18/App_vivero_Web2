@@ -95,7 +95,9 @@
                         <div class="form-group">
                             <label for="txtTipo" class="control-label">Tipo</label>
                             <br>
-                            <select name="txtTipo" id="txtTipo">
+                            <select name="txtTipo" id="txtTipo" onchange="cambioTxtTipo(this.value)">
+                                
+                                
                                 <%if (!entidad.getTipoProducto().equals("")) {
                                         %><option value="<%=entidad.getTipoProducto()%>"><%=entidad.getTipoProducto()%></option>
                                    <% } %>
@@ -107,6 +109,8 @@
                                 <option value="Químico">Químico</option>
                             </select>
                         </div>
+                                   
+                                   <button id="" class="btn btn-success" style="display: none" href="Frm_ListarCategorias.jsp">Categorías</button>
 
                         <!-- form-group para los controles de Nombre -->
                         <div class="form-group">
@@ -157,6 +161,15 @@
         <script src="lib/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>    
 
         <script>
+            function cambioTxtTipo(contenido){
+                
+                //alert(contenido);
+                if(contenido == "Planta"){
+                    alert(contenido);
+                    document.getElementById("txtTipo").style.display = "inline";
+                    alert(document.getElementById("txtTipo").value);
+                }
+            };
                                     // Cuando el documento está listo, el $ es de JQuery
                                     $(document).ready(function () {
 

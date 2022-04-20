@@ -62,19 +62,6 @@
                         <input type="text" id="txtnombre" name="txtnombre" value="" placeholder="Busqueda por nombre..."
                                class="form-control"/> &nbsp; &nbsp; 
                         <!--Cuando se carga por primera vez no se ha creado el parámetro txtnombre, se crea hasta que se envíe por un form, cuando se hace el postback se crea y se puede saber si tiene algo-->
-
-                        <div class="form-group">
-                            <label for="txtTipo" class="control-label">Tipo</label>
-                            <br>
-                            <select name="txtTipo" id="txtTipo">
-                                <option value="Todo">Todo</option>
-                                <option value="Artículo">Artículo</option>
-                                <option value="Planta">Planta</option>
-                                <option value="Químico">Químico</option>
-                            </select>
-                        </div>
-                        
-                        &nbsp; &nbsp;
                         
                         <input type="submit" id="btnbuscar" name="btnBuscar" value="Buscar" class="btn btn-primary"/>
                     </div>
@@ -107,10 +94,7 @@
                             nombre = request.getParameter("txtnombre");
                             condicion = "NOMBRE LIKE '%" + nombre + "%'";
                         }
-                        if (!request.getParameter("txtTipo").equals("Todo")) {
-                            tipo = request.getParameter("txtTipo");
-                            condicion += " AND tipoProducto LIKE '%" + tipo + "%'";
-                        }
+                        
                         LNProducto logica = new LNProducto();
                         List<Producto> datos;
                         //Se usa una lista para tener los registros completos y no un resultset
