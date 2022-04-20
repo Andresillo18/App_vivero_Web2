@@ -4,6 +4,8 @@
     Author     : Andrés Villalobos Y Redwin
 --%>
 
+<%@page import="Entidades.Producto"%>
+<%@page import="LogicaNegocio.LNProducto"%>
 <%@page import="LogicaNegocio.LNCliente"%>
 <%@page import="Entidades.Cliente"%>
 <%@page import="java.util.Date"%>
@@ -64,26 +66,24 @@
             <%
                 int numFactura = -1;
                 double total = 0;
-                Factura EntidadFact;
-                Detalle_Factura EntidadDF;
+                Factura EntidadFactura;
+                Detalle_Factura EntidadDF; // Se crea una entidad para usar sus atributos
                 LNFactura logicaFactura = new LNFactura();
-                LNDetalle_Factura logicaDF = new LNDetalle_Factura();
-                List<Detalle_Factura> DatosDF = null;
-
-                Cliente EntidadCliente; // Se usará para mostrar el nombre del cliente
-                LNCliente logicaCliente = new LNCliente();
-                //Si se va a modificar una factura
+                LNDetalle_Factura logicaDetalle = new LNDetalle_Factura();
+                List<Detalle_Factura> DatosDetalles = null;
                 if (request.getParameter("txtnumFactura") != null && Integer.parseInt(request.getParameter("txtnumFactura")) != -1) {
                     numFactura = Integer.parseInt(request.getParameter("txtnumFactura"));
-                    EntidadFact = logicaFactura.ObtenerRegistro("COD_FACTURA=" + numFactura);
-                    EntidadDF = logicaDF.ObtenerRegistro("COD_FACTURA=" + numFactura); // Obtiene una entidad del Detalle Factura para 
-                    EntidadCliente = logicaCliente.ObtenerRegistro("COD_EMPLEADO=" + EntidadFact.getCod_empleado());
-                    DatosDF = logicaDF.ListaRegistros("COD_FACTURA=" + numFactura);
-                } else { // Si se crea una
-                    EntidadFact = new Factura();
-                    EntidadFact.setCod_factura(-1);
+                    EntidadFactura = logicaFactura.ObtenerRegistro("Num_Factura=" + numFactura);
+
+                    EntidadDF = logicaDetalle.ObtenerRegistro("Num_Factura=" + numFactura);
+
+                    DatosDetalles = logicaDetalle.ListaRegistros("Num_Factura=" + numFactura);
+                } else {
+                    EntidadFactura = new Factura();
+                    EntidadFactura.setCod_factura(-1);
+
                     EntidadDF = new Detalle_Factura();
-                    EntidadCliente = new Cliente();
+
                     Date fecha = new Date();
                     java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
                     EntidadDF.setFecha(fechasql);
@@ -95,7 +95,7 @@
 
                     <div class="input-group">
                         <label for="txtnumFactura" class="form-control">Num. Factura</label>
-                        <input type="text" id="txtnumFactura" name="txtnumFactura" value="<%=EntidadFact.getCod_factura()%>" 
+                        <input type="text" id="txtnumFactura" name="txtnumFactura" value="<%=EntidadFactura.getCod_factura()%>" 
                                readonly class="form-control"/>
                     </div>
 
@@ -109,20 +109,29 @@
                 <br/>
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="hidden" id="txtIdCliente" name="txtIdCliente" value="<%=EntidadFact.getCod_cliente()%>"
+                        <input type="hidden" id="txtIdCliente" name="txtIdCliente" value="<%=EntidadFactura.getCod_cliente()%>"
                                readonly="" class="form-control"/>
                         <input type="text" id="txtNombreCliente" name="txtNombreCliente" 
-                               value="<%=EntidadCliente.getNombre()%>" readonly="" class="form-control"
+                               value="<%=EntidadFactura.getNombre_cliente()%>" readonly="" class="form-control"
                                placeholder="Seleccione un cliente"/>
                         &nbsp;&nbsp;<a id="btnbuscar" class="btn btn-success" data-toggle="modal"
-                                       data-target="#buscarCliente"><i class="fas fa-search"></i></a>
+                                       data-target="#buscarCliente"><i class="fas fa-search"></i></a> 
+                        <!--Al darle al enlace de HTML llama un código del #, y dice que sea un modal para que solo se manipule esa-->
+
+                        <input type="hidden" id="txtCodEmpleado" name="txtCodEmpleado" value="<%=EntidadFactura.getCod_empleado()%>"
+                               readonly="" class="form-control"/>
+                        <input type="text" id="txtCodEmpleado" name="txtCodEmpleado" 
+                               value="<%=EntidadFactura.getNombre_empleado()%>" readonly="" class="form-control"
+                               placeholder="Seleccione un Empleado"/>
+                        &nbsp;&nbsp;<a id="btnbuscar" class="btn btn-success" data-toggle="modal"
+                                       data-target="#buscarCliente"><i class="fas fa-search"></i></a> 
                     </div>
                 </div>
                 <hr/> <!-- Inicia el detalle de factura -->
                 <div class="form-group">
                     <div class="input-group">
                         <input type="hidden" id="txtIdProducto" name="txtIdProducto" value="" readonly="" class="form-control"/>
-                        <input type="text" id="txtdescripcion" name="txtdescripcion" value="" class="form-control" readonly
+                        <input type="text" id="txtNombre" name="txtNombre" value="" class="form-control" readonly
                                placeholder="Seleccione un producto"/> &nbsp;&nbsp;
                         <a id="btnBuscarP" class="btn btn-success" data-toggle="modal" data-target="#buscarProducto">
                             <i class="fas fa-search"></i></a>&nbsp;&nbsp;
@@ -134,17 +143,17 @@
                 </div>
                 <br/>
                 <div class="form-group">
-                    <input type="submit" name="Guardar" id="BtnGuardar" value="Guardar" class="btn btn-primary"/>
+                    <input type="submit" name="Guardar" id="BtnGuardar" value="Agregar y Guardar" class="btn btn-primary"/>
                 </div>
             </form>
             <hr/>
             <!-- Mostrar detalle de factura -->
-            <h5>Detalle de la Factura</h5>
+            <h5>Detalle de Factura</h5>
             <table id="DetalleFactura" class="table">
                 <thead>
                     <tr>
                         <th>Código</th>
-                        <th>Código Fac</th>
+                        <th>Nombre del Prodcuto</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
                         <th>Subtotal</th>
@@ -155,23 +164,23 @@
                     <%
                         if (DatosDetalles != null) {
 
-                            for (DetalleFactura registroDetalle : DatosDetalles) {
+                            for (Detalle_Factura registroDetalle : DatosDetalles) {
                     %>
                     <tr>
                         <%
-                            int numfactura = registroDetalle.getIdFactura();
-                            int codigop = registroDetalle.getIdProducto();
+                            int numfactura = registroDetalle.getCod_factura();
+                            int codigop = registroDetalle.getCodProducto();
 
-                            //String descripcion = registroDetalle.getNombreProducto(); 
-                            // Se require DARLE FORMATO: (sino los caracteres especiales se visualizan mal)
-                            String descripcion = new String(registroDetalle.getNombreProducto().getBytes("ISO-8859-1"), "UTF-8");
+                            //****CAMBIAR AL NOMBRE DEL PRODUCTO
+                            //String nombre = new String(registroDetalle.getcod().getBytes("ISO-8859-1"), "UTF-8");
+                            int nombre = registroDetalle.getCodProducto();
 
-                            int cantidad = registroDetalle.getCantidad();
-                            double precioV = registroDetalle.getPrecio();
+                            int cantidad = registroDetalle.getCantDetalle();
+                            double precioV = registroDetalle.getTotal_pagar(); // CAMBIAR A PRECIO DE PRODUCTO
                             total += (cantidad * precioV);
                         %>
                         <td><%= codigop%></td>
-                        <td><%= descripcion%></td>
+                        <td><%= nombre%></td>
                         <td><%= cantidad%></td>
                         <td><%= precioV%></td>
                         <td><%= cantidad * precioV%></td>
@@ -193,8 +202,8 @@
                 <%= total%>
             </div>
             <br><br>
-            <input type="button" id="BtnCancelar" value="Realizar Facturacion"
-                   onclick="location.href = 'CancelarFactura?txtnumFactura=' +<%= EntidadFactura.getIdFactura()%>"
+            <input type="button" id="BtnRealizar" value="Realizar Facturacion"
+                   onclick="location.href = 'RealizarFactura?txtnumFactura=' +<%= EntidadFactura.getCod_factura()%>"
                    class="btn btn-success"/>
             &nbsp;&nbsp;
             <a href="FrmListarFacturas.jsp" class="btn btn-secondary">Regresar</a>
@@ -207,7 +216,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 id="tituloVentaja">Buscar cliente</h5>
+                        <h5 id="tituloVentaja">Buscar Cliente</h5>
                         <button class="close" data-dismiss="modal" aria-label="Cerrar" aria-hidden="true"
                                 onclick="Limpiar()">
                             <span aria-hidden="true">&times;</span>
@@ -226,13 +235,13 @@
                             </thead>
                             <tbody>
                                 <%
-                                    BL_Cliente logicaClientes = new BL_Cliente();
+                                    LNCliente logicaClientes = new LNCliente();
                                     List<Cliente> datosClientes;
-                                    datosClientes = logicaClientes.ListarRegistros("");
+                                    datosClientes = logicaClientes.ListaRegistros("");
                                     for (Cliente registroC : datosClientes) {
                                 %>
                                 <tr>
-                                    <%int codigoCliente = registroC.getId_cliente();
+                                    <%int codigoCliente = registroC.getCod_cliente();
                                         String nombreCliente = registroC.getNombre();%>
                                     <td><%= codigoCliente%></td>
                                     <td><%= nombreCliente%></td>
@@ -251,7 +260,7 @@
                         </button>
                     </div>
                 </div> <!-- modal content -->
-            </div> <!-- mnodal dialog -->
+            </div> <!-- modal dialog -->
         </div> <!-- modal -->
 
         <!-- Modal de PRODUCTO -->
@@ -259,7 +268,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 id="tituloVentana">Buscar producto</h5>
+                        <h5 id="tituloVentana">Buscar Producto</h5>
                         <button class="close" data-dismiss="modal" aria-label="Cerrar" aria-hidden="true"
                                 onclick="LimpiarProducto()">
                             <span aria-hidden="true">&times;</span>
@@ -278,14 +287,14 @@
                             </thead>
                             <tbody>
                                 <%
-                                    BL_Producto logicaProductos = new BL_Producto();
+                                    LNProducto logicaProductos = new LNProducto();
                                     List<Producto> datosProductos;
-                                    datosProductos = logicaProductos.ListarRegistros("");
+                                    datosProductos = logicaProductos.ListaRegistros("");
                                     for (Producto registroP : datosProductos) {
                                 %>
                                 <tr>
-                                    <%int codigoProducto = registroP.getIdProducto();
-                                        String nombreProducto = registroP.getDescripcion();
+                                    <%int codigoProducto = registroP.getCodProducto();
+                                        String nombreProducto = registroP.getNombre();
                                         double precio = registroP.getPrecio();%>
                                     <td><%= codigoProducto%></td>
                                     <td><%= nombreProducto%></td>

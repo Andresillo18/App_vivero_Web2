@@ -19,6 +19,7 @@ public class Detalle_Factura {
     private float total_pagar;
     private Date fecha;
     private String observaciones;
+    private String nombreProducto; // Se crea para utilizar otro campo de otra tabla
     private boolean existe;
 
 // </editor-fold> 
