@@ -40,7 +40,7 @@ public class CrearModificarEmpleado extends HttpServlet {
 
             empleado1.setTelefono((new String(request.getParameter("txtTelefono").getBytes("ISO-8859-1"), "UTF-8")));
 
-            empleado1.setTelefono((new String(request.getParameter("txtVentasRealizadas").getBytes("ISO-8859-1"), "UTF-8")));
+            empleado1.setVentas_realizadas(Integer.parseInt((new String(request.getParameter("txtVentasRealizadas").getBytes("ISO-8859-1"), "UTF-8"))));
 
             empleado1.setBono(Float.parseFloat(new String(request.getParameter("txtBono").getBytes("ISO-8859-1"), "UTF-8")));
 

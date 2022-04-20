@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Crear o Modificar un Empleado</title>
-          <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="lib/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" type="text/css"/>
         <link href="CSS/Styles.css" rel="stylesheet" type="text/css"/>
     </head>
@@ -107,7 +107,7 @@
                         <!-- para el telefono -->
                         <div class="form-group">
                             <label for="txtTelefono" class="control-label">Teléfono</label>
-                            <input type="number" id="txtTelefono" name="txtTelefono" value="<%=empleado1.getTelefono()%>" class="form-control"/>
+                            <input type="txt" id="txtTelefono" name="txtTelefono" value="<%=empleado1.getTelefono()%>" class="form-control"/>
                         </div>
 
                         <!-- para el Ventas Realizadas-->
@@ -118,7 +118,7 @@
 
                         <!-- para el bono -->
                         <div class="form-group">
-                            <label for="txtBono" class="control-label">Teléfono</label>
+                            <label for="txtBono" class="control-label">Bono</label>
                             <input type="number" id="txtBono" name="txtBono" value="<%=empleado1.getBono()%>" class="form-control"/>
                         </div>
 
@@ -152,18 +152,20 @@
                                             // Con estas reglas se personaliza, se usa el atributo name para verificar
                                             rules: {
 
+                                                txtID: {required: true, maxlength: 20},
                                                 txtNombre: {required: true, maxlength: 30},
-                                                txtDescripcion: {required: true, maxlength: 60},
-                                                txtPrecio: {required: true},
-                                                txtCantidadDisponible: {required: true}
+                                                txtApellido: {required: true, maxlength: 25},
+                                                txtVentasRealizadas: {required: true},
+                                                txtTelefono: {required: true, maxlength: 20}
                                             },
                                             // Mensajes que deseamos personalizar: 
                                             messages: {
+
+                                                txtID: "El campo de ID es obligatorio (max 30 caracteres)",
                                                 txtNombre: "El campo de Nombre es obligatorio (max 30 caracteres)",
-                                                txtDescripcion: "El campo de Descripción es obligatorio (max 60 caracteres)",
-                                                txtPrecio: "El campo de Precio es obligatorio",
-                                                txtCantidadDisponible: "El campo de Cantidad Disponible es obligatorio",
-                                                txttxtCantidadDisponible: "El campo de la Cantidad Disponible es obligatorio"
+                                                txtApellido: "El campo de Apellido es obligatorio (max 25 caracteres)",
+                                                txtVentasRealizadas: "El campo de Ventas Realizadas es obligatorio",
+                                                txtTelefono: "El campo de la Teléfono es obligatorio (max 20 caracteres)"
                                             },
                                             errorElement: 'span'
 

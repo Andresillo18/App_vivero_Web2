@@ -91,25 +91,25 @@
                         <!-- form-group para la identificación-->
                         <div class="form-group">
                             <label for="txtID" class="control-label">ID</label>
-                            <input type="number" id="txtID" name="txtID" value="<%=cliente1.getId()%>" class="form-control"/>
+                            <input type="number" id="txtID" maxlength="15" name="txtID" value="<%=cliente1.getId()%>" class="form-control"/>
                         </div>
 
                         <!-- form-group para los controles de Nombre -->
                         <div class="form-group">
                             <label for="txtNombre" class="control-label">Nombre</label>
-                            <input type="txt" id="txtNombre" name="txtNombre" value="<%=cliente1.getNombre()%>" class="form-control"/>
+                            <input type="txt" id="txtNombre" maxlength="30" name="txtNombre" value="<%=cliente1.getNombre()%>" class="form-control"/>
                         </div>
 
                         <!-- para el apellido -->
                         <div class="form-group">
                             <label for="txtApellido" class="control-label">Apellido</label>
-                            <input type="txt" id="txtApellido" name="txtApellido" value="<%=cliente1.getApellido1()%>" class="form-control"/>
+                            <input type="txt" id="txtApellido" maxlength="25" name="txtApellido" value="<%=cliente1.getApellido1()%>" class="form-control"/>
                         </div>
 
                         <!-- para el telefono -->
                         <div class="form-group">
                             <label for="txtTelefono" class="control-label">Teléfono</label>
-                            <input type="number" id="txtTelefono" name="txtTelefono" value="<%=cliente1.getTelefono()%>" class="form-control"/>
+                            <input type="txt" id="txtTelefono" maxlength="20" name="txtTelefono" value="<%=cliente1.getTelefono()%>" class="form-control"/>
                         </div>
 
                         <!-- form-group para los BOTONES de guardar y regresar  -->
@@ -142,21 +142,20 @@
                                             // Con estas reglas se personaliza, se usa el atributo name para verificar
                                             rules: {
 
+                                                txtID: {required: true, maxlength: 20},
                                                 txtNombre: {required: true, maxlength: 30},
-                                                txtDescripcion: {required: true, maxlength: 60},
-                                                txtPrecio: {required: true},
-                                                txtCantidadDisponible: {required: true}
+                                                txtApellido: {required: true, maxlength: 25},
+                                                txtTelefono :{required: true, maxlength: 20}
                                             },
                                             // Mensajes que deseamos personalizar: 
                                             messages: {
+                                                
+                                                 txtID: "El campo de ID es obligatorio (max 30 caracteres)",
                                                 txtNombre: "El campo de Nombre es obligatorio (max 30 caracteres)",
-                                                txtDescripcion: "El campo de Descripción es obligatorio (max 60 caracteres)",
-                                                txtPrecio: "El campo de Precio es obligatorio",
-                                                txtCantidadDisponible: "El campo de Cantidad Disponible es obligatorio",
-                                                txttxtCantidadDisponible: "El campo de la Cantidad Disponible es obligatorio"
+                                                txtApellido: "El campo de Apellido es obligatorio (max 25 caracteres)",
+                                                txtTelefono: "El campo de la Teléfono es obligatorio (max 20 caracteres)"
                                             },
                                             errorElement: 'span'
-
                                         });
                                     });
         </script>

@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="Andres_Villalobos_proyecto_fase3" default="default" basedir=".">
-    <description>Builds, tests, and runs the project Andres_Villalobos_proyecto_fase3.</description>
+<project name="Redwin_Andres_proyecto_fase3" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Redwin_Andres_proyecto_fase3.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 

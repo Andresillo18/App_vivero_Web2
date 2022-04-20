@@ -41,8 +41,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="Frm_ListaClientes.jsp">Cliente</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="Frm_ListaClientes.jsp">Empleado</a>
+                              <li class="nav-item">
+                                <a class="nav-link" href="Frm_ListaEmpleados.jsp">Empleado</a>
                             </li>
                         </ul>
                     </div>

@@ -1,8 +1,7 @@
 package Servlets;
 
-import AccesoDatos.ADProductos;
-import Entidades.Producto;
-import LogicaNegocio.LNProducto;
+import Entidades.Empleado;
+import LogicaNegocio.LNEmpleado;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
@@ -13,42 +12,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 14-4-22
+ * 19-4-22
  *
- * @author Andrés Villalobos Y Redwin
+ * @author Redwin & Andrés
  */
-@WebServlet(name = "EliminarProducto", urlPatterns = {"/EliminarProducto"})
-public class EliminarProducto extends HttpServlet {
+@WebServlet(name = "EliminarEmpleado", urlPatterns = {"/EliminarEmpleado"})
+public class EliminarEmpleado extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         try {
-            LNProducto logica = new LNProducto();
-            int resultado = 0;
-            int cod;
+            LNEmpleado logica = new LNEmpleado();
 
             //Se verifica si se envío el parámetro que es el id del producto a eliminar
-            if (request.getParameter("codProd") != null
-                    && !request.getParameter("codProd").equals("")) {
-                
-                cod = Integer.parseInt(request.getParameter("codProd"));
+            if (request.getParameter("idEliminar") != null
+                    && !request.getParameter("idEliminar").equals("")) {
+                String id = request.getParameter("idEliminar");
                 // obtiene el parámetro del QUERY STRING y siempre será un string
 
-                Producto producto = new Producto();
-                producto.setCodProducto(cod);
-                
-                resultado = logica.Eliminar(producto);
+                int codigo = Integer.parseInt(id);
+                Empleado cliente1 = new Empleado();
+                cliente1.setCod_empleado(codigo);
+
+                int resultado = logica.Eliminar(cliente1);
 
                 String mensaje = logica.getMensaje();
 
                 mensaje = URLEncoder.encode(mensaje, "UTF-8");
 
                 //Reenviamos a la página que estaba y se envía con un RESPONSE los parámetros por la URL
-                response.sendRedirect("Frm_ListaProductos.jsp?mensajeEliminar=" + mensaje + "&resultado=" + resultado);
+                response.sendRedirect("Frm_ListaEmpleados.jsp?mensajeEliminar=" + mensaje + "&resultado=" + resultado);
             }
 
         } catch (Exception ex) {

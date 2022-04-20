@@ -37,7 +37,13 @@
                             <a class="nav-link" href="Frm_ListaFacturas.jsp"><i class="fas fa-file-invoice-dollar"></i> Facturar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Frm_ListaProductos.jsp">Productos</a>
+                            <a class="nav-link" href="Frm_ListaProductos.jsp">Producto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Frm_ListaClientes.jsp">Cliente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Frm_ListaEmpleados.jsp">Empleado</a>
                         </li>
                     </ul>
                 </div>
