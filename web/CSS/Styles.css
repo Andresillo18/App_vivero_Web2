@@ -20,5 +20,6 @@ body{
 }
 
 .titulos{
+    text-align: center;
     font-family: 'Roboto Mono', monospace;
 }

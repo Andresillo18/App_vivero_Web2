@@ -1,7 +1,6 @@
 package Entidades;
 
 //import java.util.Date;
-
 import java.sql.Date;
 
 /**
@@ -20,6 +19,7 @@ public class Detalle_Factura {
     private Date fecha;
     private String observaciones;
     private String nombreProducto; // Se crea para utilizar otro campo de otra tabla
+    private float precio; // Se crea para utilizar otro campo de otra tabla
     private boolean existe;
 
 // </editor-fold> 
@@ -88,8 +88,25 @@ public class Detalle_Factura {
     public void setExiste(boolean existe) {
         this.existe = existe;
     }
-// </editor-fold>
 
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
+// </editor-fold>
+    
 // <editor-fold desc="CONSTRUCTORES" defaultstate="collapsed">    
     public Detalle_Factura() {
         cod_detalle = 0;
@@ -99,10 +116,12 @@ public class Detalle_Factura {
         total_pagar = 0;
         fecha = null;  // new java.sql.Date(0);
         observaciones = "";
+        nombreProducto = "";
+        precio = 0;
         existe = false;
     }
 
-    public Detalle_Factura(int cod_detalle, int cod_factura, int codProducto, int cantDetalle, int cod_planta, int cantidad_plantas, float total_pagar, Date fecha, String observaciones) {
+    public Detalle_Factura(int cod_detalle, int cod_factura, int codProducto,String nombreProducto ,  float precio, int cantDetalle, float total_pagar, Date fecha, String observaciones) {
         this.cod_detalle = cod_detalle;
         this.cod_factura = cod_factura;
         this.codProducto = codProducto;
@@ -110,6 +129,8 @@ public class Detalle_Factura {
         this.total_pagar = total_pagar;
         this.fecha = fecha;
         this.observaciones = observaciones;
+        this.nombreProducto = nombreProducto;
+        this.precio = precio;
         this.existe = true;
     }
 

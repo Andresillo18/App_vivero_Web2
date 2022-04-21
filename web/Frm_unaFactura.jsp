@@ -4,6 +4,8 @@
     Author     : Andrés Villalobos Y Redwin
 --%>
 
+<%@page import="Entidades.Empleado"%>
+<%@page import="LogicaNegocio.LNEmpleado"%>
 <%@page import="Entidades.Producto"%>
 <%@page import="LogicaNegocio.LNProducto"%>
 <%@page import="LogicaNegocio.LNCliente"%>
@@ -22,7 +24,11 @@
         <title>Facturación</title>
         <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="lib/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" type="text/css"/>
-        <link href="CSS/Styles.css" rel="stylesheet" type="text/css"/>
+        <link href="CSS/Styles.css" rel="stylesheet" type="text/css"/><link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="lib/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" type="text/css"/>
+        <link href="lib/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="lib/DataTables/datatables.min.css" rel="stylesheet" type="text/css"/>
+
     </head>
     <body>
         <header>            
@@ -56,12 +62,11 @@
 
         </header>
         <div class="container">
-            <div class="row">
-                <div class="col-10"><h1>Facturación</h1></div>
-                <div class=col-2 justify-content-center">
-                    <a class="navbar-brand" href="index.html"><i class="fas fa-tasks"></i></a>
-                </div>
-            </div>
+
+            <div class="card-header ">
+                <h1 class="titulos">Crear o Modificar Datos</h1>
+            </div>  
+
 
             <%
                 int numFactura = -1;
@@ -71,13 +76,15 @@
                 LNFactura logicaFactura = new LNFactura();
                 LNDetalle_Factura logicaDetalle = new LNDetalle_Factura();
                 List<Detalle_Factura> DatosDetalles = null;
+
+                //Esto se ejecuta si se envia algún parámetro
                 if (request.getParameter("txtnumFactura") != null && Integer.parseInt(request.getParameter("txtnumFactura")) != -1) {
                     numFactura = Integer.parseInt(request.getParameter("txtnumFactura"));
-                    EntidadFactura = logicaFactura.ObtenerRegistro("Num_Factura=" + numFactura);
+                    EntidadFactura = logicaFactura.ObtenerRegistro("DF.COD_FACTURA=" + numFactura);
 
-                    EntidadDF = logicaDetalle.ObtenerRegistro("Num_Factura=" + numFactura);
+                    EntidadDF = logicaDetalle.ObtenerRegistro("DF.COD_FACTURA=" + numFactura);
 
-                    DatosDetalles = logicaDetalle.ListaRegistros("Num_Factura=" + numFactura);
+                    DatosDetalles = logicaDetalle.ListaRegistros("DF.COD_FACTURA=" + numFactura);
                 } else {
                     EntidadFactura = new Factura();
                     EntidadFactura.setCod_factura(-1);
@@ -90,7 +97,7 @@
                 }
             %>
             <br/>
-            <form action="Facturar" method="post">
+            <form action="RealizarFactura" method="post">
                 <div class="form-group float-right">
 
                     <div class="input-group">
@@ -115,16 +122,16 @@
                                value="<%=EntidadFactura.getNombre_cliente()%>" readonly="" class="form-control"
                                placeholder="Seleccione un cliente"/>
                         &nbsp;&nbsp;<a id="btnbuscar" class="btn btn-success" data-toggle="modal"
-                                       data-target="#buscarCliente"><i class="fas fa-search"></i></a> 
+                                       data-target="#buscarCliente"><i class="fas fa-search"></i></a>&nbsp;&nbsp; 
                         <!--Al darle al enlace de HTML llama un código del #, y dice que sea un modal para que solo se manipule esa-->
 
                         <input type="hidden" id="txtCodEmpleado" name="txtCodEmpleado" value="<%=EntidadFactura.getCod_empleado()%>"
                                readonly="" class="form-control"/>
-                        <input type="text" id="txtCodEmpleado" name="txtCodEmpleado" 
+                        <input type="text" id="txtNombreEmpleado" name="txtNombreEmpleado" 
                                value="<%=EntidadFactura.getNombre_empleado()%>" readonly="" class="form-control"
                                placeholder="Seleccione un Empleado"/>
                         &nbsp;&nbsp;<a id="btnbuscar" class="btn btn-success" data-toggle="modal"
-                                       data-target="#buscarCliente"><i class="fas fa-search"></i></a> 
+                                       data-target="#buscarEmpleado"><i class="fas fa-search"></i></a> 
                     </div>
                 </div>
                 <hr/> <!-- Inicia el detalle de factura -->
@@ -171,12 +178,10 @@
                             int numfactura = registroDetalle.getCod_factura();
                             int codigop = registroDetalle.getCodProducto();
 
-                            //****CAMBIAR AL NOMBRE DEL PRODUCTO
-                            //String nombre = new String(registroDetalle.getcod().getBytes("ISO-8859-1"), "UTF-8");
-                            int nombre = registroDetalle.getCodProducto();
+                            String nombre = registroDetalle.getNombreProducto();
 
                             int cantidad = registroDetalle.getCantDetalle();
-                            double precioV = registroDetalle.getTotal_pagar(); // CAMBIAR A PRECIO DE PRODUCTO
+                            double precioV = registroDetalle.getPrecio();
                             total += (cantidad * precioV);
                         %>
                         <td><%= codigop%></td>
@@ -194,7 +199,7 @@
                     <%
                             }// cierre de for
                         } // cierre del if
-                    %>
+%>
                 </tbody>
             </table>
             <div class="float-right">
@@ -206,12 +211,12 @@
                    onclick="location.href = 'RealizarFactura?txtnumFactura=' +<%= EntidadFactura.getCod_factura()%>"
                    class="btn btn-success"/>
             &nbsp;&nbsp;
-            <a href="FrmListarFacturas.jsp" class="btn btn-secondary">Regresar</a>
+            <a href="Frm_ListaFacturas.jsp" class="btn btn-secondary">Regresar</a>
 
         </div> <!-- container principal -->
 
 
-        <!-- Modal de clientes -->
+        <!-- Modal de CLIENTE-->
         <div class="modal" id="buscarCliente" tabindex="1" role="dialog" aria-labelledby="tituloVentana">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -263,6 +268,58 @@
             </div> <!-- modal dialog -->
         </div> <!-- modal -->
 
+        <!-- Modal de EMPLEADO-->
+        <div class="modal" id="buscarEmpleado" tabindex="1" role="dialog" aria-labelledby="tituloVentana">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="tituloVentaja">Buscar Empleado</h5>
+                        <button class="close" data-dismiss="modal" aria-label="Cerrar" aria-hidden="true"
+                                onclick="Limpiar()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <!-- tabla de empleados -->
+                        <table id="tablaEmpleados">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Seleccionar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    LNEmpleado logicaEmpleados = new LNEmpleado();
+                                    List<Empleado> datosEmpleado;
+                                    datosEmpleado = logicaEmpleados.ListaRegistros("");
+                                    for (Empleado registroC : datosEmpleado) {
+                                %>
+                                <tr>
+                                    <%int codigoEmpleado = registroC.getCod_empleado();
+                                        String nombreEmpleado = registroC.getNombre();%>
+                                    <td><%= codigoEmpleado%></td>
+                                    <td><%= nombreEmpleado%></td>
+                                    <td>
+                                        <a href="#" data-dismiss="modal"
+                                           onclick="SeleccionarEmpleado('<%=codigoEmpleado%>', '<%= nombreEmpleado%>');">Seleccionar</a>
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                        </table>
+                    </div> <!-- modal body -->
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" type="button" data-dismiss="modal" onclick="Limpiar()">
+                            Cancelar
+                        </button>
+                    </div>
+                </div> <!-- modal content -->
+            </div> <!-- modal dialog -->
+        </div> <!-- modal -->
+
         <!-- Modal de PRODUCTO -->
         <div class="modal" id="buscarProducto" tabindex="1" role="dialog" aria-labelledby="tituloVentana">
             <div class="modal-dialog" role="document">
@@ -275,7 +332,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <!-- tabla de clientes -->
+                        <!-- tabla de productos -->
                         <table id="tablaProductos">
                             <thead>
                                 <tr>
@@ -326,6 +383,7 @@
         <script src="lib/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
         <script src="lib/DataTables/datatables.min.js" type="text/javascript"></script>
         <script src="lib/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script>
 
                                     //hacer que la lista de clientes se comporte como un datatable
@@ -338,6 +396,26 @@
                                         });
 
                                         $('#tablaClientes').dataTable({
+                                            "lengthMenu": [[5, 15, 15, -1], [5, 10, 15, "All"]],
+                                            "language": {
+                                                "info": "Página _PAGE_ de _PAGES_",
+                                                "infoEmpty": "No existen Registros disponibles",
+                                                "zeroRecords": "No se encuentran registros",
+                                                "search": "Buscar",
+                                                "infoFiltered": "",
+                                                "lengthMenu": "Mostrar _MENU_ Registros",
+                                                "paginate": {
+                                                    "first": "Primero",
+                                                    "last": "Último",
+                                                    "next": "Siguiente",
+                                                    "previous": "Anterior"
+                                                }
+
+                                            }
+                                        });
+
+                                        //tabla empleados
+                                        $('#tablaEmpleados').dataTable({
                                             "lengthMenu": [[5, 15, 15, -1], [5, 10, 15, "All"]],
                                             "language": {
                                                 "info": "Página _PAGE_ de _PAGES_",
@@ -383,10 +461,16 @@
                                         $("#txtIdCliente").val(idCliente);
                                         $("#txtNombreCliente").val(nombreCliente);
                                     }
+                                    //seleccionar empleado
+                                    function SeleccionarEmpleado(idEmpleado, nombreEmpleado) {
+                                        $("#txtCodEmpleado").val(idEmpleado);
+                                        $("#txtNombreEmpleado").val(nombreEmpleado);
+                                    }
+
                                     //seleccionar producto
-                                    function SeleccionarProducto(idProducto, Descripcion, Precio) {
+                                    function SeleccionarProducto(idProducto, nombre, Precio) {
                                         $("#txtIdProducto").val(idProducto);
-                                        $("#txtdescripcion").val(Descripcion);
+                                        $("#txtNombre").val(nombre);
                                         $("#txtprecio").val(Precio);
                                         $("#txtcantidad").focus();
                                     }
@@ -399,7 +483,7 @@
                                     //seleccionar producto
                                     function LimpiarProducto() {
                                         $("#txtIdProducto").val("");
-                                        $("#txtdescripcion").val("");
+                                        $("#txtNombre").val("");
                                         $("#txtprecio").val("");
                                     }
         </script>

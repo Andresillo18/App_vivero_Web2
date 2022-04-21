@@ -60,7 +60,7 @@ public class ADDetalle_Factura {
 
         } catch (Exception e) {
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -94,7 +94,7 @@ public class ADDetalle_Factura {
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -123,7 +123,7 @@ public class ADDetalle_Factura {
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -140,7 +140,7 @@ public class ADDetalle_Factura {
         try {
             _conexion = getConnection();
             Statement Stm = _conexion.createStatement(); // Se usa un statement ya que lo que se enviará no tendrá un parámetro de entrada
-            String sentencia = "SELECT COD_DETALLE, COD_FACTURA, COD_HERRAMIENTA_PROD,CANTIDAD_HERRAMIENTAS_PROD, COD_PLANTA, CANTIDAD_PLANTAS, TOTAL_PAGAR, FECHA, OBSERVACIONES FROM Detalle_Factura";
+            String sentencia = "SELECT COD_DETALLE,DF.COD_FACTURA,DF.codProducto, nombre, precio, cantDetalle, TOTAL_PAGAR , FECHA, OBSERVACIONES FROM Productos P INNER JOIN  Detalle_Factura DF ON P.codProducto = DF.codProducto inner JOIN Factura F ON DF.COD_FACTURA = F.COD_FACTURA ";
 
             if (!condicion.equals("")) { // Si se envío una condición
                 sentencia = String.format("%s WHERE %s", sentencia, condicion); // Interpolación de Strings 
@@ -155,7 +155,7 @@ public class ADDetalle_Factura {
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -175,7 +175,7 @@ public class ADDetalle_Factura {
             _conexion = getConnection();
             Statement Stm = _conexion.createStatement(); // Siempre se debe estable esta conexión con la BD
 
-            String sentencia = "SELECT COD_DETALLE, COD_FACTURA, COD_HERRAMIENTA_PROD,CANTIDAD_HERRAMIENTAS_PROD, COD_PLANTA, CANTIDAD_PLANTAS, TOTAL_PAGAR, FECHA, OBSERVACIONES FROM Detalle_Factura";
+            String sentencia = "SELECT COD_DETALLE,DF.COD_FACTURA,DF.codProducto, nombre, precio, cantDetalle, TOTAL_PAGAR , FECHA, OBSERVACIONES FROM Productos P INNER JOIN  Detalle_Factura DF ON P.codProducto = DF.codProducto inner JOIN Factura F ON DF.COD_FACTURA = F.COD_FACTURA ";
 
             if (!condicion.equals("")) { // Si se envío una condición
                 sentencia = String.format("%s WHERE %s", sentencia, condicion); // Interpolación de Strings 
@@ -185,12 +185,12 @@ public class ADDetalle_Factura {
 
             // Se usa un bucle siempre para saber lo que tiene un ResultSet
             while (rs.next()) { // Esto solo leerá el único registro que tiene
-                list1.add(new Detalle_Factura(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(7), rs.getDate(8), rs.getString(9))); // Solo le envía un objeto
+                list1.add(new Detalle_Factura(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getFloat(5), rs.getInt(6), rs.getFloat(7), rs.getDate(8), rs.getString(9))); // Solo le envía un objeto
             }
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -207,7 +207,7 @@ public class ADDetalle_Factura {
 
         try {
             _conexion = getConnection();
-            String sentencia = "SELECT COD_DETALLE, COD_FACTURA, COD_HERRAMIENTA_PROD,CANTIDAD_HERRAMIENTAS_PROD, COD_PLANTA, CANTIDAD_PLANTAS, TOTAL_PAGAR, FECHA, OBSERVACIONES FROM Detalle_Factura";
+            String sentencia = "SELECT COD_DETALLE,DF.COD_FACTURA,DF.codProducto, nombre, precio, cantDetalle, TOTAL_PAGAR , FECHA, OBSERVACIONES FROM Productos P INNER JOIN  Detalle_Factura DF ON P.codProducto = DF.codProducto inner JOIN Factura F ON DF.COD_FACTURA = F.COD_FACTURA ";
 
             Statement Stm = _conexion.createStatement(); // Se usa create ya que no envía parametros a la sentencia
 
@@ -222,17 +222,19 @@ public class ADDetalle_Factura {
                 DF.setCod_detalle(rs.getInt(1));
                 DF.setCod_factura(rs.getInt(2));
                 DF.setCodProducto(rs.getInt(3));
-                DF.setCantDetalle(rs.getInt(4));
-                DF.setTotal_pagar(rs.getFloat(5));
-                DF.setFecha(rs.getDate(6));
-                DF.setObservaciones(rs.getString(7));
+                DF.setNombreProducto(rs.getString(4));
+                DF.setPrecio(rs.getFloat(5));
+                DF.setCantDetalle(rs.getInt(6));
+                DF.setTotal_pagar(rs.getFloat(7));
+                DF.setFecha(rs.getDate(8));
+                DF.setObservaciones(rs.getString(9));
                 DF.setExiste(true);
 
             }
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }
@@ -266,7 +268,7 @@ public class ADDetalle_Factura {
         } catch (Exception e) {
             throw e;
         } finally {
-              if (_conexion != null) {
+            if (_conexion != null) {
 
                 ClaseConexion.close(_conexion);
             }

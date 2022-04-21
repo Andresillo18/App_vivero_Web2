@@ -31,7 +31,7 @@ public class EliminarEmpleado extends HttpServlet {
             if (request.getParameter("idEliminar") != null
                     && !request.getParameter("idEliminar").equals("")) {
                 String id = request.getParameter("idEliminar");
-                // obtiene el parámetro del QUERY STRING y siempre será un string
+                // obtiene el parámetro del QUERY STRING  y siempre será un string
 
                 int codigo = Integer.parseInt(id);
                 Empleado empleado1 = new Empleado();
