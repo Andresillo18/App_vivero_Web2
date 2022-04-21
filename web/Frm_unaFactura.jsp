@@ -116,7 +116,7 @@
                 <br/>
                 <div class="form-group">
                     <div class="input-group">
-                        
+
                         <input type="hidden" id="txtIdCliente" name="txtIdCliente" value="<%=EntidadFactura.getCod_cliente()%>"
                                readonly="" class="form-control"/>
                         <input type="text" id="txtNombreCliente" name="txtNombreCliente" 
@@ -194,13 +194,13 @@
 
 
                         <td>
-                            <!--Eliminar-->
+                            <a href="EliminarDetalle?idproducto=<%=codigop%>&idfactura=<%=numfactura%>">Eliminar</a>
                         </td>
                     </tr>
                     <%
                             }// cierre de for
                         } // cierre del if
-%>
+                    %>
                 </tbody>
             </table>
             <div class="float-right">
