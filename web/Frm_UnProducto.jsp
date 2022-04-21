@@ -1,7 +1,7 @@
-    <%-- 
-    Document   : Frm_Prod_Herra
-    Created on : 13 abr. 2022, 19:35:54
-    Author     : Andrés Villalobos Y Redwin
+<%-- 
+Document   : Frm_Prod_Herra
+Created on : 13 abr. 2022, 19:35:54
+Author     : Andrés Villalobos Y Redwin
 --%>
 
 <%@page import="LogicaNegocio.LNProducto"%>
@@ -16,7 +16,7 @@
         <link href="lib/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" type="text/css"/>
         <link href="CSS/Styles.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
+    <body onload="displayNone()">
         <header>
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -96,22 +96,25 @@
                             <label for="txtTipo" class="control-label">Tipo</label>
                             <br>
                             <select name="txtTipo" id="txtTipo" onchange="cambioTxtTipo(this.value)">
-                                
-                                
+
+
                                 <%if (!entidad.getTipoProducto().equals("")) {
-                                        %><option value="<%=entidad.getTipoProducto()%>"><%=entidad.getTipoProducto()%></option>
-                                   <% } %>
-                                
-                                
+                                %><option value="<%=entidad.getTipoProducto()%>"><%=entidad.getTipoProducto()%></option>
+                                <% }%>
+
+
                                 <option value="Otro">Otro</option>
                                 <option value="Artículo">Artículo</option>
                                 <option value="Planta">Planta</option>
                                 <option value="Químico">Químico</option>
                             </select>
                         </div>
-                                   
-                                   <button id="" class="btn btn-success" style="display: none" href="Frm_ListarCategorias.jsp">Categorías</button>
-
+                        
+                        <div class="d-grid gap-2 d-md">
+                            <a id="btnCategorias" class="btn btn-success d-none" href="Frm_ListarCategorias.jsp">Categorías</a>
+                        </div>
+                        
+                        <br>
                         <!-- form-group para los controles de Nombre -->
                         <div class="form-group">
                             <label for="txtNombre" class="control-label">Nombre</label>
@@ -161,22 +164,41 @@
         <script src="lib/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>    
 
         <script>
-            function cambioTxtTipo(contenido){
-                
-                //alert(contenido);
-                if(contenido == "Planta"){
-                    alert(contenido);
-                    document.getElementById("txtTipo").style.display = "inline";
-                    alert(document.getElementById("txtTipo").value);
-                }
-            };
+                                    function cambioTxtTipo(contenido) {
+
+                                        //alert(contenido);
+                                        if (contenido == "Planta") {
+                                            document.getElementById("btnCategorias").classList.remove("d-none");
+                                            document.getElementById("btnCategorias").classList.add("d-block");
+                                        } else {
+                                            document.getElementById("btnCategorias").classList.remove("d-block");
+                                            document.getElementById("btnCategorias").classList.add("d-none");
+
+                                        }
+                                    };
+                                    function displayNone() {
+
+                                        let tipo = document.getElementById("txtTipo").value;
+                                        
+                                        //alert(tipo);
+                                        
+                                        if(tipo == "Planta"){
+                                            document.getElementById("btnCategorias").classList.remove("d-none");
+                                            document.getElementById("btnCategorias").classList.add("d-block");
+                                            
+                                        } else {
+                                            
+                                            document.getElementById("btnCategorias").classList.remove("d-block");
+                                            document.getElementById("btnCategorias").classList.add("d-none");
+                                        }
+                                    };
                                     // Cuando el documento está listo, el $ es de JQuery
                                     $(document).ready(function () {
 
                                         $("#form_AgregarModificar").validate({
                                             // Con estas reglas se personaliza, se usa el atributo name para verificar
                                             rules: {
-                                                
+
                                                 txtNombre: {required: true, maxlength: 30},
                                                 txtDescripcion: {required: true, maxlength: 30},
                                                 txtPrecio: {required: true},
