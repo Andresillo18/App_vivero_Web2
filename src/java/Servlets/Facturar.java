@@ -65,7 +65,7 @@ public class Facturar extends HttpServlet {
                     EntidadDetalle.setObservaciones("");
                     //Inserta o Modifica
                     resultadoFacturaCod = LogicaFactura.Insertar(EntidadFactura);
-                    EntidadDetalle.setCod_factura(Integer.parseInt(request.getParameter("txtnumFactura")));
+                    EntidadDetalle.setCod_factura(resultadoFacturaCod);
                     resultado += LogicaDetalle_Factura.Insertar(EntidadDetalle);
                 } else {
                     resultadoFacturaCod = LogicaFactura.Modificar(EntidadFactura);

@@ -49,7 +49,7 @@ public class ADDetalle_Factura {
             PS.setDate(5, DF.getFecha());
             PS.setString(6, DF.getObservaciones());
 
-            PS.execute(); // Se ejecuta la sentencia- retorna true o false 
+            PS.executeUpdate(); // Se ejecuta la sentencia- retorna true o false 
 
             ResultSet rs = PS.getGeneratedKeys(); // El ResultSet es de una celda porque obtiene los identity de un INSERT
 
@@ -59,6 +59,7 @@ public class ADDetalle_Factura {
             }
 
         } catch (Exception e) {
+            throw e;
         } finally {
             if (_conexion != null) {
 
