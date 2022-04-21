@@ -97,7 +97,7 @@
                 }
             %>
             <br/>
-            <form action="RealizarFactura" method="post">
+            <form action="Facturar" method="post">
                 <div class="form-group float-right">
 
                     <div class="input-group">
@@ -116,6 +116,7 @@
                 <br/>
                 <div class="form-group">
                     <div class="input-group">
+                        
                         <input type="hidden" id="txtIdCliente" name="txtIdCliente" value="<%=EntidadFactura.getCod_cliente()%>"
                                readonly="" class="form-control"/>
                         <input type="text" id="txtNombreCliente" name="txtNombreCliente" 
@@ -193,7 +194,7 @@
 
 
                         <td>
-                            <a href="EliminarDetalle?idproducto=<%=codigop%>&idfactura=<%=numfactura%>">Eliminar</a>
+                            <!--Eliminar-->
                         </td>
                     </tr>
                     <%
@@ -207,7 +208,7 @@
                 <%= total%>
             </div>
             <br><br>
-            <input type="button" id="BtnRealizar" value="Realizar Facturacion"
+            <input type="button" id="BtnRealizar" value="Realizar Facturación"
                    onclick="location.href = 'RealizarFactura?txtnumFactura=' +<%= EntidadFactura.getCod_factura()%>"
                    class="btn btn-success"/>
             &nbsp;&nbsp;
