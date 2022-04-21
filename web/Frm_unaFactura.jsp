@@ -80,7 +80,7 @@
                 //Esto se ejecuta si se envia algún parámetro
                 if (request.getParameter("txtnumFactura") != null && Integer.parseInt(request.getParameter("txtnumFactura")) != -1) {
                     numFactura = Integer.parseInt(request.getParameter("txtnumFactura"));
-                    EntidadFactura = logicaFactura.ObtenerRegistro("DF.COD_FACTURA=" + numFactura);
+                    EntidadFactura = logicaFactura.ObtenerRegistro("COD_FACTURA=" + numFactura);
 
                     EntidadDF = logicaDetalle.ObtenerRegistro("DF.COD_FACTURA=" + numFactura);
 

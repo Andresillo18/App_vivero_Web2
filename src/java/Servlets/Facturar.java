@@ -66,11 +66,11 @@ public class Facturar extends HttpServlet {
                     //Inserta o Modifica
                     resultadoFacturaCod = LogicaFactura.Insertar(EntidadFactura);
                     EntidadDetalle.setCod_factura(resultadoFacturaCod);
-                    resultado += LogicaDetalle_Factura.Insertar(EntidadDetalle);
+                    resultado = LogicaDetalle_Factura.Insertar(EntidadDetalle);
                 } else {
                     resultadoFacturaCod = LogicaFactura.Modificar(EntidadFactura);
-                    EntidadDetalle.setCod_factura(Integer.parseInt(request.getParameter("txtnumFactura")));
-                    resultado += LogicaDetalle_Factura.Modificar(EntidadDetalle);
+                    EntidadDetalle.setCod_factura(resultadoFacturaCod);
+                    resultado = LogicaDetalle_Factura.Modificar(EntidadDetalle);
                 }
                 response.sendRedirect("Frm_unaFactura.jsp?txtnumFactura=" + resultadoFacturaCod);
             } else {
