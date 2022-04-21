@@ -34,7 +34,7 @@ public class ADDetalle_Factura {
     // Método1
     public int Insertar(Detalle_Factura DF) throws Exception {
         int cod_cliente = -1; // el -1 significa que no existe, por ahora
-        String sentencia = "INSERT INTO Detalle_Factura (COD_FACTURA, codProducto, cantDetalle, TOTAL_PAGAR, FECHA, OBSERVACIONES) VALUES (?,?,?,?,?,?)";
+        String sentencia = "INSERT INTO Detalle_Factura (COD_FACTURA, codProducto, cantDetalle, TOTAL_PAGAR, FECHA, OBSERVACIONES) VALUES (?, ?, ?, ?, ?, ?)";
         Connection _conexion = null;
 
         try {

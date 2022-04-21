@@ -32,6 +32,8 @@ public class Facturar extends HttpServlet {
             Factura EntidadFactura = new Factura();
             Detalle_Factura EntidadDetalle = new Detalle_Factura();
             int resultado = 0;
+            int resultadoFacturaCod = 0;
+            
             //crear entidad de factura
             if (request.getParameter("txtNombreCliente") != null
                     && !request.getParameter("txtNombreCliente").equals("")) {
@@ -47,28 +49,30 @@ public class Facturar extends HttpServlet {
                 EntidadDetalle.setFecha(fechasql);
                 //Se guarda el cod del empleado en la entidad
                 EntidadFactura.setCod_empleado(Integer.parseInt(request.getParameter("txtCodEmpleado")));
-                
-//                EntidadFactura.setEstado("Pendiente");
 
+//                EntidadFactura.setEstado("Pendiente");
                 if (!(request.getParameter("txtNombre").equals(""))
                         && !(request.getParameter("txtcantidad").equals(""))
                         && !(request.getParameter("txtprecio").equals(""))) {
                     //crear entidad de detalle
                     //Obtiene los valores de los campos de texto para crear la entidad
-                    EntidadDetalle.setCod_detalle(-1); //***
-                    EntidadDetalle.setCod_factura(Integer.parseInt(request.getParameter("txtnumFactura"))); //***
+                    EntidadDetalle.setCod_detalle(-1);
+
                     EntidadDetalle.setCodProducto(Integer.parseInt(request.getParameter("txtIdProducto")));
                     EntidadDetalle.setCantDetalle(Integer.parseInt(request.getParameter("txtcantidad")));
-                    EntidadDetalle.setPrecio(0);
+                    EntidadDetalle.setTotal_pagar(0);
                     EntidadDetalle.setPrecio(Float.parseFloat(request.getParameter("txtprecio")));
+                    EntidadDetalle.setObservaciones("");
                     //Inserta o Modifica
-                    resultado += LogicaFactura.Insertar(EntidadFactura);
+                    resultadoFacturaCod = LogicaFactura.Insertar(EntidadFactura);
+                    EntidadDetalle.setCod_factura(Integer.parseInt(request.getParameter("txtnumFactura")));
                     resultado += LogicaDetalle_Factura.Insertar(EntidadDetalle);
                 } else {
-                    resultado += LogicaFactura.Modificar(EntidadFactura);
+                    resultadoFacturaCod = LogicaFactura.Modificar(EntidadFactura);
+                    EntidadDetalle.setCod_factura(Integer.parseInt(request.getParameter("txtnumFactura")));
                     resultado += LogicaDetalle_Factura.Modificar(EntidadDetalle);
                 }
-                response.sendRedirect("Frm_unaFactura.jsp?txtnumFactura=" + resultado);
+                response.sendRedirect("Frm_unaFactura.jsp?txtnumFactura=" + resultadoFacturaCod);
             } else {
                 response.sendRedirect("Frm_unaFactura.jsp?txtnumFactura="
                         + request.getParameter("txtnumFactura"));
