@@ -1,6 +1,7 @@
 package Servlets;
 
 import Entidades.Factura;
+import LogicaNegocio.LNFactura;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 21-4-22
+ *
  * @author Redwin & Andrés
  */
 @WebServlet(name = "RealizarFactura", urlPatterns = {"/RealizarFactura"})
@@ -18,19 +20,18 @@ public class RealizarFactura extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//         response.setContentType("text/html;charset=UTF-8");
-//        PrintWriter out = response.getWriter();
-//        try {
-//            BL_Factura Logica=new BL_Factura();
-//            int idFactura=Integer.parseInt(request.getParameter("txtnumFactura"));
-//            Factura EntidadFactura=Logica.ObtenerRegistro("Num_Factura="+idFactura);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            LNFactura Logica = new LNFactura();
+            int idFactura = Integer.parseInt(request.getParameter("txtnumFactura"));
+            Factura EntidadFactura = Logica.ObtenerRegistro("COD_FACTURA=" + idFactura);
 //            EntidadFactura.setEstado("Cancelada");
 //            Logica.ModificarEstado(EntidadFactura);
-//            response.sendRedirect("Frm_Facturar.jsp?txtnumFactura=-1");
-//        }
-//        catch(Exception e){
-//            out.print(e.getMessage());
-//        }
+            response.sendRedirect("Frm_unaFactura.jsp?txtnumFactura=-1");
+        } catch (Exception e) {
+            out.print(e.getMessage());
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
