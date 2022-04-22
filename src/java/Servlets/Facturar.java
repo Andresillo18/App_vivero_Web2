@@ -52,9 +52,22 @@ public class Facturar extends HttpServlet {
                 EntidadFactura.setCod_empleado(Integer.parseInt(request.getParameter("txtCodEmpleado")));
 
 //                EntidadFactura.setEstado("Pendiente");
-                if (!(request.getParameter("txtNombre").equals(""))
-                        && !(request.getParameter("txtcantidad").equals(""))
-                        && !(request.getParameter("txtprecio").equals(""))) {
+                // si es diferente a -1
+                if (Integer.parseInt(request.getParameter("txtnumFactura")) != -1) {
+                    
+                    
+                    //LogicaFactura.Modificar(EntidadFactura);
+                    
+                    EntidadDetalle.setCod_factura(Integer.parseInt(request.getParameter("txtnumFactura")));
+                    
+                    EntidadDetalle.setCodProducto(Integer.parseInt(request.getParameter("txtIdProducto")));
+                    EntidadDetalle.setCantDetalle(Integer.parseInt(request.getParameter("txtcantidad")));
+                    EntidadDetalle.setTotal_pagar(0);
+                    
+                    LogicaDetalle_Factura.Insertar(EntidadDetalle);
+
+                // si es igual a -1
+                } else {
                     //crear entidad de detalle
                     //Obtiene los valores de los campos de texto para crear la entidad
                     EntidadDetalle.setCod_detalle(-1);
@@ -68,9 +81,7 @@ public class Facturar extends HttpServlet {
                     resultadoFacturaCod = LogicaFactura.Insertar(EntidadFactura);
                     EntidadDetalle.setCod_factura(resultadoFacturaCod);
                     resultado = LogicaDetalle_Factura.Insertar(EntidadDetalle);
-                } else {
-                    resultadoFacturaCod = LogicaFactura.Modificar(EntidadFactura);
-                    EntidadDetalle.setCod_factura(resultadoFacturaCod);
+
                 }
                 response.sendRedirect("Frm_unaFactura.jsp?txtnumFactura=" + resultadoFacturaCod);
             } else {
