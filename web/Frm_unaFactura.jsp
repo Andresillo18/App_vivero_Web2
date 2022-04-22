@@ -361,7 +361,7 @@
                                     <!-- <td><%= codigoProducto%></td> -->
                                     <td><%= nombreProducto%></td>
                                     <td><%= precio%></td>
-                                    <td><%= disponible%></td>
+                                    <td class="text-center"><%= disponible%></td>
                                     <td>
                                         <a href="#" data-dismiss="modal"
                                            onclick="SeleccionarProducto('<%=codigoProducto%>',
