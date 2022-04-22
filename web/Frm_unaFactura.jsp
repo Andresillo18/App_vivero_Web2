@@ -337,9 +337,10 @@
                         <table id="tablaProductos">
                             <thead>
                                 <tr>
-                                    <th>Código</th>
+                                    <!-- <th>Código</th> -->
                                     <th>Descripción</th>
                                     <th>Precio</th>
+                                    <th>Disponible</th>
                                     <th>Seleccionar</th>
                                 </tr>
                             </thead>
@@ -351,12 +352,16 @@
                                     for (Producto registroP : datosProductos) {
                                 %>
                                 <tr>
-                                    <%int codigoProducto = registroP.getCodProducto();
+                                    <%
+                                        int codigoProducto = registroP.getCodProducto();
                                         String nombreProducto = registroP.getNombre();
-                                        double precio = registroP.getPrecio();%>
-                                    <td><%= codigoProducto%></td>
+                                        double precio = registroP.getPrecio();
+                                        int disponible = registroP.getCantDisponible();
+                                    %>
+                                    <!-- <td><%= codigoProducto%></td> -->
                                     <td><%= nombreProducto%></td>
                                     <td><%= precio%></td>
+                                    <td><%= disponible%></td>
                                     <td>
                                         <a href="#" data-dismiss="modal"
                                            onclick="SeleccionarProducto('<%=codigoProducto%>',
