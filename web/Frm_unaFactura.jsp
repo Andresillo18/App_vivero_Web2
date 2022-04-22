@@ -143,7 +143,7 @@
                                placeholder="Seleccione un producto"/> &nbsp;&nbsp;
                         <a id="btnBuscarP" class="btn btn-success" data-toggle="modal" data-target="#buscarProducto">
                             <i class="fas fa-search"></i></a>&nbsp;&nbsp;
-                        <input type="number" id="txtcantidad" name="txtcantidad" value="" class="form-control" 
+                        <input type="number" id="txtcantidad" onchange="cambio(this.value)" name="txtcantidad" value="" class="form-control" 
                                placeholder="Cantidad"/> &nbsp;&nbsp;
                         <input type="number" id="txtprecio" name="txtprecio" value="" class="form-control" 
                                placeholder="Precio"/> 
@@ -386,6 +386,9 @@
         <script src="lib/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script>
+            function cambio(valor){
+                //alert(valor);
+            };
 
                                     //hacer que la lista de clientes se comporte como un datatable
                                     $(document).ready(function () {

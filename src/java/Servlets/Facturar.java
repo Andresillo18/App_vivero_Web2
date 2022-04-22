@@ -65,6 +65,8 @@ public class Facturar extends HttpServlet {
                     EntidadDetalle.setTotal_pagar(0);
                     
                     LogicaDetalle_Factura.Insertar(EntidadDetalle);
+                    
+                    resultadoFacturaCod = EntidadDetalle.getCod_factura();
 
                 // si es igual a -1
                 } else {
