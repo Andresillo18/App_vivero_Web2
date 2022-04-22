@@ -26,6 +26,7 @@ public class Facturar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
         try {
             LNFactura LogicaFactura = new LNFactura();
             LNDetalle_Factura LogicaDetalle_Factura = new LNDetalle_Factura();
@@ -33,7 +34,7 @@ public class Facturar extends HttpServlet {
             Detalle_Factura EntidadDetalle = new Detalle_Factura();
             int resultado = 0;
             int resultadoFacturaCod = 0;
-            
+
             //crear entidad de factura
             if (request.getParameter("txtNombreCliente") != null
                     && !request.getParameter("txtNombreCliente").equals("")) {
@@ -70,7 +71,6 @@ public class Facturar extends HttpServlet {
                 } else {
                     resultadoFacturaCod = LogicaFactura.Modificar(EntidadFactura);
                     EntidadDetalle.setCod_factura(resultadoFacturaCod);
-                    resultado = LogicaDetalle_Factura.Modificar(EntidadDetalle);
                 }
                 response.sendRedirect("Frm_unaFactura.jsp?txtnumFactura=" + resultadoFacturaCod);
             } else {

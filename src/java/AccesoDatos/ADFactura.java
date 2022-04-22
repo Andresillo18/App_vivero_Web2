@@ -199,7 +199,8 @@ public class ADFactura {
 
         try {
             _conexion = getConnection();
-            String sentencia = "SELECT COD_FACTURA, COD_EMPLEADO, COD_CLIENTE FROM Factura";
+            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO,Empleado.NOMBRE,Cliente.NOMBRE, Factura.COD_CLIENTE FROM Cliente INNER JOIN Factura "
+                    + "ON Cliente.COD_CLIENTE =Factura.COD_CLIENTE INNER JOIN Empleado ON Factura.COD_EMPLEADO = Empleado.COD_EMPLEADO";
 
             Statement Stm = _conexion.createStatement(); // Se usa create ya que no envía parametros a la sentencia
 
@@ -213,7 +214,10 @@ public class ADFactura {
             if (rs.next()) { // Solo devolverá un registro
                 fact.setCod_factura(rs.getInt(1));
                 fact.setCod_empleado(rs.getInt(2));
-                fact.setCod_cliente(rs.getInt(3));
+                fact.setNombre_empleado(rs.getString(3));
+                fact.setNombre_cliente(rs.getString(4));
+                fact.setCod_cliente(rs.getInt(5));
+                
                 fact.setExiste(true);
 
             }
