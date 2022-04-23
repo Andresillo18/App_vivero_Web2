@@ -30,7 +30,7 @@
         <link href="lib/DataTables/datatables.min.css" rel="stylesheet" type="text/css"/>
 
     </head>
-    <body>
+    <body class="">
         <header>            
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -97,7 +97,7 @@
                 }
             %>
             <br/>
-            <form action="Facturar" method="post">
+            <form action="Facturar" method="post" class="">
                 <div class="form-group float-right">
 
                     <div class="input-group">
@@ -113,21 +113,31 @@
                     </div>
 
                 </div>
-                <br/>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h5 id="tituloVentaja" class="text-black-50">Cliente</h5>
                 <div class="form-group">
                     <div class="input-group">
-
                         <input type="hidden" id="txtIdCliente" name="txtIdCliente" value="<%=EntidadFactura.getCod_cliente()%>"
                                readonly="" class="form-control"/>
+
                         <input type="text" id="txtNombreCliente" name="txtNombreCliente" 
                                value="<%=EntidadFactura.getNombre_cliente()%>" readonly="" class="form-control"
                                placeholder="Seleccione un cliente"/>
-                        &nbsp;&nbsp;<a id="btnbuscar" class="btn btn-success" data-toggle="modal"
+
+                        &nbsp;&nbsp;<a id="btnbuscar" class="btn btn-warning" data-toggle="modal"
                                        data-target="#buscarCliente"><i class="fas fa-search"></i></a>&nbsp;&nbsp; 
                         <!--Al darle al enlace de HTML llama un código del #, y dice que sea un modal para que solo se manipule esa-->
 
+                    </div>
+                    <hr/> 
+                    <h5 id="tituloVentaja" class="text-black-50">Empleado</h5>
+                    <div class="input-group">
                         <input type="hidden" id="txtCodEmpleado" name="txtCodEmpleado" value="<%=EntidadFactura.getCod_empleado()%>"
                                readonly="" class="form-control"/>
+
                         <input type="text" id="txtNombreEmpleado" name="txtNombreEmpleado" 
                                value="<%=EntidadFactura.getNombre_empleado()%>" readonly="" class="form-control"
                                placeholder="Seleccione un Empleado"/>
@@ -136,12 +146,14 @@
                     </div>
                 </div>
                 <hr/> <!-- Inicia el detalle de factura -->
+                <h5 id="tituloVentaja" class="text-black-50">Producto</h5>
                 <div class="form-group">
                     <div class="input-group">
                         <input type="hidden" id="txtIdProducto" name="txtIdProducto" value="" readonly="" class="form-control"/>
+
                         <input type="text" id="txtNombre" name="txtNombre" value="" class="form-control" readonly
                                placeholder="Seleccione un producto"/> &nbsp;&nbsp;
-                        <a id="btnBuscarP" class="btn btn-success" data-toggle="modal" data-target="#buscarProducto">
+                        <a id="btnBuscarP" class="btn btn-danger" data-toggle="modal" data-target="#buscarProducto">
                             <i class="fas fa-search"></i></a>&nbsp;&nbsp;
                         <input type="number" id="txtcantidad" onchange="cambio(this.value)" name="txtcantidad" value="" class="form-control" 
                                placeholder="Cantidad"/> &nbsp;&nbsp;
@@ -365,9 +377,19 @@
                                     <td><%= precio%></td>
                                     <td class="text-center"><%= disponible%></td>
                                     <td>
+                                        <%
+                                            if (disponible <= 0) {
+                                        %>
+                                        <a href="#" data-dismiss="modal" class="disabled" onclick="SeleccionarProducto('<%=codigoProducto%>',
+                                                        '<%= nombreProducto%>', '<%= precio%>');"></a>
+                                        <%
+                                        } else {%>
+
                                         <a href="#" data-dismiss="modal"
                                            onclick="SeleccionarProducto('<%=codigoProducto%>',
                                                            '<%= nombreProducto%>', '<%= precio%>');">Seleccionar</a>
+                                        <%
+                                            } %>   
                                     </td>
                                 </tr>
                                 <%}%>
@@ -399,15 +421,17 @@
                                         //alert(cantidad);
                                         var precioInicial = document.getElementById("txtprecio").value;
                                         //alert(precio);
-                                        
-                                        if(cantidad > 0){
-                                            
+
+                                        if (cantidad > 0) {
+
                                             var precioTotal = cantidad * precioInicial;
-                                            alert(precioTotal);
-                                            
+                                            //alert(precioTotal);
+
                                             document.getElementById("txtprecio2").value = precioTotal;
-                                        };
-                                    };
+                                        }
+                                        ;
+                                    }
+                                    ;
 
                                     //hacer que la lista de clientes se comporte como un datatable
                                     $(document).ready(function () {

@@ -50,6 +50,53 @@ END TRY
 GO
 
 
+-- ***********************************************************************************************************************
+
+CREATE OR ALTER TRIGGER SumarDelete
+   ON  Detalle_Factura
+   for delete
+AS 
+BEGIN TRY 	
+BEGIN TRANSACTION
+
+--Si hay herramientas o productos ingresados en la factura
+IF ((SELECT cantDetalle FROM inserted) > 0)
+
+--Pregunta si hay suficientes en el inventario de las herramientas o productos
+	IF ((SELECT cantDetalle FROM inserted) <= (SELECT cantDisponible FROM inserted INNER JOIN  Productos P ON P.codProducto= inserted.codProducto
+																WHERE inserted.codProducto = P.codProducto))			
+			BEGIN
+			BEGIN TRANSACTION
+				INSERT INTO Detalle_Factura
+				SELECT COD_FACTURA, codProducto,cantDetalle, TOTAL_PAGAR, FECHA,OBSERVACIONES FROM inserted
+
+				--Se llama al SP para actualizar la tabla y se declaran y se enván los parámetros
+				DECLARE @parametro1 int
+				SET @parametro1  =  (SELECT codProducto FROM inserted)
+				
+				DECLARE @parametro2 int
+				SET @parametro2 =(SELECT cantDetalle FROM inserted)
+				EXEC SP_RESTAR_CANTIDAD @parametro1,@parametro2
+			COMMIT TRANSACTION
+			END
+	ELSE	
+	BEGIN
+		RAISERROR('MENSAJE: No hay articulos suficientes',16,1)
+		ROLLBACK TRANSACTION 
+		PRINT ERROR_MESSAGE();
+	END
+--Si hay plantas ingresadas en la factura
+COMMIT TRANSACTION
+END TRY
+	BEGIN CATCH 	
+		PRINT ERROR_MESSAGE();
+	END CATCH
+GO
+
+
+-- ***********************************************************************************************************************
+
+
 -- =============================================
 -- Trigger2
 -- Description:	Se ejecuta antes de ACTUALIZAR un registro, pregunta si la cantidad ingresada en el detalle factura
