@@ -1,6 +1,8 @@
 package Servlets;
 
+import LogicaNegocio.LNEmpleado;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +19,23 @@ public class Bono extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Aquí
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        try {
+            LNEmpleado logicaEmpleado = new LNEmpleado();
+            float bono;
+            int codEmpleado;
+            int mes;
+            
+            codEmpleado = Integer.parseInt(request.getParameter("txtCodigo"));
+            mes = Integer.parseInt(request.getParameter("monthChooser"));
+            bono = logicaEmpleado.ObtenerBono(codEmpleado, mes);
+            
+            response.sendRedirect("Frm_UnEmpleado.jsp?bono=" + bono);
+        } catch (Exception ex) {
+            out.print(ex.getMessage());
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

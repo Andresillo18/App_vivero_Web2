@@ -119,17 +119,19 @@
                         <!-- para el bono -->
                         <div class="form-group">
                             <label for="txtBono" class="control-label">Bono</label>
+
                             <input type="number" id="txtBono" name="txtBono" value="<%=empleado1.getBono()%>" class="form-control"/>
+
                             <input type="month" class="m-4" id="start" name="start"
                                    min="2018-03" value="">
-                            <input type="button" id="btnBono" value="Calcular Bono" onclick="location.href = 'Frm_ListaEmpleados.jsp'" class="btn btn-info"/>
+                            <input type="button" id="monthChooser" name="monthChooser" id="btnBono" value="Calcular Bono" onclick="location.href = 'Bono'" class="btn btn-info"/>
                         </div>
 
                         <!-- form-group para los BOTONES de guardar y regresar  -->
                         <div class="form-group">
                             <div class="input-group">
                                 <input type="submit" id="btnGuardar" value="Guardar" class="btn btn-primary"/> &nbsp;&nbsp;
-                                <input type="button" id="btnRegresar" value="Regresar" onclick="location.href = 'Bono'" class="btn btn-secondary"/>
+                                <input type="button" id="btnRegresar" value="Regresar" onclick="location.href = 'Frm_ListaEmpleados.jsp'" class="btn btn-secondary"/>
                                 <!-- No estamos haciendo un RESPONSE porque no esta enviando ningún parámetro -->
                             </div>
                         </div>
