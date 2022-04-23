@@ -89,7 +89,7 @@
                         <!-- form-group para la identificación-->
                         <div class="form-group">
                             <label for="txtID" class="control-label">ID</label>
-                            <input type="txt" id="txtID" name="txtID" value="<%=empleado1.getId()%>" class="form-control"/>
+                            <input type="txt" id="txtID" name="txtID" maxlength="30" value="<%=empleado1.getId()%>" class="form-control"/>
                         </div>
 
                         <!-- form-group para los controles de Nombre -->
