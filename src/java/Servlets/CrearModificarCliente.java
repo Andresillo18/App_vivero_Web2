@@ -31,7 +31,7 @@ public class CrearModificarCliente extends HttpServlet {
 
             cliente1.setCod_cliente(Integer.parseInt(request.getParameter("txtCodigo")));
 
-            cliente1.setId(Integer.parseInt(new String(request.getParameter("txtID").getBytes("ISO-8859-1"), "UTF-8")));
+            cliente1.setId(new String(request.getParameter("txtID").getBytes("ISO-8859-1"), "UTF-8"));
 
             cliente1.setNombre(new String(request.getParameter("txtNombre").getBytes("ISO-8859-1"), "UTF-8"));
 

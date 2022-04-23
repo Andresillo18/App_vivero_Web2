@@ -63,7 +63,7 @@ public class Empleado extends Persona {
         this.existe = existe;
     }
 
-    public Empleado(int cod_empleado, int id, String nombre, String Apellido1, String telefono, int ventas_realizadas, boolean estado, float bono) {
+    public Empleado(int cod_empleado, String id, String nombre, String Apellido1, String telefono, int ventas_realizadas, boolean estado, float bono) {
         super(id, nombre, Apellido1, telefono);
         this.cod_empleado = cod_empleado;
         this.ventas_realizadas = ventas_realizadas;

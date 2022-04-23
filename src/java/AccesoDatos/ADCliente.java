@@ -40,7 +40,7 @@ public class ADCliente {
             PreparedStatement PS = _conexion.prepareStatement(sentencia, PreparedStatement.RETURN_GENERATED_KEYS); // Envía la sentencia según la entidad y regresa las llaves auto generadas
 
             //Se registra los argumentos de la consulta            
-            PS.setInt(1, cliente1.getId());
+            PS.setString(1, cliente1.getId());
             PS.setString(2, cliente1.getNombre());
             PS.setString(3, cliente1.getApellido1());
             PS.setString(4, cliente1.getTelefono());
@@ -72,7 +72,7 @@ public class ADCliente {
             _conexion = getConnection();
             PreparedStatement ps = _conexion.prepareStatement(sentencia);
 
-            ps.setInt(1, cliente1.getId());
+            ps.setString(1, cliente1.getId());
             ps.setString(2, cliente1.getNombre());
             ps.setString(3, cliente1.getApellido1());
             ps.setString(4, cliente1.getTelefono());
@@ -169,7 +169,7 @@ public class ADCliente {
 
             // Se usa un bucle siempre para saber lo que tiene un ResultSet
             while (rs.next()) { // Esto solo leerá el único registro que tiene
-                list1.add(new Cliente(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6))); // Solo le envía un objeto
+                list1.add(new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6))); // Solo le envía un objeto
             }
         } catch (Exception e) {
             throw e;
@@ -200,7 +200,7 @@ public class ADCliente {
             // Lo que devuelve la columna se establece a los atributos de su entidad (se usan las propiedades de encapsulamiento)
             if (rs.next()) { // Solo devolverá un registro
                 cliente1.setCod_cliente(rs.getInt(1));
-                cliente1.setId(rs.getInt(2));
+                cliente1.setId(rs.getString(2));
                 cliente1.setNombre(rs.getString(3));
                 cliente1.setApellido1(rs.getString(4));
                 cliente1.setTelefono(rs.getString(5));

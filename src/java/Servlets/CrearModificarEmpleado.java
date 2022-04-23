@@ -32,7 +32,7 @@ public class CrearModificarEmpleado extends HttpServlet {
 
             empleado1.setCod_empleado(Integer.parseInt(request.getParameter("txtCodigo")));
 
-            empleado1.setId(Integer.parseInt(new String(request.getParameter("txtID").getBytes("ISO-8859-1"), "UTF-8")));
+            empleado1.setId(new String(request.getParameter("txtID").getBytes("ISO-8859-1"), "UTF-8"));
 
             empleado1.setNombre(new String(request.getParameter("txtNombre").getBytes("ISO-8859-1"), "UTF-8"));
 

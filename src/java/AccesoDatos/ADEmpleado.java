@@ -42,7 +42,7 @@ public class ADEmpleado {
             PreparedStatement PS = _conexion.prepareStatement(sentencia, PreparedStatement.RETURN_GENERATED_KEYS); // Envía la sentencia según la entidad y regresa las llaves auto generadas
 
             //Se registra los argumentos de la consulta            
-            PS.setInt(1, empleado1.getId());
+            PS.setString(1, empleado1.getId());
             PS.setString(2, empleado1.getNombre());
             PS.setString(3, empleado1.getApellido1());
             PS.setString(4, empleado1.getTelefono());
@@ -79,7 +79,7 @@ public class ADEmpleado {
             _conexion = getConnection();
             PreparedStatement ps = _conexion.prepareStatement(sentencia);
 
-            ps.setInt(1, empleado1.getId());
+            ps.setString(1, empleado1.getId());
             ps.setString(2, empleado1.getNombre());
             ps.setString(3, empleado1.getApellido1());
             ps.setString(4, empleado1.getTelefono());
@@ -187,7 +187,7 @@ public class ADEmpleado {
 
             // Se usa un bucle siempre para saber lo que tiene un ResultSet
             while (rs.next()) { // Esto solo leerá el único registro que tiene
-                list1.add(new Empleado(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getBoolean(7), rs.getFloat(8))); // Solo le envía un objeto
+                list1.add(new Empleado(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getBoolean(7), rs.getFloat(8))); // Solo le envía un objeto
             }
         } catch (Exception e) {
             throw e;
@@ -222,7 +222,7 @@ public class ADEmpleado {
             // Lo que devuelve la columna se establece a los atributos de su entidad (se usan las propiedades de encapsulamiento)
             if (rs.next()) { // Solo devolverá un registro
                 empleado1.setCod_empleado(rs.getInt(1));
-                empleado1.setId(rs.getInt(2));
+                empleado1.setId(rs.getString(2));
                 empleado1.setNombre(rs.getString(3));
                 empleado1.setApellido1(rs.getString(4));
                 empleado1.setTelefono(rs.getString(5));

@@ -9,7 +9,7 @@ public abstract class Persona {
     
 // <editor-fold desc="ATRIBUTOS" defaultstate="collapsed">
 
-    private int id;
+    private String id;
     private String nombre;
     private String Apellido1;
     private String telefono;
@@ -17,11 +17,11 @@ public abstract class Persona {
 // </editor-fold>
 
 // <editor-fold desc="PROPIEDADES" defaultstate="collapsed">    
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -60,14 +60,14 @@ public abstract class Persona {
 
 // <editor-fold desc="CONSTRUCTOR" defaultstate="collapsed">    
     public Persona() {
-        id = 0;
+        id = "";
         nombre = "";
         Apellido1 = "";
         telefono = "";
         estado = false;
     }
 
-    public Persona(int id, String nombre, String Apellido1, String telefono) {
+    public Persona(String id, String nombre, String Apellido1, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.Apellido1 = Apellido1;
