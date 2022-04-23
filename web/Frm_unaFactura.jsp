@@ -147,7 +147,7 @@
                                placeholder="Cantidad"/> &nbsp;&nbsp;
                         <input type="number" readonly id="txtprecio2" name="txtprecio2" value="" class="form-control" 
                                placeholder="Precio"/> 
-                        <input type="number" id="txtprecio" name="txtprecio" value="" class="form-control" 
+                        <input type="number" id="txtprecio" name="txtprecio" value="" class="form-control d-none" 
                                placeholder="Precio"/> 
                     </div>
                 </div>
@@ -405,7 +405,7 @@
                                             var precioTotal = cantidad * precioInicial;
                                             alert(precioTotal);
                                             
-                                            document.getElementById("txtprecio").value = precioTotal;
+                                            document.getElementById("txtprecio2").value = precioTotal;
                                         };
                                     };
 
@@ -495,7 +495,8 @@
                                         $("#txtIdProducto").val(idProducto);
                                         $("#txtNombre").val(nombre);
                                         $("#txtprecio").val(Precio);
-                                        $("#txtcantidad").focus();
+                                        $("#txtprecio2").val(Precio);
+                                        $("#txtcantidad").focus().val(1);
                                     }
 
                                     //seleccionar cliente
