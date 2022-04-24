@@ -190,6 +190,7 @@
                     %>
                     <tr>
                         <%
+                            int codDetalle = registroDetalle.getCod_detalle();
                             int numfactura = registroDetalle.getCod_factura();
                             int codigop = registroDetalle.getCodProducto();
 
@@ -208,7 +209,7 @@
 
 
                         <td>
-                            <a href="EliminarDetalle?idproducto=<%=codigop%>&idfactura=<%=numfactura%>">Eliminar</a>
+                            <a href="EliminarDetalle?codDetalle=<%=codDetalle%>&idfactura=<%=numfactura%>">Eliminar</a>
                         </td>
                     </tr>
                     <%

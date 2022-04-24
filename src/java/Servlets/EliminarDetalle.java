@@ -23,10 +23,10 @@ public class EliminarDetalle extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             LNDetalle_Factura LogicaDetalle = new LNDetalle_Factura();
-            int codigo = Integer.parseInt(request.getParameter("idproducto"));
+            int codDetalle = Integer.parseInt(request.getParameter("codDetalle"));
             int factura = Integer.parseInt(request.getParameter("idfactura"));
             Detalle_Factura Entidad = new Detalle_Factura();
-            Entidad.setCodProducto(codigo);
+            Entidad.setCod_detalle(codDetalle);
             Entidad.setCod_factura(factura);
             LogicaDetalle.Eliminar(Entidad);
             response.sendRedirect("Frm_unaFactura.jsp?txtnumFactura=" + factura);

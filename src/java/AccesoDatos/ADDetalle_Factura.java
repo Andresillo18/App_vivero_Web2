@@ -107,14 +107,14 @@ public class ADDetalle_Factura {
     //Método3
     public int Eliminar(Detalle_Factura DF) throws Exception {
         int result = 0;
-        String sentencia = "DELETE Detalle_Factura WHERE codProducto = ?";
+        String sentencia = "DELETE Detalle_Factura WHERE COD_DETALLE = ?";
         Connection _conexion = null;
 
         try {
             _conexion = getConnection();
             PreparedStatement ps = _conexion.prepareStatement(sentencia);
 
-            ps.setInt(1, DF.getCodProducto());
+            ps.setInt(1, DF.getCod_detalle());
 
             result = ps.executeUpdate();
 
