@@ -14,7 +14,7 @@ INSERT INTO Productos
            ('Planta','Lirio Azul','Planta Hermosa',15000 ,3 ),
 		   ('Planta','Bromelia','Color cálido',20000,5),
 		   ('Planta','Manzanilla','Medicinal',20000,10),
-		   ('Planta','Hierbabuena','También considerada medicinal',5000,1),		   
+		   ('Planta','Hierbabuena','También considerada medicinal',5000,5),		   
 		   ('Planta','Pingo de oro','Tiene espinas',10000,15);
 GO
 
