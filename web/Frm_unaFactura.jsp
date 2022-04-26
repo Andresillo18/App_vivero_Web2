@@ -61,7 +61,7 @@
             </nav>
 
         </header>
-        <div class="container">
+        <div class="container mb-3">
 
             <div class="card-header ">
                 <h1 class="titulos">Crear o Modificar Datos</h1>
@@ -103,15 +103,21 @@
                     <div class="input-group">
                         <label for="txtnumFactura" class="form-control">Num. Factura</label>
                         <input type="text" id="txtnumFactura" name="txtnumFactura" value="<%=EntidadFactura.getCod_factura()%>" 
-                               readonly class="form-control"/>
+                               readonly class="form-control text-center"/>
                     </div>
 
+                    <div class="input-group">
+                        <label for="txtEstado" class="form-control">Estado</label>
+                        <input type="text" id="txtEstado" name="txtEstado" value="<%=EntidadFactura.getEstado()%>"
+                               readonly class="form-control text-center"/>
+                    </div>
+                               
                     <div class="input-group">
                         <label for="txtFechaFactura" class="form-control">Fecha</label>
                         <input type="text" id="txtFechaFactura" name="txtFechaFactura" value="<%=EntidadDF.getFecha()%>"
                                required class="datepicker form-control"/>
                     </div>
-
+                    
                 </div>
                 <br>
                 <br>

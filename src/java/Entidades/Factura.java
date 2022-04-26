@@ -13,6 +13,7 @@ public class Factura {
     private String nombre_empleado;
     private int cod_cliente;
     private String nombre_cliente;
+    private String estado;
     private boolean existe;
 
 // </editor-fold>
@@ -58,6 +59,14 @@ public class Factura {
         this.cod_cliente = cod_cliente;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     public boolean isExiste() {
         return existe;
     }
@@ -74,15 +83,17 @@ public class Factura {
         nombre_empleado = "";
         cod_cliente = 0;
         nombre_cliente = "";
+        estado = "Pendiente";
         existe = false;
     }
 
-   public Factura(int cod_factura, int cod_empleado, String nombre_empleado,  String nombre_cliente, int cod_cliente) {
+   public Factura(int cod_factura, int cod_empleado, String nombre_empleado,  String nombre_cliente, String estado, int cod_cliente) {
         this.cod_factura = cod_factura;
         this.cod_empleado = cod_empleado;
         this.nombre_empleado = nombre_empleado;
-        this.cod_cliente = cod_cliente;
         this.nombre_cliente = nombre_cliente;
+        this.estado = estado;
+        this.cod_cliente = cod_cliente;
         this.existe = true;
     }
 
