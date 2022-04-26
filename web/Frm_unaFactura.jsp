@@ -372,7 +372,7 @@
                                 <tr>
                                     <!-- <th>Código</th> -->
                                     <th>Tipo</th>
-                                    <th>Descripción</th>
+                                    <th>Nombre</th>
                                     <th>Precio</th>
                                     <th>Disponible</th>
                                     <th>Seleccionar</th>
