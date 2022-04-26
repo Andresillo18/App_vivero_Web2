@@ -32,41 +32,41 @@ public class ADDetalle_Factura {
 
     // <editor-fold desc="MÉTODOS" defaultstate="collapsed">    
     // Método1
-    public int Insertar(Detalle_Factura DF) throws Exception {
-        int cod_cliente = -1; // el -1 significa que no existe, por ahora
-        String sentencia = "INSERT INTO Detalle_Factura (COD_FACTURA, codProducto, cantDetalle, TOTAL_PAGAR, FECHA, OBSERVACIONES) VALUES (?, ?, ?, ?, ?, ?)";
-        Connection _conexion = null;
+    public int Insertar(Detalle_Factura entidad) throws Exception {
+        CallableStatement cs = null; // se utiliza para llamar al procedimiento almacenado
+        int resultado = -1;
+        Connection _connection = null; 
 
         try {
-            _conexion = getConnection();
-            PreparedStatement PS = _conexion.prepareStatement(sentencia, PreparedStatement.RETURN_GENERATED_KEYS); // Envía la sentencia según la entidad y regresa las llaves auto generadas
+            _connection = getConnection(); // se obtiene la cadena de conexión
+            
+            // se llama al procedimiento almacenado
+            cs = _connection.prepareCall("{call InsertarDetalleFactura(?, ?, ?, ?, ?, ?)}");
 
-            //Se registra los argumentos de la consulta            
-            PS.setInt(1, DF.getCod_factura());
-            PS.setInt(2, DF.getCodProducto());
-            PS.setInt(3, DF.getCantDetalle());
-            PS.setFloat(4, DF.getTotal_pagar());
-            PS.setDate(5, DF.getFecha());
-            PS.setString(6, DF.getObservaciones());
-
-            PS.executeUpdate(); // Se ejecuta la sentencia- retorna true o false 
-
-            ResultSet rs = PS.getGeneratedKeys(); // El ResultSet es de una celda porque obtiene los identity de un INSERT
-
-            if (rs != null && rs.next()) {
-                cod_cliente = rs.getInt(1); //busca el unico registro de la unica columna
-                _mensaje = "Detalle de Factura ingresado satisfactoriamente";
-            }
+            // se agregan los párametros que recibe el procedimiento almacenado
+            cs.setInt(1, entidad.getCod_factura());
+            cs.setInt(2, entidad.getCodProducto());
+            cs.setInt(3, entidad.getCantDetalle());
+            cs.setFloat(4, entidad.getTotal_pagar());
+            cs.setDate(5, entidad.getFecha());
+            cs.setString(6, entidad.getObservaciones());
+            
+            // se ejecuta el CallableStatement
+            resultado = cs.executeUpdate();
 
         } catch (Exception e) {
-            throw e;
+            
+            _mensaje = "Error inesperado, intente luego";
+            
         } finally {
-            if (_conexion != null) {
-
-                ClaseConexion.close(_conexion);
+            // se cierra la conexión si fue abierta
+            if (_connection != null) {
+                
+                ClaseConexion.close(_connection);
             }
         }
-        return cod_cliente;
+
+        return resultado;
     }
 
     //Método2

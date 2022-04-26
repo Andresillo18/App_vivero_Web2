@@ -30,7 +30,7 @@
         <link href="lib/DataTables/datatables.min.css" rel="stylesheet" type="text/css"/>
 
     </head>
-    <body class="">
+    <body onload="carga()">
         <header>            
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -111,13 +111,13 @@
                         <input type="text" id="txtEstado" name="txtEstado" value="<%=EntidadFactura.getEstado()%>"
                                readonly class="form-control text-center"/>
                     </div>
-                               
+
                     <div class="input-group">
                         <label for="txtFechaFactura" class="form-control">Fecha</label>
                         <input type="text" id="txtFechaFactura" name="txtFechaFactura" value="<%=EntidadDF.getFecha()%>"
                                required class="datepicker form-control"/>
                     </div>
-                    
+
                 </div>
                 <br>
                 <br>
@@ -171,7 +171,7 @@
                 </div>
                 <br/>
                 <div class="form-group">
-                    <input type="submit" name="Guardar" id="BtnGuardar" value="Agregar y Guardar" class="btn btn-primary"/>
+                    <input type="submit" name="Guardar" id="BtnGuardar" value="Agregar y Guardar" class="btn btn-primary d-block"/>
                 </div>
             </form>
             <hr/>
@@ -212,16 +212,28 @@
                         <td><%= precioV%></td>
                         <td><%= cantidad * precioV%></td>
 
+                        <%
+                            if (EntidadFactura.getEstado().equals("Pendiente")) {
 
-
+                        %>
                         <td>
                             <a href="EliminarDetalle?codDetalle=<%=codDetalle%>&idfactura=<%=numfactura%>">Eliminar</a>
                         </td>
+                        <%
+                        } else {
+                        %>
+
+                        <td>
+                            <p class="text-danger">No se puede eliminar</p>
+                        </td>
+                        <%
+                            }
+                        %>
                     </tr>
                     <%
                             }// cierre de for
                         } // cierre del if
-%>
+                    %>
                 </tbody>
             </table>
             <div class="float-right">
@@ -425,7 +437,15 @@
         <script src="lib/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script>
-
+                                    function carga() {
+                                        var estado = document.getElementById("txtEstado").value;
+                                        
+                                        if(estado != "Pendiente"){
+                                            
+                                            document.getElementById("BtnGuardar").classList.remove("d-block");
+                                            document.getElementById("BtnGuardar").classList.add("d-none");
+                                        }
+                                    }
 
                                     function cambio(cantidad) {
                                         //alert(cantidad);
