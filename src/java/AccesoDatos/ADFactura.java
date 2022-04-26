@@ -65,16 +65,16 @@ public class ADFactura {
     //Método2
     public int Modificar(Factura fact) throws Exception {
         int result = 0; // No ha obtenido ningún resultado        
-        String sentencia = "UPDATE Factura SET COD_EMPLEADO = ?, COD_CLIENTE =? WHERE COD_FACTURA = ? ";
+        String sentencia = "UPDATE Factura SET estado=? WHERE COD_FACTURA = ? ";
         Connection _conexion = null;
 
         try {
             _conexion = getConnection();
             PreparedStatement ps = _conexion.prepareStatement(sentencia);
 
-            ps.setInt(1, fact.getCod_empleado());
-            ps.setInt(2, fact.getCod_cliente());
-            ps.setInt(3, fact.getCod_factura());
+            
+            ps.setString(1, fact.getEstado());
+            ps.setInt(2, fact.getCod_factura());
 
             result = ps.executeUpdate();
 

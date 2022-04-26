@@ -26,9 +26,17 @@ public class RealizarFactura extends HttpServlet {
             LNFactura Logica = new LNFactura();
             int idFactura = Integer.parseInt(request.getParameter("txtnumFactura"));
             Factura EntidadFactura = Logica.ObtenerRegistro("COD_FACTURA=" + idFactura);
-//            EntidadFactura.setEstado("Cancelada");
-//            Logica.ModificarEstado(EntidadFactura);
-            response.sendRedirect("Frm_unaFactura.jsp?txtnumFactura=-1");
+            
+            int codEmpleado = Integer.parseInt(request.getParameter("txtCodEmpleado"));
+            EntidadFactura.setCod_empleado(codEmpleado);
+            
+            int codCliente = Integer.parseInt(request.getParameter("txtIdCliente"));
+            EntidadFactura.setCod_cliente(codCliente);
+            
+            EntidadFactura.setEstado("Pagada");
+            
+            Logica.Modificar(EntidadFactura);
+            response.sendRedirect("Frm_ListaFacturas.jsp");
         } catch (Exception e) {
             out.print(e.getMessage());
         }

@@ -230,7 +230,7 @@
             </div>
             <br><br>
             <input type="button" id="BtnRealizar" value="Realizar Facturación"
-                   onclick="location.href = 'RealizarFactura?txtnumFactura=' +<%= EntidadFactura.getCod_factura()%>"
+                   onclick="location.href = 'RealizarFactura?txtnumFactura=' + <%=EntidadFactura.getCod_factura()%> + '&txtCodEmpleado=' + <%=EntidadFactura.getCod_empleado()%> + '&txtIdCliente=' + <%=EntidadFactura.getCod_cliente()%>"
                    class="btn btn-success"/>
             &nbsp;&nbsp;
             <a href="Frm_ListaFacturas.jsp" class="btn btn-secondary">Regresar</a>
