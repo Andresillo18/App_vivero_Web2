@@ -343,8 +343,8 @@
         </div> <!-- modal -->
 
         <!-- Modal de PRODUCTO -->
-        <div class="modal" id="buscarProducto" tabindex="1" role="dialog" aria-labelledby="tituloVentana">
-            <div class="modal-dialog" role="document">
+        <div class="modal " id="buscarProducto" tabindex="1" role="dialog" aria-labelledby="tituloVentana">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 id="tituloVentana">Buscar Producto</h5>
@@ -359,6 +359,7 @@
                             <thead>
                                 <tr>
                                     <!-- <th>Código</th> -->
+                                    <th>Tipo</th>
                                     <th>Descripción</th>
                                     <th>Precio</th>
                                     <th>Disponible</th>
@@ -375,13 +376,15 @@
                                 <tr>
                                     <%
                                         int codigoProducto = registroP.getCodProducto();
+                                        String tipoProducto = registroP.getTipoProducto();
                                         String nombreProducto = registroP.getNombre();
                                         double precio = registroP.getPrecio();
                                         int disponible = registroP.getCantDisponible();
                                     %>
                                     <!-- <td><%= codigoProducto%></td> -->
+                                    <td><%= tipoProducto%></td>
                                     <td><%= nombreProducto%></td>
-                                    <td><%= precio%></td>
+                                    <td>₡<%= precio%></td>
                                     <td class="text-center"><%= disponible%></td>
                                     <td>
                                         <%
