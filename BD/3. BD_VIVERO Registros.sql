@@ -1,3 +1,4 @@
+
 --Andrés Villalobos
 --27/3/22
 USE [BD_VIVERO]
@@ -19,6 +20,11 @@ INSERT INTO Productos
 		   ('Artículo','Pala','Soporte de hierro',25000,50),
 		   ('Químico','Pesticida','Sintético',75000,20),
 		   ('Químico','Abono','Dirigido a plantas',17500,35),
+		   ('Químico','Fertilizante','Cal',4000,20),
+		   ('Químico','Herbicida','Eliminar planta indeseadas',2000,50),
+		   ('Químico','Rodenticida','Se utiliza para matar roedores',1000,40),
+		   ('Artículo','Tijeras para podar','Plástico y ceramica',25000,17),
+		   ('Artículo','Carretillo','Metal',75000,15),
 		   ('Artículo','Maceta','Ceramica',10000,55),
 		   ('Artículo','Rastrillo','Material plastico',5250,22);
 GO
