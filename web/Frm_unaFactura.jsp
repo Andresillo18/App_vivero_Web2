@@ -181,7 +181,7 @@
                 <thead>
                     <tr>
                         <th>Código</th>
-                        <th>Nombre del Prodcuto</th>
+                        <th>Prodcuto</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
                         <th>Subtotal</th>
@@ -206,9 +206,9 @@
                             double precioV = registroDetalle.getPrecio();
                             total += (cantidad * precioV);
                         %>
-                        <td><%= codigop%></td>
+                        <td class="text-center"><%= codigop%></td>
                         <td><%= nombre%></td>
-                        <td><%= cantidad%></td>
+                        <td class="text-center"><%= cantidad%></td>
                         <td><%= precioV%></td>
                         <td><%= cantidad * precioV%></td>
 
@@ -457,7 +457,7 @@
                                             var precioTotal = cantidad * precioInicial;
                                             //alert(precioTotal);
 
-                                            document.getElementById("txtprecio2").value = precioTotal;
+                                            document.getElementById("txtprecio2").value = precioTotal + ".0";
                                         }
                                         ;
                                     }
