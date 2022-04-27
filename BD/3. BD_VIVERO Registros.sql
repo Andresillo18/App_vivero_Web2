@@ -15,7 +15,12 @@ INSERT INTO Productos
 		   ('Planta','Bromelia','Color cálido',20000,5),
 		   ('Planta','Manzanilla','Medicinal',20000,10),
 		   ('Planta','Hierbabuena','También considerada medicinal',5000,5),		   
-		   ('Planta','Pingo de oro','Tiene espinas',10000,15);
+		   ('Planta','Pingo de oro','Tiene espinas',10000,15),
+		   ('Artículo','Pala','Soporte de hierro',25000,50),
+		   ('Químico','Pesticida','Sintético',75000,20),
+		   ('Químico','Abono','Dirigido a plantas',17500,35),
+		   ('Artículo','Maceta','Ceramica',10000,55),
+		   ('Artículo','Rastrillo','Material plastico',5250,22);
 GO
 
 
