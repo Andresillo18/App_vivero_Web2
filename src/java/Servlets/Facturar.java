@@ -47,7 +47,7 @@ public class Facturar extends HttpServlet {
                 String fechaString = request.getParameter("txtFechaFactura");
                 Date fecha = formato.parse(fechaString);
                 java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
-                EntidadDetalle.setFecha(fechasql);
+                EntidadFactura.setFecha(fechasql);
                 //Se guarda el cod del empleado en la entidad
                 EntidadFactura.setCod_empleado(Integer.parseInt(request.getParameter("txtCodEmpleado")));
 

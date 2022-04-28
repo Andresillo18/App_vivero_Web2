@@ -16,7 +16,6 @@ public class Detalle_Factura {
     private int codProducto;
     private int cantDetalle;
     private float total_pagar;
-    private Date fecha;
     private String observaciones;
     private String nombreProducto; // Se crea para utilizar otro campo de otra tabla
     private float precio; // Se crea para utilizar otro campo de otra tabla
@@ -65,14 +64,6 @@ public class Detalle_Factura {
         this.total_pagar = total_pagar;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
     public String getObservaciones() {
         return observaciones;
     }
@@ -114,20 +105,18 @@ public class Detalle_Factura {
         codProducto = 0;
         cantDetalle = 0;
         total_pagar = 0;
-        fecha = null;  // new java.sql.Date(0);
         observaciones = "";
         nombreProducto = "";
         precio = 0;
         existe = false;
     }
 
-    public Detalle_Factura(int cod_detalle, int cod_factura, int codProducto,String nombreProducto ,  float precio, int cantDetalle, float total_pagar, Date fecha, String observaciones) {
+    public Detalle_Factura(int cod_detalle, int cod_factura, int codProducto,String nombreProducto ,  float precio, int cantDetalle, float total_pagar, String observaciones) {
         this.cod_detalle = cod_detalle;
         this.cod_factura = cod_factura;
         this.codProducto = codProducto;
         this.cantDetalle = cantDetalle;
         this.total_pagar = total_pagar;
-        this.fecha = fecha;
         this.observaciones = observaciones;
         this.nombreProducto = nombreProducto;
         this.precio = precio;

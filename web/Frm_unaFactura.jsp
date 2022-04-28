@@ -93,7 +93,7 @@
 
                     Date fecha = new Date();
                     java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
-                    EntidadDF.setFecha(fechasql);
+                    EntidadFactura.setFecha(fechasql);
                 }
             %>
             <br/>
@@ -114,7 +114,7 @@
 
                     <div class="input-group">
                         <label for="txtFechaFactura" class="form-control">Fecha</label>
-                        <input type="text" id="txtFechaFactura" name="txtFechaFactura" value="<%=EntidadDF.getFecha()%>"
+                        <input type="text" id="txtFechaFactura" name="txtFechaFactura" value="<%=EntidadFactura.getFecha()%>"
                                required class="datepicker form-control"/>
                     </div>
 
@@ -134,7 +134,7 @@
                                placeholder="Seleccione un cliente"/>
 
                         &nbsp;&nbsp;<a id="btnbuscar" class="btn btn-warning" data-toggle="modal"
-                                       data-target="#buscarCliente"><i class="fas fa-search"></i></a>&nbsp;&nbsp; 
+                                       data-target="#buscarCliente"><i class="fas fa-search"></i></a>
                         <!--Al darle al enlace de HTML llama un código del #, y dice que sea un modal para que solo se manipule esa-->
 
                     </div>
@@ -206,9 +206,9 @@
                             double precioV = registroDetalle.getPrecio();
                             total += (cantidad * precioV);
                         %>
-                        <td class="text-center"><%= codigop%></td>
+                        <td><%= codigop%></td>
                         <td><%= nombre%></td>
-                        <td class="text-center"><%= cantidad%></td>
+                        <td><%= cantidad%></td>
                         <td><%= precioV%></td>
                         <td><%= cantidad * precioV%></td>
 
@@ -241,10 +241,18 @@
                 <%= total%>
             </div>
             <br><br>
-            <input type="button" id="BtnRealizar" value="Realizar Facturación"
+            
+            <%
+                if(EntidadFactura.getCod_factura() != -1){
+                    %>
+                        <input type="button" id="BtnRealizar" value="Realizar Facturación"
                    onclick="location.href = 'RealizarFactura?txtnumFactura=' + <%=EntidadFactura.getCod_factura()%> + '&txtCodEmpleado=' + <%=EntidadFactura.getCod_empleado()%> + '&txtIdCliente=' + <%=EntidadFactura.getCod_cliente()%>"
-                   class="btn btn-success"/>
-            &nbsp;&nbsp;
+                   class="btn btn-success"/>&nbsp;&nbsp;
+                    <%
+                }
+            %>
+            
+            
             <a href="Frm_ListaFacturas.jsp" class="btn btn-secondary">Regresar</a>
 
         </div> <!-- container principal -->

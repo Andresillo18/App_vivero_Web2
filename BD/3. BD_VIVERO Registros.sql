@@ -82,17 +82,18 @@ INSERT INTO [dbo].[Cliente]
            ,[APELLIDO1]
            ,[TELEFONO])
      VALUES
-           ('','Pablo','',''),
-		   ('22555547','Juliana','','');
+           ('00000000','Cliente','cliente','cliente'),
+		   ('22555547','Juliana','Pérez','Ramírez');
 GO
 
 
 INSERT INTO [dbo].[Factura]
            ([COD_EMPLEADO]
-           ,[COD_CLIENTE])
+           ,[COD_CLIENTE]
+		   ,[FECHA])
      VALUES
-           (1,1),
-		   (1,2);
+           (1,1, '2022-3-28'),
+		   (1,2, '2022-3-28');
 GO
 
 --select * from Detalle_Factura
@@ -102,8 +103,7 @@ INSERT INTO [dbo].[Detalle_Factura]
            ,[codProducto]
            ,[cantDetalle]
            ,[TOTAL_PAGAR]
-           ,[FECHA]
            ,[OBSERVACIONES])
      VALUES
-           (1,1,1,2000,'2022-3-28','')
+           (1,1,1,2000,'')
 GO

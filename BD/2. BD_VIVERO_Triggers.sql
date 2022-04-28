@@ -24,7 +24,7 @@ IF ((SELECT cantDetalle FROM inserted) > 0)
 			BEGIN
 			BEGIN TRANSACTION
 				INSERT INTO Detalle_Factura
-				SELECT COD_FACTURA, codProducto,cantDetalle, TOTAL_PAGAR, FECHA,OBSERVACIONES FROM inserted
+				SELECT COD_FACTURA, codProducto,cantDetalle, TOTAL_PAGAR, OBSERVACIONES FROM inserted
 
 				--Se llama al SP para actualizar la tabla y se declaran y se enván los parámetros
 				DECLARE @parametro1 int

@@ -1,5 +1,7 @@
 package Entidades;
 
+import java.sql.Date;
+
 /**
  * 29-3-22
  *
@@ -14,6 +16,7 @@ public class Factura {
     private int cod_cliente;
     private String nombre_cliente;
     private String estado;
+    private Date fecha;
     private boolean existe;
 
 // </editor-fold>
@@ -66,6 +69,14 @@ public class Factura {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
     
     public boolean isExiste() {
         return existe;
@@ -84,16 +95,18 @@ public class Factura {
         cod_cliente = 0;
         nombre_cliente = "";
         estado = "Pendiente";
+        fecha = null;  // new java.sql.Date(0);
         existe = false;
     }
 
-   public Factura(int cod_factura, int cod_empleado, String nombre_empleado,  String nombre_cliente, String estado, int cod_cliente) {
+   public Factura(int cod_factura, int cod_empleado, String nombre_empleado,  String nombre_cliente, String estado, int cod_cliente, Date fecha) {
         this.cod_factura = cod_factura;
         this.cod_empleado = cod_empleado;
         this.nombre_empleado = nombre_empleado;
         this.nombre_cliente = nombre_cliente;
         this.estado = estado;
         this.cod_cliente = cod_cliente;
+        this.fecha = fecha;
         this.existe = true;
     }
 

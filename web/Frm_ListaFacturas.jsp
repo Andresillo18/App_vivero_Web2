@@ -67,6 +67,7 @@
                         <th>Empleado</th>
                         <th>Cliente</th>
                         <th>Estado</th>
+                        <th>Fecha</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -84,6 +85,7 @@
                         <td><%= registro.getNombre_empleado()%></td>
                         <td><%= registro.getNombre_cliente()%></td>
                         <td><%= registro.getEstado()%></td>
+                        <td><%= registro.getFecha()%></td>
                         <td>
                             <a href="Frm_unaFactura.jsp?txtnumFactura=<%= num%>">
                                 <i class="fas fa-cart-plus"></i></a>

@@ -32,7 +32,7 @@ public class ADFactura {
     // Método1
     public int Insertar(Factura fact) throws Exception {
         int cod_factura = -1; // el -1 significa que no existe, por ahora
-        String sentencia = "INSERT INTO Factura (COD_EMPLEADO, COD_CLIENTE) VALUES (?,?)";
+        String sentencia = "INSERT INTO Factura (COD_EMPLEADO, COD_CLIENTE, FECHA) VALUES (?, ?, ?)";
         Connection _conexion = null;
 
         try {
@@ -42,6 +42,7 @@ public class ADFactura {
             //Se registra los argumentos de la consulta            
             PS.setInt(1, fact.getCod_empleado());
             PS.setInt(2, fact.getCod_cliente());
+            PS.setDate(3, fact.getFecha());
 
             PS.execute(); // Se ejecuta la sentencia- retorna true o false 
 
@@ -49,7 +50,7 @@ public class ADFactura {
 
             if (rs != null && rs.next()) {
                 cod_factura = rs.getInt(1); //busca el unico registro de la unica columna
-                _mensaje = "Factura ingresado satisfactoriamente";
+                _mensaje = "Factura ingresada satisfactoriamente";
             }
 
         } catch (Exception e) {
@@ -131,7 +132,7 @@ public class ADFactura {
         try {
             _conexion = getConnection();
             Statement Stm = _conexion.createStatement(); // Se usa un statement ya que lo que se enviará no tendrá un parámetro de entrada
-            String sentencia = "SELECT COD_FACTURA, COD_EMPLEADO, COD_CLIENTE, estado FROM Factura";
+            String sentencia = "SELECT COD_FACTURA, COD_EMPLEADO, COD_CLIENTE, FECHA, estado FROM Factura";
 
             if (!condicion.equals("")) { // Si se envío una condición
                 sentencia = String.format("%s WHERE %s", sentencia, condicion); // Interpolación de Strings 
@@ -166,7 +167,7 @@ public class ADFactura {
             _conexion = getConnection();
             Statement Stm = _conexion.createStatement(); // Siempre se debe estable esta conexión con la BD
 
-            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO,Empleado.NOMBRE,Cliente.NOMBRE, Factura.estado, Factura.COD_CLIENTE FROM Cliente INNER JOIN Factura "
+            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO, Empleado.NOMBRE,Cliente.NOMBRE, Factura.estado, Factura.COD_CLIENTE, Factura.FECHA FROM Cliente INNER JOIN Factura "
                     + "ON Cliente.COD_CLIENTE =Factura.COD_CLIENTE INNER JOIN Empleado ON Factura.COD_EMPLEADO = Empleado.COD_EMPLEADO";
 
             if (!condicion.equals("")) { // Si se envío una condición
@@ -177,7 +178,7 @@ public class ADFactura {
 
             // Se usa un bucle siempre para saber lo que tiene un ResultSet
             while (rs.next()) { // Esto solo leerá el único registro que tiene
-                list1.add(new Factura(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6))); // Solo le envía un objeto
+                list1.add(new Factura(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),rs.getString(5), rs.getInt(6), rs.getDate(7))); // Solo le envía un objeto
             }
         } catch (Exception e) {
             throw e;
@@ -199,7 +200,7 @@ public class ADFactura {
 
         try {
             _conexion = getConnection();
-            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO,Empleado.NOMBRE,Cliente.NOMBRE, Factura.estado, Factura.COD_CLIENTE FROM Cliente INNER JOIN Factura "
+            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO,Empleado.NOMBRE,Cliente.NOMBRE, Factura.estado, Factura.COD_CLIENTE, Faxtura.FECHA FROM Cliente INNER JOIN Factura "
                     + "ON Cliente.COD_CLIENTE =Factura.COD_CLIENTE INNER JOIN Empleado ON Factura.COD_EMPLEADO = Empleado.COD_EMPLEADO";
 
             Statement Stm = _conexion.createStatement(); // Se usa create ya que no envía parametros a la sentencia
@@ -217,7 +218,8 @@ public class ADFactura {
                 fact.setNombre_empleado(rs.getString(3));
                 fact.setNombre_cliente(rs.getString(4));
                 fact.setEstado(rs.getString(5));
-                fact.setCod_cliente(rs.getInt(5));
+                fact.setCod_cliente(rs.getInt(6));
+                fact.setFecha(rs.getDate(7));
                 
                 fact.setExiste(true);
 
