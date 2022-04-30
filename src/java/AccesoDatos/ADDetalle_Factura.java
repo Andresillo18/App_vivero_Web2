@@ -42,7 +42,7 @@ public class ADDetalle_Factura {
             _connection = getConnection(); // se obtiene la cadena de conexión
             
             // se llama al procedimiento almacenado
-            cs = _connection.prepareCall("{call InsertarDetalleFactura(?, ?, ?, ?, ?, ?)}");
+            cs = _connection.prepareCall("{call InsertarDetalleFactura(?, ?, ?, ?, ?)}");
 
             // se agregan los párametros que recibe el procedimiento almacenado
             cs.setInt(1, entidad.getCod_factura());
@@ -140,7 +140,7 @@ public class ADDetalle_Factura {
         try {
             _conexion = getConnection();
             Statement Stm = _conexion.createStatement(); // Se usa un statement ya que lo que se enviará no tendrá un parámetro de entrada
-            String sentencia = "SELECT COD_DETALLE,DF.COD_FACTURA,DF.codProducto, nombre, precio, cantDetalle, TOTAL_PAGAR, OBSERVACIONES FROM Productos P INNER JOIN  Detalle_Factura DF ON P.codProducto = DF.codProducto inner JOIN Factura F ON DF.COD_FACTURA = F.COD_FACTURA ";
+            String sentencia = "SELECT COD_DETALLE, DF.COD_FACTURA, DF.codProducto, nombre, precio, cantDetalle, TOTAL_PAGAR, OBSERVACIONES FROM Productos P INNER JOIN  Detalle_Factura DF ON P.codProducto = DF.codProducto inner JOIN Factura F ON DF.COD_FACTURA = F.COD_FACTURA ";
 
             if (!condicion.equals("")) { // Si se envío una condición
                 sentencia = String.format("%s WHERE %s", sentencia, condicion); // Interpolación de Strings 
