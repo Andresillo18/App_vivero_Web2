@@ -175,7 +175,7 @@ public class ADDetalle_Factura {
             _conexion = getConnection();
             Statement Stm = _conexion.createStatement(); // Siempre se debe estable esta conexión con la BD
 
-            String sentencia = "SELECT COD_DETALLE,DF.COD_FACTURA,DF.codProducto, nombre, precio, cantDetalle, TOTAL_PAGAR, OBSERVACIONES FROM Productos P INNER JOIN  Detalle_Factura DF ON P.codProducto = DF.codProducto inner JOIN Factura F ON DF.COD_FACTURA = F.COD_FACTURA ";
+            String sentencia = "SELECT COD_DETALLE, DF.COD_FACTURA, DF.codProducto, nombre, precio, cantDetalle, TOTAL_PAGAR, OBSERVACIONES FROM Productos P INNER JOIN  Detalle_Factura DF ON P.codProducto = DF.codProducto inner JOIN Factura F ON DF.COD_FACTURA = F.COD_FACTURA ";
 
             if (!condicion.equals("")) { // Si se envío una condición
                 sentencia = String.format("%s WHERE %s", sentencia, condicion); // Interpolación de Strings 
@@ -207,7 +207,7 @@ public class ADDetalle_Factura {
 
         try {
             _conexion = getConnection();
-            String sentencia = "SELECT COD_DETALLE,DF.COD_FACTURA,DF.codProducto, nombre, precio, cantDetalle, TOTAL_PAGAR, OBSERVACIONES FROM Productos P INNER JOIN  Detalle_Factura DF ON P.codProducto = DF.codProducto inner JOIN Factura F ON DF.COD_FACTURA = F.COD_FACTURA ";
+            String sentencia = "SELECT COD_DETALLE, DF.COD_FACTURA, DF.codProducto, nombre, precio, cantDetalle, TOTAL_PAGAR, OBSERVACIONES FROM Productos P INNER JOIN  Detalle_Factura DF ON P.codProducto = DF.codProducto inner JOIN Factura F ON DF.COD_FACTURA = F.COD_FACTURA ";
 
             Statement Stm = _conexion.createStatement(); // Se usa create ya que no envía parametros a la sentencia
 

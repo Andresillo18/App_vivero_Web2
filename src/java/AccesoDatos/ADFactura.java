@@ -132,7 +132,7 @@ public class ADFactura {
         try {
             _conexion = getConnection();
             Statement Stm = _conexion.createStatement(); // Se usa un statement ya que lo que se enviará no tendrá un parámetro de entrada
-            String sentencia = "SELECT COD_FACTURA, COD_EMPLEADO, COD_CLIENTE, FECHA, estado FROM Factura";
+            String sentencia = "SELECT COD_FACTURA, COD_EMPLEADO, COD_CLIENTE, estado, FECHA FROM Factura";
 
             if (!condicion.equals("")) { // Si se envío una condición
                 sentencia = String.format("%s WHERE %s", sentencia, condicion); // Interpolación de Strings 
@@ -167,8 +167,8 @@ public class ADFactura {
             _conexion = getConnection();
             Statement Stm = _conexion.createStatement(); // Siempre se debe estable esta conexión con la BD
 
-            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO, Empleado.NOMBRE,Cliente.NOMBRE, Factura.estado, Factura.COD_CLIENTE, Factura.FECHA FROM Cliente INNER JOIN Factura "
-                    + "ON Cliente.COD_CLIENTE =Factura.COD_CLIENTE INNER JOIN Empleado ON Factura.COD_EMPLEADO = Empleado.COD_EMPLEADO";
+            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO, Empleado.NOMBRE, Cliente.NOMBRE, Factura.estado, Factura.COD_CLIENTE, Factura.FECHA FROM Cliente INNER JOIN Factura "
+                    + "ON Cliente.COD_CLIENTE = Factura.COD_CLIENTE INNER JOIN Empleado ON Factura.COD_EMPLEADO = Empleado.COD_EMPLEADO";
 
             if (!condicion.equals("")) { // Si se envío una condición
                 sentencia = String.format("%s WHERE %s", sentencia, condicion); // Interpolación de Strings 
@@ -200,7 +200,7 @@ public class ADFactura {
 
         try {
             _conexion = getConnection();
-            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO,Empleado.NOMBRE,Cliente.NOMBRE, Factura.estado, Factura.COD_CLIENTE, Faxtura.FECHA FROM Cliente INNER JOIN Factura "
+            String sentencia = "SELECT COD_FACTURA, Factura.COD_EMPLEADO, Empleado.NOMBRE, Cliente.NOMBRE, Factura.estado, Factura.COD_CLIENTE, Factura.FECHA FROM Cliente INNER JOIN Factura "
                     + "ON Cliente.COD_CLIENTE =Factura.COD_CLIENTE INNER JOIN Empleado ON Factura.COD_EMPLEADO = Empleado.COD_EMPLEADO";
 
             Statement Stm = _conexion.createStatement(); // Se usa create ya que no envía parametros a la sentencia
