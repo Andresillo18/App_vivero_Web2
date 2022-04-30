@@ -66,6 +66,7 @@
             <div class="card-header ">
                 <h1 class="titulos">Crear o Modificar Datos</h1>
             </div>  
+            
 
 
             <%
@@ -85,17 +86,20 @@
                     EntidadDF = logicaDetalle.ObtenerRegistro("DF.COD_FACTURA=" + numFactura);
 
                     DatosDetalles = logicaDetalle.ListaRegistros("DF.COD_FACTURA=" + numFactura);
+                    
                 } else {
                     EntidadFactura = new Factura();
                     EntidadFactura.setCod_factura(-1);
 
                     EntidadDF = new Detalle_Factura();
-
+                    
+                    
                     Date fecha = new Date();
                     java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
                     EntidadFactura.setFecha(fechasql);
                 }
             %>
+            
             <br/>
             <form action="Facturar" method="post" class="">
                 <div class="form-group float-right">
